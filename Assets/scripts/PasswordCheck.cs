@@ -10,7 +10,7 @@ public class PasswordCheck : MonoBehaviour
     public TMP_InputField codeInput;
     public string nextSceneName = "ChooseCharacterScene";
 
-    public string apiURL = "http://127.0.0.1:5194/api/Unity/CheckLoginCode";
+    public string apiURL = "http://192.168.56.1:5194/api/Unity/CheckLoginCode";
     public void CheckCode()
     {
         StartCoroutine(VerifyCodeFromAPI());
@@ -27,7 +27,7 @@ public class PasswordCheck : MonoBehaviour
         req.downloadHandler = new DownloadHandlerBuffer();
         req.SetRequestHeader("Content-Type", "application/json");
 
-        Debug.Log("Sending Code: " + code); 
+        Debug.Log("Sending Code: " + code);
         yield return req.SendWebRequest();
 
         if (req.result == UnityWebRequest.Result.Success)

@@ -1,0 +1,70 @@
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+{
+    private RectTransform rectTransform;
+    private CanvasGroup canvasGroup;
+    private Transform originalParent;
+    private Canvas canvas;
+
+    private Vector2 originalSizeDelta;
+    private Vector3 originalScale;
+
+    public int itemID;
+    [SerializeField] private float dragScaleMultiplier = 1.2f;
+
+    void Start()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        canvasGroup = GetComponent<CanvasGroup>();
+        canvas = GetComponentInParent<Canvas>();
+        originalParent = transform.parent;
+
+        originalScale = rectTransform.localScale;
+        originalSizeDelta = rectTransform.sizeDelta;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        transform.SetParent(canvas.transform);
+        rectTransform.localScale = originalScale * dragScaleMultiplier;
+        canvasGroup.alpha = 0.6f;
+        canvasGroup.blocksRaycasts = false;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
+
+        if (transform.parent == canvas.transform)
+        {
+            ResetToScrollView();
+        }
+    }
+
+    public void ResetToScrollView()
+    {
+        transform.SetParent(originalParent);
+
+
+        rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        rectTransform.pivot = new Vector2(0.5f, 0.5f);
+
+        rectTransform.sizeDelta = originalSizeDelta;
+        rectTransform.localScale = originalScale;
+
+        rectTransform.anchoredPosition = Vector2.zero;
+        rectTransform.localPosition = Vector3.zero;
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(originalParent as RectTransform);
+    }
+}

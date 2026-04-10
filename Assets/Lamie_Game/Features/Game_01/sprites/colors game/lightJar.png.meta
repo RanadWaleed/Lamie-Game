@@ -1,0 +1,1001 @@
+fileFormatVersion: 2
+guid: f779f4975361ac94ea50cdc25be16c4a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4842978708095161201
+    second: lightJar_0
+  - first:
+      213: 8735178655473290444
+    second: lightJar_1
+  - first:
+      213: 2235518417275445810
+    second: lightJar_2
+  - first:
+      213: -4006026016883110517
+    second: lightJar_3
+  - first:
+      213: 5578851781724702794
+    second: lightJar_4
+  - first:
+      213: -4430379954602896969
+    second: lightJar_5
+  - first:
+      213: 1772983733361153104
+    second: lightJar_6
+  - first:
+      213: 3867365819087861998
+    second: lightJar_7
+  - first:
+      213: -1871449838321583378
+    second: lightJar_8
+  - first:
+      213: 7267489606212569630
+    second: lightJar_9
+  - first:
+      213: -6305827523397112370
+    second: lightJar_10
+  - first:
+      213: 2051322076438603163
+    second: lightJar_11
+  - first:
+      213: -6976848859418767038
+    second: lightJar_12
+  - first:
+      213: -6609162855601646566
+    second: lightJar_13
+  - first:
+      213: -4965374002612818785
+    second: lightJar_14
+  - first:
+      213: 2931863966278334823
+    second: lightJar_15
+  - first:
+      213: 2159924319071161686
+    second: lightJar_16
+  - first:
+      213: 5829408319055376261
+    second: lightJar_17
+  - first:
+      213: -6072331255897528941
+    second: lightJar_18
+  - first:
+      213: 4909566672017402756
+    second: lightJar_19
+  - first:
+      213: 3797949490347027169
+    second: lightJar_20
+  - first:
+      213: 2708591321478901925
+    second: lightJar_21
+  - first:
+      213: -8452328812910192682
+    second: lightJar_22
+  - first:
+      213: 982340959427455340
+    second: lightJar_23
+  - first:
+      213: 3193435485932468616
+    second: lightJar_24
+  - first:
+      213: -2360606971115185441
+    second: lightJar_25
+  - first:
+      213: -6555587472052626643
+    second: lightJar_26
+  - first:
+      213: 7123663727315149795
+    second: lightJar_27
+  - first:
+      213: 4130386911313978876
+    second: lightJar_28
+  - first:
+      213: 3658115798828382543
+    second: lightJar_29
+  - first:
+      213: 6207191025869118416
+    second: lightJar_30
+  - first:
+      213: 3402025396940897313
+    second: lightJar_31
+  - first:
+      213: 8211443430164576610
+    second: lightJar_32
+  - first:
+      213: 7289337896592479343
+    second: lightJar_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lightJar_0
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 7
+        width: 1386
+        height: 2038
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8c253136884accb0800000000000000
+      internalID: -4842978708095161201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_1
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 2002
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccc4f09c4b6993970800000000000000
+      internalID: 8735178655473290444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_2
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 2002
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 232eb8ef728260f10800000000000000
+      internalID: 2235518417275445810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_3
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 2001
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8d85beff8cb768c0800000000000000
+      internalID: -4006026016883110517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_4
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 2001
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a48814033201c6d40800000000000000
+      internalID: 5578851781724702794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_5
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 2001
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b112e987e02482c0800000000000000
+      internalID: -4430379954602896969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_6
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 2001
+        width: 23
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0549983df47ea9810800000000000000
+      internalID: 1772983733361153104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_7
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 2002
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee83837e8b4aba530800000000000000
+      internalID: 3867365819087861998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_8
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 2002
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eea31e399464706e0800000000000000
+      internalID: -1871449838321583378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_9
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 2001
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1ac423ca4f4bd460800000000000000
+      internalID: 7267489606212569630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_10
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 2001
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecda805f6433d78a0800000000000000
+      internalID: -6305827523397112370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_11
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 2002
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b952a066f82c77c10800000000000000
+      internalID: 2051322076438603163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_12
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 2001
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24151c26de04d2f90800000000000000
+      internalID: -6976848859418767038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_13
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 1998
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a14582156698744a0800000000000000
+      internalID: -6609162855601646566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_14
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 1339
+        width: 7
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9cad4df6a2771bb0800000000000000
+      internalID: -4965374002612818785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_15
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1101
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 769b9cf5eb210b820800000000000000
+      internalID: 2931863966278334823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_16
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1094
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65dc6f379b799fd10800000000000000
+      internalID: 2159924319071161686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_17
+      rect:
+        serializedVersion: 2
+        x: 1479
+        y: 967
+        width: 7
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58fa00c0bf736e050800000000000000
+      internalID: 5829408319055376261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_18
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 920
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 395e9b535eebabba0800000000000000
+      internalID: -6072331255897528941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_19
+      rect:
+        serializedVersion: 2
+        x: 1479
+        y: 906
+        width: 7
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48ba1be40e8422440800000000000000
+      internalID: 4909566672017402756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_20
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 862
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1eaa20760f605b430800000000000000
+      internalID: 3797949490347027169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_21
+      rect:
+        serializedVersion: 2
+        x: 1479
+        y: 868
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a0b476c479d69520800000000000000
+      internalID: 2708591321478901925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_22
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 785
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d750bd1abb43ba80800000000000000
+      internalID: -8452328812910192682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_23
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 508
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c696dfed5e9f1ad00800000000000000
+      internalID: 982340959427455340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_24
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 61
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 889b128a7ac515c20800000000000000
+      internalID: 3193435485932468616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_25
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 58
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fda5e5087707d3fd0800000000000000
+      internalID: -2360606971115185441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_26
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 58
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2b5d4a5defd505a0800000000000000
+      internalID: -6555587472052626643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_27
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 58
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e364fdca665cd260800000000000000
+      internalID: 7123663727315149795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_28
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 58
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf5eac91305125930800000000000000
+      internalID: 4130386911313978876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_29
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 58
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f49f86000fc34c230800000000000000
+      internalID: 3658115798828382543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_30
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 58
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dbdbe5d95f542650800000000000000
+      internalID: 6207191025869118416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_31
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 58
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12cf485e21c663f20800000000000000
+      internalID: 3402025396940897313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_32
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 61
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 269bc2c2b48e4f170800000000000000
+      internalID: 8211443430164576610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightJar_33
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 61
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f641036423ee82560800000000000000
+      internalID: 7289337896592479343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      lightJar_0: -4842978708095161201
+      lightJar_1: 8735178655473290444
+      lightJar_10: -6305827523397112370
+      lightJar_11: 2051322076438603163
+      lightJar_12: -6976848859418767038
+      lightJar_13: -6609162855601646566
+      lightJar_14: -4965374002612818785
+      lightJar_15: 2931863966278334823
+      lightJar_16: 2159924319071161686
+      lightJar_17: 5829408319055376261
+      lightJar_18: -6072331255897528941
+      lightJar_19: 4909566672017402756
+      lightJar_2: 2235518417275445810
+      lightJar_20: 3797949490347027169
+      lightJar_21: 2708591321478901925
+      lightJar_22: -8452328812910192682
+      lightJar_23: 982340959427455340
+      lightJar_24: 3193435485932468616
+      lightJar_25: -2360606971115185441
+      lightJar_26: -6555587472052626643
+      lightJar_27: 7123663727315149795
+      lightJar_28: 4130386911313978876
+      lightJar_29: 3658115798828382543
+      lightJar_3: -4006026016883110517
+      lightJar_30: 6207191025869118416
+      lightJar_31: 3402025396940897313
+      lightJar_32: 8211443430164576610
+      lightJar_33: 7289337896592479343
+      lightJar_4: 5578851781724702794
+      lightJar_5: -4430379954602896969
+      lightJar_6: 1772983733361153104
+      lightJar_7: 3867365819087861998
+      lightJar_8: -1871449838321583378
+      lightJar_9: 7267489606212569630
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

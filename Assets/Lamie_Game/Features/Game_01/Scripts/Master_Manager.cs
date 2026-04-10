@@ -3,6 +3,19 @@ using System.Collections;
 
 public class MasterManager : MonoBehaviour
 {
+    public static MasterManager Instance;
+
+    [Header("Backend Logic Trackers")]
+    public float maxTimeForCurrentLevel = 15f;
+    public float timeTaken = 0f;
+    public int currentStageIndex = 1;
+    public int totalRequiredMatches = 3;
+    public int Score = 0;
+    public int Attempts = 0;
+    public int scoreFirstAttempt = 0;
+    public bool isGameActive = false;
+
+    [Header("Original UI Variables")]
     public int currentPhase = 1;
     public GameObject nextButton;
     public RectTransform environmentPanel;
@@ -19,10 +32,6 @@ public class MasterManager : MonoBehaviour
     public GameObject game4Elements;
 
     public CanvasGroup game1UI_CG;
-    public RectTransform allJarsGroup;
-    public Vector2 shelfPos = new Vector2(0, 0);
-    public Vector2 floorPos = new Vector2(-2214f, -820.3f);
-    public float floorScale = 2.576f;
 
     public GameObject lubnaGame2;
     public Animator lubnaAnimator2;
@@ -59,6 +68,14 @@ public class MasterManager : MonoBehaviour
     private Vector2 boxOriginalPos;
     private Vector2 tableOriginalPos;
 
+    public GameObject shelfJarsFake;
+    public GameObject floorJarsGroup;
+
+    void Awake()
+    {
+        if (Instance == null) Instance = this;
+    }
+
     void Start()
     {
         if (animatedCandyBoxRT != null) boxOriginalPos = animatedCandyBoxRT.anchoredPosition;
@@ -81,16 +98,97 @@ public class MasterManager : MonoBehaviour
 
         if (game3OddOneOutCG != null) game3OddOneOutCG.blocksRaycasts = false;
         if (lightGlowCG != null) lightGlowCG.alpha = 0f;
+
+        StartBackendTracking("Game_1");
+    }
+
+    void Update()
+    {
+        if (isGameActive)
+        {
+            timeTaken += Time.deltaTime;
+        }
+    }
+
+    public void StartBackendTracking(string gameName)
+    {
+        currentStageIndex = 1;
+        timeTaken = 0f;
+        Score = 0;
+        Attempts = 0;
+        scoreFirstAttempt = 0;
+        isGameActive = true;
+
+        if (PsychometricReportManager.Instance != null)
+        {
+            PsychometricReportManager.Instance.StartNewIndicator(gameName);
+        }
+    }
+
+    public void ResetStageTrackers()
+    {
+        timeTaken = 0f;
+        Score = 0;
+        Attempts = 0;
+        scoreFirstAttempt = 0;
+        isGameActive = true;
+    }
+
+    public void RegisterAttempt(bool isCorrect, bool isFirstAttempt = false)
+    {
+        Attempts++;
+        if (isCorrect && isFirstAttempt) scoreFirstAttempt++;
+        if (isCorrect) Score++;
+    }
+
+    public void SubmitStageData()
+    {
+        if (PsychometricReportManager.Instance != null)
+        {
+            PsychometricReportManager.Instance.SaveItemData(
+                currentStageIndex,
+                scoreFirstAttempt,
+                totalRequiredMatches,
+                Attempts,
+                timeTaken,
+                maxTimeForCurrentLevel
+            );
+        }
+
+        currentStageIndex++;
+        timeTaken = 0f;
+        Score = 0;
+        Attempts = 0;
+        scoreFirstAttempt = 0;
+    }
+
+    public void FinalizeAndUploadReport()
+    {
+        isGameActive = false;
+
+        if (PsychometricReportManager.Instance != null)
+        {
+            PsychometricReportManager.Instance.FinishCurrentIndicator();
+            PsychometricReportManager.Instance.UploadReportToDatabase();
+        }
     }
 
     public void ShowNextButton()
     {
         if (nextButton != null) nextButton.SetActive(true);
     }
-
     public void OnNextButtonClicked()
     {
         if (nextButton != null) nextButton.SetActive(false);
+
+        if (isGameActive)
+        {
+            if (PsychometricReportManager.Instance != null)
+            {
+                PsychometricReportManager.Instance.FinishCurrentIndicator();
+            }
+            isGameActive = false;
+        }
 
         currentPhase++;
 
@@ -129,21 +227,15 @@ public class MasterManager : MonoBehaviour
             yield return null;
         }
 
-        timer = 0;
-        while (timer < 1.5f)
-        {
-            timer += Time.deltaTime;
-            float progress = Mathf.SmoothStep(0, 1, timer / 1.5f);
-            if (allJarsGroup != null)
-            {
-                allJarsGroup.anchoredPosition = Vector2.Lerp(floorPos, shelfPos, progress);
-                allJarsGroup.localScale = Vector3.Lerp(new Vector3(floorScale, floorScale, floorScale), Vector3.one, progress);
-            }
-            yield return null;
-        }
-
         if (game1Elements != null) game1Elements.SetActive(false);
+        if (floorJarsGroup != null) floorJarsGroup.SetActive(false);
 
+        if (shelfJarsFake != null)
+        {
+            shelfJarsFake.SetActive(true);
+            CanvasGroup cg = shelfJarsFake.GetComponent<CanvasGroup>();
+            if (cg != null) cg.alpha = 1f;
+        }
         if (lubnaGame2 != null)
         {
             lubnaGame2.SetActive(true);
@@ -182,6 +274,10 @@ public class MasterManager : MonoBehaviour
         }
 
         if (game2Elements != null) game2Elements.SetActive(true);
+
+        StartBackendTracking("Game_2");
+
+        if (Game2Spawner.Instance != null) Game2Spawner.Instance.LoadLevel(0);
     }
 
     IEnumerator GoToGame3()
@@ -300,6 +396,8 @@ public class MasterManager : MonoBehaviour
                 if (game3OddOneOutCG != null) game3OddOneOutCG.blocksRaycasts = true;
             }
         }
+
+        StartBackendTracking("Game_3");
     }
 
     IEnumerator GoToGame4()
@@ -392,5 +490,7 @@ public class MasterManager : MonoBehaviour
         }
 
         if (game4Elements != null) game4Elements.SetActive(true);
+
+        StartBackendTracking("Game_4");
     }
 }

@@ -7,7 +7,6 @@ public class PasswordCheck : MonoBehaviour
 {
     public TMP_InputField codeInput;
 
-    // رجعنا الرابط القديم حقك اللي كان شغال زي الفل!
     public string apiURL = "http://192.168.56.1:5194/api/Unity/CheckLoginCode";
 
     public void CheckCode()
@@ -38,8 +37,9 @@ public class PasswordCheck : MonoBehaviour
             if (response.Success)
             {
                 Debug.Log("Login success! Child ID: " + response.ChildId);
+                PlayerPrefs.SetString("CurrentChildID", response.ChildId);
+                PlayerPrefs.Save();
 
-                // هنا التغيير الوحيد: استخدمنا المانجر عشان يوديه لاختيار الشخصية
                 if (GameFlowManager.Instance != null)
                 {
                     GameFlowManager.Instance.GoToState(GameFlowState.CharacterSelection);

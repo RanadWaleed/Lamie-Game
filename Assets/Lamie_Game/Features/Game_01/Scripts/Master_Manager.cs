@@ -99,6 +99,12 @@ public class MasterManager : MonoBehaviour
         if (game3OddOneOutCG != null) game3OddOneOutCG.blocksRaycasts = false;
         if (lightGlowCG != null) lightGlowCG.alpha = 0f;
 
+        // Setup dimension with childID from PlayerPrefs before any tracking starts
+        if (PsychometricReportManager.Instance != null)
+        {
+            PsychometricReportManager.Instance.SetupNewDimension("الذكاء المكاني");
+        }
+
         StartBackendTracking("Game_1");
     }
 
@@ -143,6 +149,9 @@ public class MasterManager : MonoBehaviour
 
     public void SubmitStageData()
     {
+        // Stop timer immediately so Invoke delays don't pollute next stage time
+        isGameActive = false;
+
         if (PsychometricReportManager.Instance != null)
         {
             PsychometricReportManager.Instance.SaveItemData(
@@ -160,6 +169,9 @@ public class MasterManager : MonoBehaviour
         Score = 0;
         Attempts = 0;
         scoreFirstAttempt = 0;
+
+        // Resume timer for next stage
+        isGameActive = true;
     }
 
     public void FinalizeAndUploadReport()
@@ -167,6 +179,16 @@ public class MasterManager : MonoBehaviour
         isGameActive = false;
 
         if (PsychometricReportManager.Instance != null)
+        {
+            PsychometricReportManager.Instance.FinishCurrentIndicator();
+            PsychometricReportManager.Instance.UploadReportToDatabase();
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        // Safety net: if game closes before Game4 finishes, try to upload whatever we have
+        if (isGameActive && PsychometricReportManager.Instance != null)
         {
             PsychometricReportManager.Instance.FinishCurrentIndicator();
             PsychometricReportManager.Instance.UploadReportToDatabase();

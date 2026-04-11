@@ -200,27 +200,55 @@ public class PsychometricReportManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(finalReport, true);
         Debug.Log("Payload Generated:\n" + json);
+        Debug.Log("PAYLOAD TO SERVER: " + json);
+        // Save locally as backup before attempting upload
+        PlayerPrefs.SetString("LastReportBackup_" + finalReport.childID, json);
+        PlayerPrefs.Save();
+        Debug.Log("<color=cyan>Report backed up locally in PlayerPrefs.</color>");
 
-        StartCoroutine(PostRequest(apiURL, json));
+        StartCoroutine(PostRequestWithRetry(apiURL, json, retryCount: 3));
     }
 
-    private IEnumerator PostRequest(string url, string json)
+    private IEnumerator PostRequestWithRetry(string url, string json, int retryCount)
     {
-        var request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
+        int attempt = 0;
+        bool success = false;
 
-        yield return request.SendWebRequest();
-
-        if (request.result != UnityWebRequest.Result.Success)
+        while (attempt < retryCount && !success)
         {
-            Debug.LogError("Upload Error: " + request.error);
+            attempt++;
+            Debug.Log($"Upload attempt {attempt} of {retryCount}...");
+
+            var request = new UnityWebRequest(url, "POST");
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+            Debug.Log("Server Response: " + request.downloadHandler.text); 
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                success = true;
+                // Clear backup after successful upload
+                PlayerPrefs.DeleteKey("LastReportBackup_" + finalReport.childID);
+                PlayerPrefs.Save();
+                Debug.Log("<color=green>Upload Success: " + request.downloadHandler.text + "</color>");
+            }
+            else
+            {
+                Debug.LogWarning($"Upload attempt {attempt} failed: {request.error}");
+                if (attempt < retryCount)
+                {
+                    yield return new WaitForSeconds(2f);
+                }
+            }
         }
-        else
+
+        if (!success)
         {
-            Debug.Log("Upload Success: " + request.downloadHandler.text);
+            Debug.LogError($"All {retryCount} upload attempts failed. Report saved locally in PlayerPrefs as backup.");
         }
     }
 }

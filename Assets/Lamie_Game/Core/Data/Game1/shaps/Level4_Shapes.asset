@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9cf103f8f7ba5247942a3ffd152a9b4, type: 3}
+  m_Name: Level4_Shapes
+  m_EditorClassIdentifier: Assembly-CSharp::StageData
+  stageName: 
+  standardTime: 12
+  matchPairs:
+  - pairID: Tbig
+    draggableSprite: {fileID: -4051775243478953174, guid: dcdfec3ffcdad8b47b0187ce815c336e, type: 3}
+    targetSprite: {fileID: 6051461806625355020, guid: 09225ed9bf8e00346b49d9092ab7103e, type: 3}
+  - pairID: Tbig
+    draggableSprite: {fileID: -4051775243478953174, guid: dcdfec3ffcdad8b47b0187ce815c336e, type: 3}
+    targetSprite: {fileID: 6051461806625355020, guid: 09225ed9bf8e00346b49d9092ab7103e, type: 3}
+  - pairID: Tsmall
+    draggableSprite: {fileID: 989123813363763071, guid: 486670b05ecd18a49b9824abae5900d9, type: 3}
+    targetSprite: {fileID: -8350017915244704703, guid: 034f372a5d50a224eb3bcc86cbf3d1cb, type: 3}
+  - pairID: Tsmall
+    draggableSprite: {fileID: 989123813363763071, guid: 486670b05ecd18a49b9824abae5900d9, type: 3}
+    targetSprite: {fileID: -8350017915244704703, guid: 034f372a5d50a224eb3bcc86cbf3d1cb, type: 3}
+  - pairID: Tmidum
+    draggableSprite: {fileID: -1667026861839801225, guid: ab5d22927f440b54fab349b992f93bec, type: 3}
+    targetSprite: {fileID: 3973187760570444981, guid: b5f69fc7063befd4cb7b4ba1d7544fd9, type: 3}
+  - pairID: Tmidum
+    draggableSprite: {fileID: -1667026861839801225, guid: ab5d22927f440b54fab349b992f93bec, type: 3}
+    targetSprite: {fileID: 3973187760570444981, guid: b5f69fc7063befd4cb7b4ba1d7544fd9, type: 3}
+  distractors: []

@@ -7,6 +7,8 @@ public class PatternLevel
 {
     public Sprite traySprite;
     public Sprite[] optionSprites = new Sprite[3];
+    public int correctOptionIndex;
+    public float standardTime = 15f;
 }
 
 public class Game4Manager : MonoBehaviour
@@ -19,10 +21,12 @@ public class Game4Manager : MonoBehaviour
     public Button[] optionsButtons;
     public Button backButton;
 
-    public PatternLevel[] levels = new PatternLevel[3];
+    public PatternLevel[] levels = new PatternLevel[6];
     private int currentLevel = 0;
     private bool isAnimating = false;
     private Vector2 originalContainerPos;
+    private bool isLevelCompleted = false;
+    private int clicksThisStage = 0;
 
     void Start()
     {
@@ -43,6 +47,9 @@ public class Game4Manager : MonoBehaviour
     {
         if (index < levels.Length)
         {
+            isLevelCompleted = false;
+            clicksThisStage = 0;
+
             if (trayImage != null) trayImage.sprite = levels[index].traySprite;
 
             if (targetSlotImage != null)
@@ -55,12 +62,19 @@ public class Game4Manager : MonoBehaviour
             {
                 if (optionsImages[i] != null)
                 {
-                    optionsImages[i].sprite = levels[index].optionSprites[i];
-                    optionsImages[i].gameObject.SetActive(true);
-
-                    if (optionsButtons != null && i < optionsButtons.Length && optionsButtons[i] != null)
+                    if (levels[index].optionSprites != null && i < levels[index].optionSprites.Length && levels[index].optionSprites[i] != null)
                     {
-                        optionsButtons[i].interactable = true;
+                        optionsImages[i].sprite = levels[index].optionSprites[i];
+                        optionsImages[i].gameObject.SetActive(true);
+
+                        if (optionsButtons != null && i < optionsButtons.Length && optionsButtons[i] != null)
+                        {
+                            optionsButtons[i].interactable = true;
+                        }
+                    }
+                    else
+                    {
+                        optionsImages[i].gameObject.SetActive(false);
                     }
                 }
             }
@@ -74,17 +88,50 @@ public class Game4Manager : MonoBehaviour
             {
                 backButton.gameObject.SetActive(index > 0);
             }
+
+            if (MasterManager.Instance != null)
+            {
+                MasterManager.Instance.totalRequiredMatches = 1;
+                MasterManager.Instance.maxTimeForCurrentLevel = levels[index].standardTime;
+            }
         }
         else
         {
-            if (masterManager != null) masterManager.ShowNextButton();
+            if (MasterManager.Instance != null)
+            {
+                MasterManager.Instance.FinalizeAndUploadReport();
+            }
+
+            if (masterManager != null)
+            {
+                masterManager.ShowNextButton();
+            }
         }
     }
 
     public void OnOptionClicked(int index)
     {
-        if (isAnimating) return;
-        StartCoroutine(OptionSelectedRoutine(index));
+        if (isAnimating || isLevelCompleted) return;
+
+        clicksThisStage++;
+        bool isCorrect = (index == levels[currentLevel].correctOptionIndex);
+
+        if (MasterManager.Instance != null)
+        {
+            MasterManager.Instance.RegisterAttempt(isCorrect, clicksThisStage == 1);
+        }
+
+        if (isCorrect)
+        {
+            isLevelCompleted = true;
+
+            if (MasterManager.Instance != null)
+            {
+                MasterManager.Instance.SubmitStageData();
+            }
+
+            StartCoroutine(OptionSelectedRoutine(index));
+        }
     }
 
     public void OnBackClicked()
@@ -115,7 +162,7 @@ public class Game4Manager : MonoBehaviour
             targetSlotImage.color = new Color(1, 1, 1, 1);
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         if (levelContainerRect != null)
         {
@@ -158,13 +205,7 @@ public class Game4Manager : MonoBehaviour
         }
         else
         {
-            // التعديل هنا لانتظار ثانيتين والانتقال للعبة الثانية
-            yield return new WaitForSeconds(2f);
-
-            if (GameFlowManager.Instance != null)
-            {
-                GameFlowManager.Instance.GoToNextState();
-            }
+            LoadLevel(currentLevel);
         }
 
         isAnimating = false;

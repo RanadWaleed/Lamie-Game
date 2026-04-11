@@ -7,36 +7,15 @@ public class FrameSelectionManager : MonoBehaviour
     public Image frameDisplay;
     public Button leftBtn;
     public Button rightBtn;
-    public Button confirmBtn; 
-
-    [Header("Audio")]
-    public AudioSource audioSource;       // مصدر الصوت
-    public AudioClip chooseFrameVoice;    // ملف الصوت "اختر إطار"
-
-    [Header("Objects to Hide/Show")]
-    public GameObject toolBox;      
-    public GameObject drawingBoard; 
+    public Button confirmBtn;
 
     [Header("Target Destination")]
-    public Image targetBoardFrame;  // مكان الإطار الفاضي في شاشة الرسم
+    public Image targetBoardFrame;
 
     [Header("Data")]
     public Sprite[] frameSprites;
 
     private int currentIndex = 0;
-
-    void OnEnable()
-    {
-        // نخفي التول بوكس والبورد
-        if (toolBox) toolBox.SetActive(false);
-        if (drawingBoard) drawingBoard.SetActive(false);
-
-        // تشغيل الصوت أول ما تفتح الشاشة أوتوماتيك
-        if (audioSource && chooseFrameVoice)
-        {
-            audioSource.PlayOneShot(chooseFrameVoice);
-        }
-    }
 
     void Start()
     {
@@ -65,9 +44,7 @@ public class FrameSelectionManager : MonoBehaviour
     void UpdateDisplay()
     {
         if (frameDisplay && frameSprites.Length > 0)
-        {
             frameDisplay.sprite = frameSprites[currentIndex];
-        }
     }
 
     public Sprite GetSelectedFrame()
@@ -78,17 +55,7 @@ public class FrameSelectionManager : MonoBehaviour
 
     public void ConfirmSelection()
     {
-        // 1. نرسل صورة الإطار المختار إلى شاشة الرسم!
         if (targetBoardFrame)
-        {
             targetBoardFrame.sprite = GetSelectedFrame();
-        }
-
-        // 2. نرجع التول بوكس والبورد عشان يبدأ يرسم
-        if (toolBox) toolBox.SetActive(true);
-        if (drawingBoard) drawingBoard.SetActive(true);
-        
-        // 3. نخفي شاشة اختيار الإطارات
-        this.gameObject.SetActive(false);
     }
 }

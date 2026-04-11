@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Lamie_Game/Features/Login/LoginScene.unity
     guid: 7016cb641a6dce444b9b12e7466817fb
   - enabled: 0
-    path: Assets/Scenes/ChooseCharacterScene_OLD.unity
+    path: Assets/Scenes/ChooseCharacterScene.unity
     guid: 1660222138a724444a96c85b3f52740c
   - enabled: 0
     path: Assets/Scenes/comingSoonScene.unity

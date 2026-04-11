@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class BoardManager : MonoBehaviour
 {
@@ -18,11 +19,11 @@ public class BoardManager : MonoBehaviour
     public Transform decoLayer;
     public Transform charLayer;
 
+    [Header("Capture")]
+    public RectTransform paintingTarget;
     private GameObject currentItem;
 
-    [Header("Audio")]
-    public AudioSource audioSource;
-    public AudioClip startTaskVoice;
+    public static Texture2D capturedBoard;
 
     void Awake()
     {
@@ -33,11 +34,7 @@ public class BoardManager : MonoBehaviour
     void Start()
     {
         if (deleteBtn) deleteBtn.onClick.AddListener(DeleteCurrent);
-
         if (selectionFrame) selectionFrame.gameObject.SetActive(false);
-
-        if (drawingArea.GetComponent<Button>() == null)
-            drawingArea.gameObject.AddComponent<Button>().onClick.AddListener(Deselect);
     }
 
     public Transform GetLayer(string type)
@@ -54,9 +51,7 @@ public class BoardManager : MonoBehaviour
     public void SelectItem(GameObject obj, bool isBackground)
     {
         if (obj == null) return;
-
         currentItem = obj;
-
         if (selectionFrame == null) return;
 
         selectionFrame.SetParent(obj.transform);
@@ -115,17 +110,37 @@ public class BoardManager : MonoBehaviour
         {
             if (layer == null) continue;
             foreach (Transform child in layer)
-            {
                 Destroy(child.gameObject);
-            }
         }
     }
 
-    void OnEnable()
+
+    public RectTransform selectedBoard;
+
+    public void CaptureBoard()
     {
-        if (audioSource != null && startTaskVoice != null)
-        {
-            audioSource.PlayOneShot(startTaskVoice);
-        }
+        foreach (Transform child in paintingTarget)
+            Destroy(child.gameObject);
+
+        GameObject boardCopy = Instantiate(selectedBoard.gameObject, paintingTarget);
+        RectTransform boardRT = boardCopy.GetComponent<RectTransform>();
+        boardRT.anchorMin = new Vector2(0.5f, 0.5f);
+        boardRT.anchorMax = new Vector2(0.5f, 0.5f);
+        boardRT.anchoredPosition = Vector2.zero;
+        boardRT.localScale = Vector3.one;
+
+        GameObject areaCopy = Instantiate(drawingArea.gameObject, paintingTarget);
+        RectTransform areaRT = areaCopy.GetComponent<RectTransform>();
+        areaRT.anchorMin = new Vector2(0.5f, 0.5f);
+        areaRT.anchorMax = new Vector2(0.5f, 0.5f);
+        areaRT.anchoredPosition = Vector2.zero;
+        areaRT.localScale = Vector3.one;
+
+        foreach (var item in areaCopy.GetComponentsInChildren<ItemInteraction>())
+            Destroy(item);
+
+        if (selectionFrame != null)
+            selectionFrame.gameObject.SetActive(false);
     }
 }
+

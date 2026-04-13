@@ -7,7 +7,7 @@ public class PasswordCheck : MonoBehaviour
 {
     public TMP_InputField codeInput;
 
-    public string apiURL = "http://192.168.56.1:5194/api/Unity/CheckLoginCode";
+    public string apiURL = "http://localhost:5194/api/Unity/CheckLoginCode";
 
     public void CheckCode()
     {

@@ -95,8 +95,8 @@ public class Game1Manager : MonoBehaviour
                 shelfJarsCanvasGroup.alpha = Mathf.Lerp(1f, 0f, fadeTimer / fadeOutDuration);
                 yield return null;
             }
-            shelfJarsCanvasGroup.alpha = 0f; 
-            shelfJarsCanvasGroup.gameObject.SetActive(false); 
+            shelfJarsCanvasGroup.alpha = 0f;
+            shelfJarsCanvasGroup.gameObject.SetActive(false);
         }
 
         if (LevelSpawner.Instance != null)

@@ -8,6 +8,7 @@ public class GalleryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     public string itemType;
     public float defaultWidth = 250f;
     private GameObject draggingItem;
+    public bool isColorable = false;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -44,8 +45,11 @@ public class GalleryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         if (draggingItem != null)
         {
             draggingItem.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            // التحديث هنا: أضفنا التحقق من الخلفية للبورد مانجر
             BoardManager.Instance.SelectItem(draggingItem, itemType == "BG");
+            if (isColorable && draggingItem.GetComponent<ColorableItem>() != null)
+            {
+                ArtColorManager.Instance.SelectObject(draggingItem);
+            }
         }
     }
 
@@ -53,13 +57,16 @@ public class GalleryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     {
         Transform layer = BoardManager.Instance.GetLayer(itemType);
 
-        // التحديث هنا: مسح الطبقة بالطريقة اللي يفهمها البورد مانجر الحالي
         if (itemType != "Decoration")
         {
             foreach (Transform child in layer) Destroy(child.gameObject);
         }
 
         draggingItem = Instantiate(masterPrefab, layer);
+        if (isColorable)
+        {
+            draggingItem.AddComponent<ColorableItem>();
+        }
         draggingItem.GetComponent<Image>().sprite = GetComponent<Image>().sprite;
 
         ItemInteraction interaction = draggingItem.GetComponent<ItemInteraction>();
@@ -74,7 +81,6 @@ public class GalleryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             rt.sizeDelta = BoardManager.Instance.drawingArea.rect.size;
             rt.anchoredPosition = Vector2.zero;
             rt.localScale = Vector3.one;
-            // التحديث هنا: أرسلنا true لأنها خلفية
             BoardManager.Instance.SelectItem(draggingItem, true);
         }
         else

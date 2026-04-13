@@ -5262,11 +5262,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8538bf9222768744b4ca569ebe3d520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PsychometricReportManager
-  finalReport:
-    childID: 
-    dimensionName: 
-    totalDimensionScore: 0
-    indicators: []
+  level1ID: 655ED0E3-A536-F111-A18E-5CE42ADCEF4B
+  level2ID: 665ED0E3-A536-F111-A18E-5CE42ADCEF4B
+  level3ID: 675ED0E3-A536-F111-A18E-5CE42ADCEF4B
 --- !u!1 &1139617660
 GameObject:
   m_ObjectHideFlags: 0

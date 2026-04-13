@@ -4,44 +4,72 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
+
 [System.Serializable]
-public class ItemReport
+public class AssessmentItemDto
 {
     public int itemIndex;
-    public float accuracyScore;
-    public float speedScore;
-    public float lowErrorScore;
+    public string itemName;
     public float finalScore;
-    public string assessmentRating;
-    public int psychometricPoints;
+    public string rating;
+    public int psychometricPts;
 }
 
 [System.Serializable]
-public class IndicatorReport
+public class IndicatorResultDto
 {
     public string indicatorName;
-    public List<ItemReport> items = new List<ItemReport>();
-    public int totalIndicatorPoints;
+    public float indicatorScore;
+    public string indicatorRating;
+    public int psychometricPts;
+    public List<AssessmentItemDto> items = new List<AssessmentItemDto>();
 }
 
 [System.Serializable]
-public class PsychometricReportData
+public class AspectResultDto
 {
-    public string childID;
-    public string dimensionName;
-    public float totalDimensionScore;
-    public List<IndicatorReport> indicators = new List<IndicatorReport>();
+    public string aspectName;
+    public float aspectScore;
+    public string aspectRating;
+    public int psychometricPts;
+    public List<IndicatorResultDto> indicators = new List<IndicatorResultDto>();
 }
+
+[System.Serializable]
+public class SaveGameResultRequest
+{
+    public string childId;
+    public string levelId;
+    public float totalTime;
+    public AspectResultDto aspectResult;
+}
+
+// ─────────────────────────────────────────────────────────────
+// PsychometricReportManager — النسخة المحدّثة
+// ─────────────────────────────────────────────────────────────
 
 public class PsychometricReportManager : MonoBehaviour
 {
     public static PsychometricReportManager Instance;
-    public PsychometricReportData finalReport = new PsychometricReportData();
 
-    private IndicatorReport currentIndicator;
-    private string apiURL = "http://localhost:5194/api/Unity/SavePsychometricReport";
+    private string apiURL = "http://localhost:5194/api/Unity/SaveGameResult";
+    private string levelsURL = "http://localhost:5194/api/Unity/GetGameLevels";
 
-    private float stage1_C, stage1_N, stage1_A, stage1_Time, stage1_StdTime;
+    public string level1ID = "";
+    public string level2ID = "";
+    public string level3ID = "";
+    public string level4ID = "";
+
+    // State الحالي
+    private string currentChildId = "";
+    private string currentLevelId = "";
+    private float sessionStartTime = 0f;
+
+    private AspectResultDto currentAspect = null;
+    private IndicatorResultDto currentIndicator = null;
+
+    // Stage 1 data — تُحفظ لاستخدامها في البند 6 (العشوائية)
+    private float stage1_C, stage1_A;
     private bool hasStage1Data = false;
 
     void Awake()
@@ -51,165 +79,223 @@ public class PsychometricReportManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        else Destroy(gameObject);
+    }
+
+    void Start()
+    {
+        StartCoroutine(FetchLevelIDs());
+    }
+
+    // ─────────────────────────────────────────────
+    // جلب الـ Level IDs من الـ API
+    // ─────────────────────────────────────────────
+    [System.Serializable] public class LevelData { public string levelId; public string levelName; }
+    [System.Serializable] public class LevelListWrapper { public List<LevelData> levels; }
+
+    private IEnumerator FetchLevelIDs()
+    {
+        UnityWebRequest request = UnityWebRequest.Get(levelsURL);
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            string rawJson = request.downloadHandler.text;
+            Debug.Log("[Levels] Raw Data: " + rawJson);
+
+            var wrapper = JsonUtility.FromJson<LevelListWrapper>("{\"levels\":" + rawJson + "}");
+
+            foreach (var level in wrapper.levels)
+            {
+                if (level.levelName.Trim() == "لعبة التصور") level1ID = level.levelId;
+                else if (level.levelName.Trim() == "لعبة التمثيل") level2ID = level.levelId;
+                else if (level.levelName.Trim() == "لعبة الإخراج الفني") level3ID = level.levelId;
+                else if (level.levelName.Trim() == "لعبة الجوانب الأخرى") level4ID = level.levelId;
+            }
+            Debug.Log($"[Levels] Done! Game1 ID: {level1ID}");
+        }
         else
         {
-            Destroy(gameObject);
+            Debug.LogError("[Levels] Error: " + request.error);
         }
     }
 
-    public void SetupNewDimension(string newDimensionName)
+    // ─────────────────────────────────────────────
+    // إعداد جانب جديد (يُستدعى من MasterManager عند بداية كل لعبة)
+    // ─────────────────────────────────────────────
+    public void SetupNewAspect(string aspectName, string gameNumber)
     {
-        finalReport = new PsychometricReportData();
-        finalReport.childID = PlayerPrefs.GetString("CurrentChildID", "No_ID_Found");
-        finalReport.dimensionName = newDimensionName;
+        currentChildId = PlayerPrefs.GetString("CurrentChildID", "No_ID_Found");
+        sessionStartTime = Time.time;
+
+        // اختار الـ levelId حسب رقم اللعبة
+        currentLevelId = gameNumber switch
+        {
+            "Game_1" => level1ID,
+            "Game_2" => level2ID,
+            "Game_3" => level3ID,
+            "Game_4" => level4ID,
+            _ => level1ID
+        };
+
+        currentAspect = new AspectResultDto { aspectName = aspectName };
+
+        Debug.Log($"[Aspect] بدأ جانب جديد: {aspectName} | LevelID: {currentLevelId}");
     }
 
-    public void StartNewIndicator(string name)
+    // ─────────────────────────────────────────────
+    // بدء مؤشر جديد
+    // ─────────────────────────────────────────────
+    public void StartNewIndicator(string indicatorName)
     {
-        currentIndicator = new IndicatorReport();
-        currentIndicator.indicatorName = name;
+        currentIndicator = new IndicatorResultDto { indicatorName = indicatorName };
         hasStage1Data = false;
+
+        Debug.Log($"[Indicator] بدأ مؤشر: {indicatorName}");
     }
 
-    public void SaveItemData(int index, float c, float n, float a, float actualTime, float standardTime)
+    // ─────────────────────────────────────────────
+    // حفظ بيانات بند (يُستدعى من MasterManager.SubmitStageData)
+    // ─────────────────────────────────────────────
+    public void SaveItemData(int index, float c, float n, float a, float actualTime, float standardTime, string itemName = "")
     {
         if (index == 1)
         {
-            stage1_C = c;
-            stage1_N = n;
-            stage1_A = a;
-            stage1_Time = actualTime;
-            stage1_StdTime = standardTime;
-            hasStage1Data = true;
+            stage1_C = c; stage1_A = a; hasStage1Data = true;
         }
 
-        Debug.Log($"\n<color=yellow>=== [Stage {index}] RAW DATA RECEIVED ===</color>");
-        Debug.Log($"Correct From First Try (C): {c} | Required (N): {n} | Total Attempts (A): {a} | Time: {actualTime}s | Std Time: {standardTime}s");
-
-        ItemReport item = new ItemReport();
-        item.itemIndex = index;
-
-        item.accuracyScore = (n > 0) ? Mathf.Clamp01(c / n) : 0;
-        item.lowErrorScore = (a > 0) ? Mathf.Clamp01(c / a) : 0;
-
-        float speed = (actualTime > 0) ? (standardTime / actualTime) : 0;
-        item.speedScore = Mathf.Clamp01(speed);
-
-        item.finalScore = (item.accuracyScore * 0.6f) + (item.speedScore * 0.2f) + (item.lowErrorScore * 0.2f);
-
-        if (item.finalScore >= 0.80f)
-        {
-            item.assessmentRating = "Always";
-            item.psychometricPoints = 3;
-        }
-        else if (item.finalScore >= 0.50f)
-        {
-            item.assessmentRating = "Sometimes";
-            item.psychometricPoints = 2;
-        }
-        else
-        {
-            item.assessmentRating = "Rarely";
-            item.psychometricPoints = 1;
-        }
-
-        Debug.Log($"<color=cyan>--- [Stage {index}] CALCULATED SCORES ---</color>");
-        Debug.Log($"Accuracy (C/N): {item.accuracyScore} (Weight: 60%)");
-        Debug.Log($"Low Error (C/A): {item.lowErrorScore} (Weight: 20%)");
-        Debug.Log($"Speed (Std/Act): {item.speedScore} (Weight: 20%)");
-        Debug.Log($"<color=green>FINAL SCORE: {item.finalScore} | Rating: {item.assessmentRating} | Points: {item.psychometricPoints}</color>\n");
-
-        if (currentIndicator != null)
-        {
-            currentIndicator.items.Add(item);
-            currentIndicator.totalIndicatorPoints += item.psychometricPoints;
-        }
+        AssessmentItemDto item = BuildItem(index, c, n, a, actualTime, standardTime, itemName);
+        currentIndicator?.items.Add(item);
+        Debug.Log($"[Item {index}] Final={item.finalScore:F2} → {item.rating}");
     }
 
-    private void SaveStage6RandomnessData(float c, float a)
-    {
-        Debug.Log("\n<color=magenta>=== [AUTO-GENERATING STAGE 6 - RANDOMNESS ONLY: C/A] ===</color>");
-        Debug.Log($"Correct From First Try (C): {c} | Total Attempts (A): {a}");
-
-        ItemReport item = new ItemReport();
-        item.itemIndex = 6;
-
-        item.accuracyScore = 0f;
-        item.speedScore = 0f;
-        item.lowErrorScore = (a > 0) ? Mathf.Clamp01(c / a) : 0f;
-
-        item.finalScore = item.lowErrorScore;
-
-        if (item.finalScore >= 0.80f)
-        {
-            item.assessmentRating = "Always";
-            item.psychometricPoints = 3;
-        }
-        else if (item.finalScore >= 0.50f)
-        {
-            item.assessmentRating = "Sometimes";
-            item.psychometricPoints = 2;
-        }
-        else
-        {
-            item.assessmentRating = "Rarely";
-            item.psychometricPoints = 1;
-        }
-
-        Debug.Log($"<color=cyan>--- [Stage 6] RANDOMNESS SCORE ---</color>");
-        Debug.Log($"Low Error / Randomness (C/A): {item.lowErrorScore} (Weight: 100%)");
-        Debug.Log($"<color=green>FINAL SCORE: {item.finalScore} | Rating: {item.assessmentRating} | Points: {item.psychometricPoints}</color>\n");
-
-        if (currentIndicator != null)
-        {
-            currentIndicator.items.Add(item);
-            currentIndicator.totalIndicatorPoints += item.psychometricPoints;
-        }
-    }
-
+    // ─────────────────────────────────────────────
+    // إغلاق المؤشر الحالي (يضيف البند 6 تلقائياً ويحسب درجة المؤشر)
+    // ─────────────────────────────────────────────
     public void FinishCurrentIndicator()
     {
-        if (currentIndicator != null)
+        if (currentIndicator == null) return;
+
+        // أضف البند 6 (العشوائية) من بيانات البند 1
+        if (hasStage1Data)
         {
-            if (hasStage1Data)
+            string item6Name = "بند 6";
+            if (MasterManager.Instance != null &&
+                MasterManager.ItemNames.TryGetValue(currentIndicator.indicatorName, out var names) &&
+                names.Length >= 6)
             {
-                SaveStage6RandomnessData(stage1_C, stage1_A);
-                hasStage1Data = false;
+                item6Name = names[5];
             }
 
-            finalReport.indicators.Add(currentIndicator);
-            currentIndicator = null;
+            AssessmentItemDto item6 = new AssessmentItemDto
+            {
+                itemIndex = 6,
+                itemName = item6Name,
+                finalScore = stage1_A > 0 ? Mathf.Clamp01(stage1_C / stage1_A) : 0f
+            };
+            AssignRating(item6);
+            currentIndicator.items.Add(item6);
+            hasStage1Data = false;
+
+            Debug.Log($"[Item 6 - Randomness] Final={item6.finalScore:F2} → {item6.rating}");
         }
+
+        // احسب درجة المؤشر = متوسط البنود
+        float total = 0f;
+        foreach (var item in currentIndicator.items) total += item.finalScore;
+        currentIndicator.indicatorScore = currentIndicator.items.Count > 0
+            ? total / currentIndicator.items.Count : 0f;
+
+        AssignIndicatorRating(currentIndicator);
+        currentAspect?.indicators.Add(currentIndicator);
+        currentIndicator = null;
+
+        Debug.Log($"[Indicator Done] Score={currentAspect?.indicators[^1].indicatorScore:F2}");
     }
 
-    public void UploadReportToDatabase()
+    // رفع نتيجة اللعبة الحالية (يُستدعى عند نهاية كل لعبة)
+    public void UploadCurrentGameResult()
     {
-        float total = 0;
-        int count = 0;
-
-        foreach (var ind in finalReport.indicators)
+        if (currentAspect == null)
         {
-            foreach (var item in ind.items)
-            {
-                total += item.finalScore;
-                count++;
-            }
+            Debug.LogError("[Upload] لا يوجد aspect للرفع!");
+            return;
         }
 
-        finalReport.totalDimensionScore = (count > 0) ? (total / count) : 0;
+        // احسب درجة الجانب = متوسط المؤشرات
+        float total = 0f;
+        foreach (var ind in currentAspect.indicators) total += ind.indicatorScore;
+        currentAspect.aspectScore = currentAspect.indicators.Count > 0
+            ? total / currentAspect.indicators.Count : 0f;
 
-        string json = JsonUtility.ToJson(finalReport, true);
-        Debug.Log("Payload Generated:\n" + json);
-        Debug.Log("PAYLOAD TO SERVER: " + json);
-        // Save locally as backup before attempting upload
-        PlayerPrefs.SetString("LastReportBackup_" + finalReport.childID, json);
+        AssignAspectRating(currentAspect);
+
+        float totalTime = Time.time - sessionStartTime;
+
+        var payload = new SaveGameResultRequest
+        {
+            childId = currentChildId,
+            levelId = currentLevelId,
+            totalTime = totalTime,
+            aspectResult = currentAspect
+        };
+
+        string json = JsonUtility.ToJson(payload, true);
+        Debug.Log("[Upload] Payload:\n" + json);
+
+        // احفظ نسخة احتياطية
+        PlayerPrefs.SetString("LastBackup_" + currentChildId + "_" + currentLevelId, json);
         PlayerPrefs.Save();
-        Debug.Log("<color=cyan>Report backed up locally in PlayerPrefs.</color>");
 
-        StartCoroutine(PostRequestWithRetry(apiURL, json, retryCount: 3));
+        StartCoroutine(PostWithRetry(apiURL, json, retryCount: 3));
+        currentAspect = null;
     }
 
-    private IEnumerator PostRequestWithRetry(string url, string json, int retryCount)
+    // ─────────────────────────────────────────────
+    // Helpers
+    // ─────────────────────────────────────────────
+    private AssessmentItemDto BuildItem(int index, float c, float n, float a, float actualTime, float standardTime, string itemName = "")
+    {
+        float accuracy = n > 0 ? Mathf.Clamp01(c / n) : 0f;
+        float speedScore = actualTime > 0 ? Mathf.Clamp01(standardTime / actualTime) : 0f;
+        float errorRate = a > 0 ? Mathf.Clamp01(c / a) : 0f;
+        float finalScore = (accuracy * 0.6f) + (speedScore * 0.2f) + (errorRate * 0.2f);
+
+        var item = new AssessmentItemDto
+        {
+            itemIndex = index,
+            itemName = string.IsNullOrEmpty(itemName) ? "بند " + index : itemName,
+            finalScore = finalScore
+        };
+        AssignRating(item);
+        return item;
+    }
+
+    private void AssignRating(AssessmentItemDto item)
+    {
+        if (item.finalScore >= 0.80f) { item.rating = "غالبًا"; item.psychometricPts = 3; }
+        else if (item.finalScore >= 0.50f) { item.rating = "أحيانًا"; item.psychometricPts = 2; }
+        else { item.rating = "نادرًا"; item.psychometricPts = 1; }
+    }
+
+    private void AssignIndicatorRating(IndicatorResultDto ind)
+    {
+        if (ind.indicatorScore >= 0.80f) { ind.indicatorRating = "غالبًا"; ind.psychometricPts = 3; }
+        else if (ind.indicatorScore >= 0.50f) { ind.indicatorRating = "أحيانًا"; ind.psychometricPts = 2; }
+        else { ind.indicatorRating = "نادرًا"; ind.psychometricPts = 1; }
+    }
+
+    private void AssignAspectRating(AspectResultDto asp)
+    {
+        if (asp.aspectScore >= 0.80f) { asp.aspectRating = "غالبًا"; asp.psychometricPts = 3; }
+        else if (asp.aspectScore >= 0.50f) { asp.aspectRating = "أحيانًا"; asp.psychometricPts = 2; }
+        else { asp.aspectRating = "نادرًا"; asp.psychometricPts = 1; }
+    }
+
+    // ─────────────────────────────────────────────
+    // POST مع retry
+    // ─────────────────────────────────────────────
+    private IEnumerator PostWithRetry(string url, string json, int retryCount)
     {
         int attempt = 0;
         bool success = false;
@@ -217,38 +303,43 @@ public class PsychometricReportManager : MonoBehaviour
         while (attempt < retryCount && !success)
         {
             attempt++;
-            Debug.Log($"Upload attempt {attempt} of {retryCount}...");
+            Debug.Log($"[Upload] محاولة {attempt} من {retryCount}...");
 
             var request = new UnityWebRequest(url, "POST");
-            byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
-            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(json));
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
 
             yield return request.SendWebRequest();
-            Debug.Log("Server Response: " + request.downloadHandler.text); 
+            Debug.Log("Response Code: " + request.responseCode);
+            Debug.Log("Response: " + request.downloadHandler.text);
+            Debug.Log("Error: " + request.error);
 
             if (request.result == UnityWebRequest.Result.Success)
             {
                 success = true;
-                // Clear backup after successful upload
-                PlayerPrefs.DeleteKey("LastReportBackup_" + finalReport.childID);
+                PlayerPrefs.DeleteKey("LastBackup_" + currentChildId + "_" + currentLevelId);
                 PlayerPrefs.Save();
-                Debug.Log("<color=green>Upload Success: " + request.downloadHandler.text + "</color>");
+                Debug.Log("<color=green>[Upload] نجح: " + request.downloadHandler.text + "</color>");
             }
             else
             {
-                Debug.LogWarning($"Upload attempt {attempt} failed: {request.error}");
-                if (attempt < retryCount)
-                {
-                    yield return new WaitForSeconds(2f);
-                }
+                Debug.LogWarning($"[Upload] فشل المحاولة {attempt}: {request.error}");
+                if (attempt < retryCount) yield return new WaitForSeconds(2f);
             }
         }
 
         if (!success)
+            Debug.LogError($"[Upload] فشلت كل المحاولات. البيانات محفوظة محلياً.");
+    }
+
+    // Safety net — لو الطفل خرج قبل نهاية اللعبة
+    void OnApplicationQuit()
+    {
+        if (currentAspect != null)
         {
-            Debug.LogError($"All {retryCount} upload attempts failed. Report saved locally in PlayerPrefs as backup.");
+            FinishCurrentIndicator();
+            UploadCurrentGameResult();
         }
     }
 }

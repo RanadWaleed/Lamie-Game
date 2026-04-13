@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public enum GameFlowState
 {
@@ -14,7 +15,6 @@ public enum GameFlowState
 public class GameFlowManager : MonoBehaviour
 {
     public static GameFlowManager Instance;
-
     public GameFlowState currentState;
 
     private void Awake()
@@ -33,27 +33,30 @@ public class GameFlowManager : MonoBehaviour
     public void GoToState(GameFlowState newState)
     {
         currentState = newState;
+        string sceneName = GetSceneName(newState);
+        StartCoroutine(LoadSceneAsync(sceneName));
+    }
 
-        switch (newState)
+    private string GetSceneName(GameFlowState state)
+    {
+        switch (state)
         {
-            case GameFlowState.Intro:
-                SceneManager.LoadScene("IntroScene");
-                break;
-            case GameFlowState.Login:
-                SceneManager.LoadScene("LoginScene");
-                break;
-            case GameFlowState.Home:
-                SceneManager.LoadScene("HomeScene");
-                break;
-            case GameFlowState.CharacterSelection:
-                SceneManager.LoadScene("CharacterSelectionScene");
-                break;
-            case GameFlowState.Game01:
-                SceneManager.LoadScene("Game01Scene");
-                break;
-            case GameFlowState.Game02:
-                SceneManager.LoadScene("Game02Scene");
-                break;
+            case GameFlowState.Intro: return "IntroScene";
+            case GameFlowState.Login: return "LoginScene";
+            case GameFlowState.Home: return "HomeScene";
+            case GameFlowState.CharacterSelection: return "CharacterSelectionScene";
+            case GameFlowState.Game01: return "Game01Scene";
+            case GameFlowState.Game02: return "Game02Scene";
+            default: return "HomeScene";
+        }
+    }
+
+    IEnumerator LoadSceneAsync(string sceneName)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        while (!operation.isDone)
+        {
+            yield return null;
         }
     }
 
@@ -65,16 +68,13 @@ public class GameFlowManager : MonoBehaviour
                 GoToState(GameFlowState.Login);
                 break;
             case GameFlowState.Login:
-                GoToState(GameFlowState.Home);
-                break;
-            case GameFlowState.Home:
                 GoToState(GameFlowState.CharacterSelection);
                 break;
             case GameFlowState.CharacterSelection:
-                GoToState(GameFlowState.Game01);
+                GoToState(GameFlowState.Home);
                 break;
-            case GameFlowState.Game01:
-                GoToState(GameFlowState.Game02);
+            case GameFlowState.Home:
+                GoToState(GameFlowState.Game01);
                 break;
         }
     }

@@ -1,104 +1,108 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CharacterSelection : MonoBehaviour
 {
     public float moveSpeed = 0.5f;
-
-    public float centerScale;
-    public float centerPos;
-    public float centerPosY;
+    public float centerScale = 1.0f;
 
     public Image[] slots;
+    public TextMeshProUGUI characterNameDisplay;
 
-    public List<Sprite> allCharacters;
+    public List<Sprite> boySprites;
+    public List<Sprite> girlSprites;
 
+    private List<Sprite> activeCharacters;
     private int centerIndex = 0;
     private bool isMoving = false;
 
     void Start()
     {
-        centerScale = slots[1].rectTransform.localScale.x;
+        string childName = PlayerPrefs.GetString("ChildName", "صديق لامع");
+        if (characterNameDisplay != null) characterNameDisplay.text = childName;
 
-        centerPos = slots[1].rectTransform.anchoredPosition.x;
-        centerPosY = slots[1].rectTransform.anchoredPosition.y;
+        string gender = PlayerPrefs.GetString("UserGender", "أنثى").Trim();
+        Debug.Log("Gender length: " + gender.Length); 
 
-        for (int i = 0; i < slots.Length; i++)
+        if (gender == "ذكر" || gender == "ركذ")
         {
-            if (i == 1)
-            {
-                slots[i].color = new Color(1, 1, 1, 1);
-                slots[i].rectTransform.localScale = new Vector3(centerScale, centerScale, 1);
-            }
-            else
-            {
-                slots[i].color = new Color(1, 1, 1, 0);
-            }
+            activeCharacters = boySprites;
+            Debug.Log("Boy list activated successfully.");
+        }
+        else
+        {
+            activeCharacters = girlSprites;
+            Debug.Log("Girl list activated successfully.");
         }
 
         UpdateCenterSprite();
     }
 
+    void UpdateCenterSprite()
+    {
+        if (activeCharacters != null && activeCharacters.Count > 0 && slots.Length > 1)
+        {
+            Debug.Log("Changing sprite to: " + activeCharacters[centerIndex].name);
+
+            slots[1].sprite = activeCharacters[centerIndex];
+
+            slots[1].enabled = false;
+            slots[1].enabled = true;
+        }
+    }
+
     public void NextCharacter()
     {
-        if (isMoving) return;
-        centerIndex++;
-        if (centerIndex >= allCharacters.Count) centerIndex = 0;
+        Debug.Log("Next Button Clicked");
+        if (isMoving || activeCharacters == null || activeCharacters.Count == 0) return;
+
+        centerIndex = (centerIndex + 1) % activeCharacters.Count;
+        UpdateCenterSprite();
         StartCoroutine(AnimateCenter());
     }
 
     public void PreviousCharacter()
     {
-        if (isMoving) return;
+        Debug.Log("Previous Button Clicked");
+        if (isMoving || activeCharacters == null || activeCharacters.Count == 0) return;
+
         centerIndex--;
-        if (centerIndex < 0) centerIndex = allCharacters.Count - 1;
+        if (centerIndex < 0) centerIndex = activeCharacters.Count - 1;
+
+        UpdateCenterSprite();
         StartCoroutine(AnimateCenter());
     }
 
-    public void StartGame()
+    public void ConfirmSelection()
     {
-        PlayerPrefs.SetInt("SelectedCharacter", centerIndex);
+        Debug.Log("Start Button Clicked. Saving Index: " + centerIndex);
+        PlayerPrefs.SetInt("SelectedCharacterIndex", centerIndex);
         PlayerPrefs.Save();
-        SceneManager.LoadScene("GameScene");
+
+        if (GameFlowManager.Instance != null)
+            GameFlowManager.Instance.GoToNextState();
     }
 
     IEnumerator AnimateCenter()
     {
         isMoving = true;
         float timer = 0f;
-
         Image centerSlot = slots[1];
-        AssignSpriteToSlot(centerSlot, centerIndex);
+
+        Vector3 startScale = new Vector3(centerScale * 0.8f, centerScale * 0.8f, 1);
+        Vector3 endScale = new Vector3(centerScale, centerScale, 1);
 
         while (timer < 1f)
         {
             timer += Time.deltaTime / moveSpeed;
-            if (timer > 1f) timer = 1f;
-
-            centerSlot.rectTransform.localScale = Vector3.Lerp(
-                new Vector3(centerScale * 0.8f, centerScale * 0.8f, 1),
-                new Vector3(centerScale, centerScale, 1),
-                timer
-            );
-
+            centerSlot.rectTransform.localScale = Vector3.Lerp(startScale, endScale, timer);
             yield return null;
         }
-
         isMoving = false;
     }
 
-    void UpdateCenterSprite()
-    {
-        AssignSpriteToSlot(slots[1], centerIndex);
-    }
-
-    void AssignSpriteToSlot(Image slot, int index)
-    {
-        int realIndex = index % allCharacters.Count;
-        if (realIndex < 0) realIndex += allCharacters.Count;
-        slot.sprite = allCharacters[realIndex];
-    }
+   
 }

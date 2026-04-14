@@ -1,8 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MasterManager : MonoBehaviour
 {
+    public static readonly Dictionary<string, string[]> ItemNames = new Dictionary<string, string[]>
+{
+    { "مطابقة العناصر البصرية وفق اللون", new[] {
+        "يحدد اللون المطابق للعنصر المعروض بدقة دون تردد",
+        "يميز بين الألوان المختلفة دون خلط",
+        "يطابق العناصر بناءً على اللون رغم اختلاف الشكل",
+        "يتجنب الأخطاء عند وجود ألوان متقاربة",
+        "يحافظ على دقة الأداء 'وليس السرعة' رغم زيادة عدد الخيارات",
+        "يقل اعتماده على المحاولة العشوائية أثناء المطابقة"
+    }},
+    { "مطابقة العناصر البصرية وفق الشكل", new[] {
+        "يحدد الشكل المطابق بدقة وباستجابة واثقة دون تردد ملحوظ",
+        "يميز بين الأشكال الهندسية المختلفة بدقة دون خلط بينها",
+        "يطابق الشكل رغم اختلاف اللون أو الحجم",
+        "يتجنب الأخطاء عند التعامل مع أشكال متشابهة بصريًا",
+        "يحافظ على مستوى دقة أدائه مع زيادة عدد البدائل المتاحة",
+        "يُظهر نمط أداء منظمًا يقل فيه الاعتماد على المحاولة العشوائية"
+    }},
+    { "إكمال الأنماط البصرية", new[] {
+        "يتعرف على النمط البصري البسيط ويكمله بدقة",
+        "يميز القاعدة المنظمة للنمط دون خلط",
+        "يكمل النمط مع تجاهل المشتتات غير المرتبطة",
+        "يتجنب الأخطاء عند التعامل مع أنماط متشابهة",
+        "يحافظ على دقة الأداء مع زيادة تعقيد النمط",
+        "يُظهر نمط أداء منظمًا يقل فيه الاعتماد على المحاولة العشوائية"
+    }}
+};
+
     public static MasterManager Instance;
 
     [Header("Backend Logic Trackers")]
@@ -14,6 +43,7 @@ public class MasterManager : MonoBehaviour
     public int Attempts = 0;
     public int scoreFirstAttempt = 0;
     public bool isGameActive = false;
+    private string currentIndicatorName = "";
 
     [Header("Original UI Variables")]
     public int currentPhase = 1;
@@ -71,6 +101,7 @@ public class MasterManager : MonoBehaviour
     public GameObject shelfJarsFake;
     public GameObject floorJarsGroup;
 
+
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -102,10 +133,11 @@ public class MasterManager : MonoBehaviour
         // Setup dimension with childID from PlayerPrefs before any tracking starts
         if (PsychometricReportManager.Instance != null)
         {
-            PsychometricReportManager.Instance.SetupNewDimension("الذكاء المكاني");
+            // الجانب الأول = التصور، واللعبة = Game_1
+            PsychometricReportManager.Instance.SetupNewAspect("التصور", "Game_1");
         }
 
-        StartBackendTracking("Game_1");
+        StartBackendTracking("مطابقة العناصر البصرية وفق اللون");
     }
 
     void Update()
@@ -118,6 +150,7 @@ public class MasterManager : MonoBehaviour
 
     public void StartBackendTracking(string gameName)
     {
+        currentIndicatorName = gameName;
         currentStageIndex = 1;
         timeTaken = 0f;
         Score = 0;
@@ -151,16 +184,25 @@ public class MasterManager : MonoBehaviour
     {
         // Stop timer immediately so Invoke delays don't pollute next stage time
         isGameActive = false;
+        string itemName = "";
 
         if (PsychometricReportManager.Instance != null)
         {
+
+            if (ItemNames.TryGetValue(currentIndicatorName, out var names))
+            {
+                int nameIndex = currentStageIndex - 1;
+                itemName = nameIndex < names.Length ? names[nameIndex] : "بند " + currentStageIndex;
+            }
+
             PsychometricReportManager.Instance.SaveItemData(
                 currentStageIndex,
                 scoreFirstAttempt,
                 totalRequiredMatches,
                 Attempts,
                 timeTaken,
-                maxTimeForCurrentLevel
+                maxTimeForCurrentLevel,
+                itemName
             );
         }
 
@@ -181,7 +223,7 @@ public class MasterManager : MonoBehaviour
         if (PsychometricReportManager.Instance != null)
         {
             PsychometricReportManager.Instance.FinishCurrentIndicator();
-            PsychometricReportManager.Instance.UploadReportToDatabase();
+            PsychometricReportManager.Instance.UploadCurrentGameResult();
         }
     }
 
@@ -191,7 +233,7 @@ public class MasterManager : MonoBehaviour
         if (isGameActive && PsychometricReportManager.Instance != null)
         {
             PsychometricReportManager.Instance.FinishCurrentIndicator();
-            PsychometricReportManager.Instance.UploadReportToDatabase();
+            PsychometricReportManager.Instance.UploadCurrentGameResult();
         }
     }
 
@@ -203,15 +245,7 @@ public class MasterManager : MonoBehaviour
     {
         if (nextButton != null) nextButton.SetActive(false);
 
-        if (isGameActive)
-        {
-            if (PsychometricReportManager.Instance != null)
-            {
-                PsychometricReportManager.Instance.FinishCurrentIndicator();
-            }
-            isGameActive = false;
-        }
-
+        isGameActive = false;
         currentPhase++;
 
         if (currentPhase == 2)
@@ -230,6 +264,12 @@ public class MasterManager : MonoBehaviour
 
     IEnumerator GoToGame2()
     {
+
+        if (PsychometricReportManager.Instance != null)
+        {
+            PsychometricReportManager.Instance.FinishCurrentIndicator();
+        }
+
         float timer = 0;
         if (overlayCG != null)
         {
@@ -297,13 +337,20 @@ public class MasterManager : MonoBehaviour
 
         if (game2Elements != null) game2Elements.SetActive(true);
 
-        StartBackendTracking("Game_2");
+        StartBackendTracking("مطابقة العناصر البصرية وفق الشكل");
+
 
         if (Game2Spawner.Instance != null) Game2Spawner.Instance.LoadLevel(0);
     }
 
     IEnumerator GoToGame3()
     {
+
+        if (PsychometricReportManager.Instance != null)
+        {
+            PsychometricReportManager.Instance.FinishCurrentIndicator();
+        }
+
         float timer = 0;
         if (overlayCG != null)
         {
@@ -419,11 +466,22 @@ public class MasterManager : MonoBehaviour
             }
         }
 
-        StartBackendTracking("Game_3");
+        StartBackendTracking("إكمال الأنماط البصرية");
+
     }
 
     IEnumerator GoToGame4()
     {
+        if (PsychometricReportManager.Instance != null)
+        {
+            PsychometricReportManager.Instance.FinishCurrentIndicator();
+        }
+
+        if (MasterManager.Instance != null)
+        {
+            MasterManager.Instance.currentStageIndex = 1;
+        }
+
         if (animatedCandyBoxRT != null)
         {
             if (finalCandiesCG != null) finalCandiesCG.alpha = 0f;
@@ -513,6 +571,5 @@ public class MasterManager : MonoBehaviour
 
         if (game4Elements != null) game4Elements.SetActive(true);
 
-        StartBackendTracking("Game_4");
     }
 }

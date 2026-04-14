@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 775bb1f5f2f6ca144bffaaa4da00eb6d
+guid: 778be645569f6d7459922f3fa83f9bba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6099923013926389487
-    second: N_Building (2)_0
+      213: 4658892529670183920
+    second: DarkGrey_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: N_Building (2)_0
+      name: DarkGrey_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 48
-        width: 1596
-        height: 1947
+        x: 0
+        y: 0
+        width: 317
+        height: 301
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fe6005299a747a450800000000000000
-      internalID: 6099923013926389487
+      spriteID: 0fb56b56216b7a040800000000000000
+      internalID: 4658892529670183920
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      N_Building (2)_0: 6099923013926389487
+      DarkGrey_0: 4658892529670183920
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

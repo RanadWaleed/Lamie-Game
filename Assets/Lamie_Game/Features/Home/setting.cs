@@ -81,4 +81,10 @@ public class setting : MonoBehaviour
     {
         AudioListener.volume = sliderValue;
     }
+
+    public void LogoutScene()
+    {
+        if (GameFlowManager.Instance != null)
+            GameFlowManager.Instance.GoToState(GameFlowState.Login);
+    }
 }

@@ -70,6 +70,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             if (closestMold.name == candyID)
             {
+                if (MasterManager.Instance != null) MasterManager.Instance.PlayDropSound();
+                if (MasterManager.Instance != null) MasterManager.Instance.PlaySuccessSound();
                 rectTransform.position = closestMold.position;
                 transform.localScale = originalScale * scaleMultiplier;
                 selectedMoldName = closestMold.name;

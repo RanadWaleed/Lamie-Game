@@ -15,22 +15,22 @@ MonoBehaviour:
   stageName: 
   standardTime: 12
   matchPairs:
-  - pairID: circle
-    draggableSprite: {fileID: 6497990605793951882, guid: 14f3c2ef54374dd4a9fa6f5831e57736, type: 3}
-    targetSprite: {fileID: -6910697209631215935, guid: 5067ad67715e5264f9edca9677a0d58f, type: 3}
-  - pairID: circle
-    draggableSprite: {fileID: 6497990605793951882, guid: 14f3c2ef54374dd4a9fa6f5831e57736, type: 3}
-    targetSprite: {fileID: -6910697209631215935, guid: 5067ad67715e5264f9edca9677a0d58f, type: 3}
-  - pairID: Oval
-    draggableSprite: {fileID: 2034566960907004412, guid: 5197382dbba41c148b91acacfd20470f, type: 3}
-    targetSprite: {fileID: 3800202167116691454, guid: 80242cc5fe507284ba129f416d9eb65e, type: 3}
-  - pairID: Hexa
-    draggableSprite: {fileID: 625262457086554381, guid: d618ed5c416d8144580d0ded6f424743, type: 3}
-    targetSprite: {fileID: -470884732477857976, guid: 4d981bb3c79e20540aa40e2bc177ef3e, type: 3}
-  - pairID: Oval
-    draggableSprite: {fileID: 2034566960907004412, guid: 5197382dbba41c148b91acacfd20470f, type: 3}
-    targetSprite: {fileID: 3800202167116691454, guid: 80242cc5fe507284ba129f416d9eb65e, type: 3}
-  - pairID: Hexa
-    draggableSprite: {fileID: 625262457086554381, guid: d618ed5c416d8144580d0ded6f424743, type: 3}
-    targetSprite: {fileID: -470884732477857976, guid: 4d981bb3c79e20540aa40e2bc177ef3e, type: 3}
+  - pairID: 5
+    draggableSprite: {fileID: -1142216334138910817, guid: ab73be93863f9a84d9b1bb8aaaeb0924, type: 3}
+    targetSprite: {fileID: -137690567461238309, guid: 6b50efea5fb946544a03c8dc59951463, type: 3}
+  - pairID: 5
+    draggableSprite: {fileID: -1142216334138910817, guid: ab73be93863f9a84d9b1bb8aaaeb0924, type: 3}
+    targetSprite: {fileID: -137690567461238309, guid: 6b50efea5fb946544a03c8dc59951463, type: 3}
+  - pairID: 6
+    draggableSprite: {fileID: -256204534172707662, guid: ab73be93863f9a84d9b1bb8aaaeb0924, type: 3}
+    targetSprite: {fileID: 1483399725736968433, guid: 6b50efea5fb946544a03c8dc59951463, type: 3}
+  - pairID: 7
+    draggableSprite: {fileID: -4426040239059330201, guid: ab73be93863f9a84d9b1bb8aaaeb0924, type: 3}
+    targetSprite: {fileID: -2989060564874283301, guid: 6b50efea5fb946544a03c8dc59951463, type: 3}
+  - pairID: 6
+    draggableSprite: {fileID: -256204534172707662, guid: ab73be93863f9a84d9b1bb8aaaeb0924, type: 3}
+    targetSprite: {fileID: 1483399725736968433, guid: 6b50efea5fb946544a03c8dc59951463, type: 3}
+  - pairID: 7
+    draggableSprite: {fileID: -4426040239059330201, guid: ab73be93863f9a84d9b1bb8aaaeb0924, type: 3}
+    targetSprite: {fileID: -2989060564874283301, guid: 6b50efea5fb946544a03c8dc59951463, type: 3}
   distractors: []

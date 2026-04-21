@@ -17,20 +17,20 @@ MonoBehaviour:
   matchPairs:
   - pairID: heart
     draggableSprite: {fileID: 3811139775257118856, guid: c6fa32b0d5bd70443ab9ec62636be2e6, type: 3}
-    targetSprite: {fileID: 5223280560187763028, guid: a1c983e99f72cc94b9135962e04ad066, type: 3}
+    targetSprite: {fileID: -2618151716519511488, guid: 6b50efea5fb946544a03c8dc59951463, type: 3}
   - pairID: Star
     draggableSprite: {fileID: -3106506509227680175, guid: 58998307403b9164c8a6299a13c78459, type: 3}
-    targetSprite: {fileID: 5757751276978669553, guid: a80628d24d3c5fe4b8e89ff11e24b265, type: 3}
+    targetSprite: {fileID: 4556989479925300120, guid: 6b50efea5fb946544a03c8dc59951463, type: 3}
   - pairID: heart
     draggableSprite: {fileID: 3811139775257118856, guid: c6fa32b0d5bd70443ab9ec62636be2e6, type: 3}
-    targetSprite: {fileID: 5223280560187763028, guid: a1c983e99f72cc94b9135962e04ad066, type: 3}
-  - pairID: square
+    targetSprite: {fileID: -2618151716519511488, guid: 6b50efea5fb946544a03c8dc59951463, type: 3}
+  - pairID: s
     draggableSprite: {fileID: 21300000, guid: abd14075db07fee449e8d338f43fab45, type: 3}
-    targetSprite: {fileID: -2664783550769548753, guid: ef60dd73eb3c95f41bbeca0ba1131821, type: 3}
+    targetSprite: {fileID: -3112441655505030875, guid: 6b50efea5fb946544a03c8dc59951463, type: 3}
   - pairID: Star
     draggableSprite: {fileID: -3106506509227680175, guid: 58998307403b9164c8a6299a13c78459, type: 3}
-    targetSprite: {fileID: 5757751276978669553, guid: a80628d24d3c5fe4b8e89ff11e24b265, type: 3}
-  - pairID: Star
-    draggableSprite: {fileID: -3106506509227680175, guid: 58998307403b9164c8a6299a13c78459, type: 3}
-    targetSprite: {fileID: 5757751276978669553, guid: a80628d24d3c5fe4b8e89ff11e24b265, type: 3}
+    targetSprite: {fileID: 4556989479925300120, guid: 6b50efea5fb946544a03c8dc59951463, type: 3}
+  - pairID: s
+    draggableSprite: {fileID: 21300000, guid: abd14075db07fee449e8d338f43fab45, type: 3}
+    targetSprite: {fileID: -3112441655505030875, guid: 6b50efea5fb946544a03c8dc59951463, type: 3}
   distractors: []

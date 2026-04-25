@@ -17,19 +17,20 @@ MonoBehaviour:
   matchPairs:
   - pairID: Red
     draggableSprite: {fileID: 21300000, guid: a24859a05eefaa24e925e9ae0cb2a87b, type: 3}
-    targetSprite: {fileID: 21300000, guid: e4243ef14ab6f55449418c5689a9780e, type: 3}
+    targetSprite: {fileID: 6645489279127583533, guid: e5f33bdcfa2683e40b4a4105891021d0, type: 3}
   - pairID: Red
     draggableSprite: {fileID: 21300000, guid: a24859a05eefaa24e925e9ae0cb2a87b, type: 3}
-    targetSprite: {fileID: 21300000, guid: e4243ef14ab6f55449418c5689a9780e, type: 3}
+    targetSprite: {fileID: 6645489279127583533, guid: e5f33bdcfa2683e40b4a4105891021d0, type: 3}
   - pairID: Blue
     draggableSprite: {fileID: 21300000, guid: ad71caa1491cf2e42b38839d2e3737f0, type: 3}
-    targetSprite: {fileID: 21300000, guid: ec8e52ae1642b9242ba2151f680ac6a7, type: 3}
+    targetSprite: {fileID: -1421007534460035262, guid: c6a686094581afa4297a69cdc0112c11, type: 3}
   - pairID: Blue
     draggableSprite: {fileID: 21300000, guid: ad71caa1491cf2e42b38839d2e3737f0, type: 3}
-    targetSprite: {fileID: 21300000, guid: ec8e52ae1642b9242ba2151f680ac6a7, type: 3}
+    targetSprite: {fileID: -1421007534460035262, guid: c6a686094581afa4297a69cdc0112c11, type: 3}
   - pairID: Yellow
     draggableSprite: {fileID: 21300000, guid: 293cd01f6e1fa6340af2cffe90e849e4, type: 3}
-    targetSprite: {fileID: 21300000, guid: e54c6bff1f421384fa01c630a5011c12, type: 3}
+    targetSprite: {fileID: -5378381159119040310, guid: 44be643ab601a9241bd806589ecb964a, type: 3}
   - pairID: Yellow
     draggableSprite: {fileID: 21300000, guid: 293cd01f6e1fa6340af2cffe90e849e4, type: 3}
-    targetSprite: {fileID: 21300000, guid: e54c6bff1f421384fa01c630a5011c12, type: 3}
+    targetSprite: {fileID: -5378381159119040310, guid: 44be643ab601a9241bd806589ecb964a, type: 3}
+  distractors: []

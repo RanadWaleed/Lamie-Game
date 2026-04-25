@@ -59,6 +59,5 @@ public class Game1Manager : MonoBehaviour
             LevelSpawner.Instance.LoadLevel(0);
         }
 
-        if (nextButton != null) nextButton.SetActive(true);
     }
 }

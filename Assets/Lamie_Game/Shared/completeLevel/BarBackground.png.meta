@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 97b80641d697a5c4e8cc306a62b496b9
+guid: aa36b4e70ef16c94789dc9fdef089624
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8432350258525226710
-    second: panels_0
-  - first:
-      213: 5871845560049415872
-    second: panels_1
+      213: -6973105663982423294
+    second: BarBackground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: panels_0
+      name: BarBackground_0
       rect:
         serializedVersion: 2
-        x: 722
-        y: 1470
-        width: 1335
-        height: 275
+        x: 420
+        y: 472
+        width: 1073
+        height: 103
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6d6c11532e9b50570800000000000000
-      internalID: 8432350258525226710
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: panels_1
-      rect:
-        serializedVersion: 2
-        x: 699
-        y: 684
-        width: 1334
-        height: 275
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0c633be2d6cfc7150800000000000000
-      internalID: 5871845560049415872
+      spriteID: 203301df75d8a3f90800000000000000
+      internalID: -6973105663982423294
       vertices: []
       indices: 
       edges: []
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      panels_0: 8432350258525226710
-      panels_1: 5871845560049415872
+      BarBackground_0: -6973105663982423294
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

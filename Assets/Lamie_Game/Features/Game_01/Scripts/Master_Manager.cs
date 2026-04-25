@@ -77,7 +77,11 @@ public class MasterManager : MonoBehaviour
     public float lubnaWalkDistanceGame3 = 500f;
     public RectTransform boxTargetRT;
 
+    [Header("Game 4 Transition Settings")]
+    public float lubnaWalkDistanceGame4 = 800f;
+
     [Header("Original UI Variables")]
+    public GameObject lubnaChefHat;
     public int currentPhase = 1;
     public GameObject nextButton;
     public RectTransform environmentPanel;
@@ -141,6 +145,7 @@ public class MasterManager : MonoBehaviour
 
     void Start()
     {
+        if (lubnaChefHat != null) lubnaChefHat.SetActive(false);
         if (animatedCandyBoxRT != null) boxOriginalPos = animatedCandyBoxRT.anchoredPosition;
         if (blueTableRT != null) tableOriginalPos = blueTableRT.anchoredPosition;
 
@@ -372,7 +377,17 @@ public class MasterManager : MonoBehaviour
 
     public void ShowNextButton()
     {
-        if (nextButton != null) nextButton.SetActive(true);
+        if (currentPhase == 4)
+        {
+            if (LevelCompleteManager.Instance != null)
+            {
+                LevelCompleteManager.Instance.ShowCompleteScreen(1); 
+            }
+        }
+        else
+        {
+            if (nextButton != null) nextButton.SetActive(true);
+        }
     }
 
     public void OnNextButtonClicked()
@@ -391,6 +406,26 @@ public class MasterManager : MonoBehaviour
         if (PsychometricReportManager.Instance != null)
             PsychometricReportManager.Instance.FinishCurrentIndicator();
 
+        if (game1Elements != null) game1Elements.SetActive(false);
+        if (floorJarsGroup != null) floorJarsGroup.SetActive(false);
+
+        if (shelfJarsFake != null)
+        {
+            shelfJarsFake.SetActive(true);
+            CanvasGroup cg = shelfJarsFake.GetComponent<CanvasGroup>();
+            if (cg != null) cg.alpha = 1f;
+        }
+
+        if (game2TitlePanel != null) game2TitlePanel.SetActive(true);
+        if (lubnaTalkerObj != null) lubnaTalkerObj.SetActive(true);
+
+        if (lubnaMouthAudio != null && game2Clip != null)
+        {
+            lubnaMouthAudio.clip = game2Clip;
+            lubnaMouthAudio.Play();
+            yield return new WaitForSeconds(game2Clip.length);
+        }
+
         float timer = 0;
         if (overlayCG != null)
         {
@@ -400,16 +435,6 @@ public class MasterManager : MonoBehaviour
                 overlayCG.alpha = Mathf.Lerp(gameplayOverlayAlpha, 0f, timer / 0.5f);
                 yield return null;
             }
-        }
-
-        if (game1Elements != null) game1Elements.SetActive(false);
-        if (floorJarsGroup != null) floorJarsGroup.SetActive(false);
-
-        if (shelfJarsFake != null)
-        {
-            shelfJarsFake.SetActive(true);
-            CanvasGroup cg = shelfJarsFake.GetComponent<CanvasGroup>();
-            if (cg != null) cg.alpha = 1f;
         }
 
         if (game2BaseRT != null)
@@ -426,23 +451,12 @@ public class MasterManager : MonoBehaviour
             {
                 timer += Time.deltaTime;
                 float progress = Mathf.SmoothStep(0, 1, timer / game2BaseSlideDuration);
-
                 game2BaseRT.anchoredPosition = stayInPlacePos;
                 game2BaseRT.localScale = Vector3.Lerp(startScale, targetScale, progress);
                 yield return null;
             }
             game2BaseRT.anchoredPosition = stayInPlacePos;
             game2BaseRT.localScale = targetScale;
-        }
-
-        if (game2TitlePanel != null) game2TitlePanel.SetActive(true);
-        if (lubnaTalkerObj != null) lubnaTalkerObj.SetActive(true);
-
-        if (lubnaMouthAudio != null && game2Clip != null)
-        {
-            lubnaMouthAudio.clip = game2Clip;
-            lubnaMouthAudio.Play();
-            yield return new WaitForSeconds(game2Clip.length);
         }
 
         timer = 0;
@@ -502,7 +516,6 @@ public class MasterManager : MonoBehaviour
         Vector2 screenTarget = screenStart - new Vector2(game3PanDistance, 0f);
         Vector3 lubnaStart = (lubnaWalkerObj != null) ? lubnaWalkerObj.transform.localPosition : Vector3.zero;
         Vector3 lubnaTarget = lubnaStart + new Vector3(lubnaWalkDistanceGame3, 0f, 0f);
-
         timer = 0f;
         while (timer < game3PanDuration)
         {
@@ -628,8 +641,6 @@ public class MasterManager : MonoBehaviour
                 animatedCandyBoxRT.localScale = Vector3.Lerp(currentBoxScale, Vector3.one, progress);
                 yield return null;
             }
-            animatedCandyBoxRT.anchoredPosition = boxOriginalPos;
-            animatedCandyBoxRT.localScale = Vector3.one;
         }
 
         if (lubnaTalkerObj != null) lubnaTalkerObj.SetActive(false);
@@ -639,18 +650,26 @@ public class MasterManager : MonoBehaviour
             if (lubnaTalkerObj != null)
                 lubnaWalkerObj.transform.localPosition = lubnaTalkerObj.transform.localPosition;
         }
-
+        if (lubnaChefHat != null) lubnaChefHat.SetActive(true);
         if (lubnaIntroAnimator != null) lubnaIntroAnimator.SetBool("isWalking", true);
 
         Vector2 startEnvPos = environmentPanel.anchoredPosition;
         Vector2 endEnvPos = startEnvPos - new Vector2(game4PanDistance, 0);
+
+        Vector3 lubnaStart = (lubnaWalkerObj != null) ? lubnaWalkerObj.transform.localPosition : Vector3.zero;
+        Vector3 lubnaTarget = lubnaStart + new Vector3(lubnaWalkDistanceGame4, 0f, 0f);
 
         float panTimer = 0;
         while (panTimer < panDuration)
         {
             panTimer += Time.deltaTime;
             float progress = Mathf.SmoothStep(0, 1, panTimer / panDuration);
+
             environmentPanel.anchoredPosition = Vector2.Lerp(startEnvPos, endEnvPos, progress);
+
+            if (lubnaWalkerObj != null)
+                lubnaWalkerObj.transform.localPosition = Vector3.Lerp(lubnaStart, lubnaTarget, progress);
+
             yield return null;
         }
         environmentPanel.anchoredPosition = endEnvPos;

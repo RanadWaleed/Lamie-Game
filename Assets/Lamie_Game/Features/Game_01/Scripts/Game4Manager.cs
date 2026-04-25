@@ -19,7 +19,6 @@ public class Game4Manager : MonoBehaviour
     public Image targetSlotImage;
     public Image[] optionsImages;
     public Button[] optionsButtons;
-    public Button backButton;
 
     public PatternLevel[] levels = new PatternLevel[6];
     private int currentLevel = 0;
@@ -35,10 +34,7 @@ public class Game4Manager : MonoBehaviour
             originalContainerPos = levelContainerRect.anchoredPosition;
         }
 
-        if (backButton != null)
-        {
-            backButton.gameObject.SetActive(false);
-        }
+       
 
         LoadLevel(0);
     }
@@ -84,10 +80,7 @@ public class Game4Manager : MonoBehaviour
                 levelContainerRect.anchoredPosition = originalContainerPos;
             }
 
-            if (backButton != null)
-            {
-                backButton.gameObject.SetActive(index > 0);
-            }
+         
 
             if (MasterManager.Instance != null)
             {
@@ -145,7 +138,6 @@ public class Game4Manager : MonoBehaviour
     {
         isAnimating = true;
 
-        if (backButton != null) backButton.gameObject.SetActive(false);
 
         for (int i = 0; i < optionsButtons.Length; i++)
         {
@@ -216,7 +208,6 @@ public class Game4Manager : MonoBehaviour
     {
         isAnimating = true;
 
-        if (backButton != null) backButton.gameObject.SetActive(false);
 
         if (levelContainerRect != null)
         {

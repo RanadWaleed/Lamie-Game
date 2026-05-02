@@ -7,50 +7,76 @@ public class GalleryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     public GameObject masterPrefab;
     public string itemType;
     public float defaultWidth = 250f;
-    private GameObject draggingItem;
     public bool isColorable = false;
+
+    private GameObject draggingItem;
+    private bool isDragging = false;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (itemType == "BG") SpawnItem(eventData.position);
+        if (itemType != "BG") return;
+
+        SpawnItem(eventData.position);
+
+        if (draggingItem != null)
+        {
+            AssessmentTag placedTag = draggingItem.GetComponent<AssessmentTag>();
+            string itemName = (placedTag != null && !string.IsNullOrEmpty(placedTag.itemId))
+                ? placedTag.itemId
+                : gameObject.name;
+
+            RectTransform rt = draggingItem.GetComponent<RectTransform>();
+            ArtAssessmentManager.Instance?.OnItemPlaced(draggingItem, itemName, rt.anchoredPosition);
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (itemType != "BG") SpawnItem(eventData.position);
+        if (isDragging) return;
+        if (itemType == "BG") return;
+
+        isDragging = true;
+        SpawnItem(eventData.position);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (draggingItem != null && itemType != "BG")
-        {
-            RectTransform rt = draggingItem.GetComponent<RectTransform>();
-            Vector2 localPoint;
-            RectTransform area = BoardManager.Instance.drawingArea;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(area, eventData.position, eventData.pressEventCamera, out localPoint);
+        if (draggingItem == null || itemType == "BG") return;
 
-            Rect r = area.rect;
-            float halfW = rt.sizeDelta.x * 0.5f;
-            float halfH = rt.sizeDelta.y * 0.5f;
+        RectTransform rt = draggingItem.GetComponent<RectTransform>();
+        Vector2 localPoint;
+        RectTransform area = BoardManager.Instance.drawingArea;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            area, eventData.position, eventData.pressEventCamera, out localPoint);
 
-            localPoint.x = Mathf.Clamp(localPoint.x, r.xMin + halfW, r.xMax - halfW);
-            localPoint.y = Mathf.Clamp(localPoint.y, r.yMin + halfH, r.yMax - halfH);
+        Rect r = area.rect;
+        float halfW = rt.sizeDelta.x * 0.5f;
+        float halfH = rt.sizeDelta.y * 0.5f;
 
-            rt.anchoredPosition = localPoint;
-        }
+        localPoint.x = Mathf.Clamp(localPoint.x, r.xMin + halfW, r.xMax - halfW);
+        localPoint.y = Mathf.Clamp(localPoint.y, r.yMin + halfH, r.yMax - halfH);
+
+        rt.anchoredPosition = localPoint;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (draggingItem != null)
-        {
-            draggingItem.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            BoardManager.Instance.SelectItem(draggingItem, itemType == "BG");
-            if (isColorable && draggingItem.GetComponent<ColorableItem>() != null)
-            {
-                ArtColorManager.Instance.SelectObject(draggingItem);
-            }
-        }
+        if (!isDragging || draggingItem == null) return;
+
+        isDragging = false;
+        GameObject placedItem = draggingItem;
+        draggingItem = null;
+
+        placedItem.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        BoardManager.Instance.SelectItem(placedItem, itemType == "BG");
+
+        RectTransform rt = placedItem.GetComponent<RectTransform>();
+        AssessmentTag placedTag = placedItem.GetComponent<AssessmentTag>();
+        string itemName = (placedTag != null && !string.IsNullOrEmpty(placedTag.itemId)) ? placedTag.itemId : gameObject.name;
+        ArtAssessmentManager.Instance?.OnItemPlaced(placedItem, itemName, rt.anchoredPosition);
+
+        if (isColorable && placedItem.GetComponent<ColorableItem>() != null)
+            ArtColorManager.Instance?.SelectObject(placedItem);
     }
 
     private void SpawnItem(Vector2 spawnPos)
@@ -58,15 +84,22 @@ public class GalleryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         Transform layer = BoardManager.Instance.GetLayer(itemType);
 
         if (itemType != "Decoration")
-        {
             foreach (Transform child in layer) Destroy(child.gameObject);
-        }
 
         draggingItem = Instantiate(masterPrefab, layer);
-        if (isColorable)
+
+        AssessmentTag sourceTag = GetComponent<AssessmentTag>();
+        if (sourceTag != null)
         {
-            draggingItem.AddComponent<ColorableItem>();
+            AssessmentTag spawnedTag = draggingItem.AddComponent<AssessmentTag>();
+            spawnedTag.emotion = sourceTag.emotion;
+            spawnedTag.category = sourceTag.category;
+            spawnedTag.itemId = sourceTag.itemId;
         }
+
+        if (isColorable)
+            draggingItem.AddComponent<ColorableItem>();
+
         draggingItem.GetComponent<Image>().sprite = GetComponent<Image>().sprite;
 
         ItemInteraction interaction = draggingItem.GetComponent<ItemInteraction>();

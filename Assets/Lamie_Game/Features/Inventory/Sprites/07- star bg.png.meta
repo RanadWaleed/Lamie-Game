@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1e442366a90350546825fa3c78bf65c3
+guid: bca63641332b7694c8b7e5e320b79e9f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -823516402743350804
-    second: RuinedWheel_0
+      213: -5125335568665787288
+    second: 07- star bg_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RuinedWheel_0
+      name: 07- star bg_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 15
-        width: 1576
-        height: 302
+        x: 771
+        y: 1625
+        width: 458
+        height: 461
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ce966c3e1384294f0800000000000000
-      internalID: -823516402743350804
+      spriteID: 864400b94762fd8b0800000000000000
+      internalID: -5125335568665787288
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      RuinedWheel_0: -823516402743350804
+      07- star bg_0: -5125335568665787288
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

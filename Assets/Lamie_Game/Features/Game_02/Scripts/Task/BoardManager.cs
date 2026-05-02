@@ -21,9 +21,11 @@ public class BoardManager : MonoBehaviour
 
     [Header("Capture")]
     public RectTransform paintingTarget;
-    private GameObject currentItem;
+    public RectTransform selectedBoard;
 
     public static Texture2D capturedBoard;
+
+    private GameObject currentItem;
 
     void Awake()
     {
@@ -93,12 +95,14 @@ public class BoardManager : MonoBehaviour
 
     public void DeleteCurrent()
     {
-        if (currentItem != null)
-        {
-            GameObject toDestroy = currentItem;
-            Deselect();
-            Destroy(toDestroy);
-        }
+        if (currentItem == null) return;
+
+        GameObject toDestroy = currentItem;
+
+        ArtAssessmentManager.Instance?.OnItemDeleted(toDestroy);
+
+        Deselect();
+        Destroy(toDestroy);
     }
 
     public void ClearAllLayers()
@@ -113,9 +117,6 @@ public class BoardManager : MonoBehaviour
                 Destroy(child.gameObject);
         }
     }
-
-
-    public RectTransform selectedBoard;
 
     public void CaptureBoard()
     {
@@ -143,4 +144,3 @@ public class BoardManager : MonoBehaviour
             selectionFrame.gameObject.SetActive(false);
     }
 }
-

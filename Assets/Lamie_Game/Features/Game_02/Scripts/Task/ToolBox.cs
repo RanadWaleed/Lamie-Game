@@ -94,7 +94,6 @@ public class ToolboxLogic : MonoBehaviour
         Vector2 pos = decorationContent.anchoredPosition;
         pos.x = Mathf.Clamp(pos.x - scrollStep, minX, maxX);
         decorationContent.anchoredPosition = pos;
-        Debug.Log($"ScrollRight → x={pos.x}");
     }
 
     public void ScrollLeft()
@@ -103,6 +102,5 @@ public class ToolboxLogic : MonoBehaviour
         Vector2 pos = decorationContent.anchoredPosition;
         pos.x = Mathf.Clamp(pos.x + scrollStep, minX, maxX);
         decorationContent.anchoredPosition = pos;
-        Debug.Log($"ScrollLeft → x={pos.x}");
     }
 }

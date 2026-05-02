@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e27a87fe162fd04fa5cf60ed2d599f2, type: 3}
+  m_Name: HappyEid_Story
+  m_EditorClassIdentifier: Assembly-CSharp::StoryMapping
+  storyId: eid_happy
+  storyMood: H
+  correctTitleId: "\u0627\u0644\u0639\u064A\u062F \u0627\u0644\u0633\u0639\u064A\u062F"
+  allowedSky:
+  - H_Sky
+  allowedBuildings:
+  - H_Building
+  allowedCharacters:
+  - H_Lebnah
+  allowedSymbols:
+  - H_Sun
+  - H_Light
+  - H_Stars
+  - H_Sunflowers
+  - H_Sunflowers
+  - H_Decoration
+  expectedSymbolsCount: 6
+  maxDecorAvailable: 7
+  paletteMood:
+  - pink
+  - yellow
+  standardTimeShapes: 12
+  standardTimeSymbols: 15
+  maxDesignTime: 180
+  areaThresholdRatio: 0.6

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ArtColorManager : MonoBehaviour
 {
     public static ArtColorManager Instance;
@@ -9,27 +10,36 @@ public class ArtColorManager : MonoBehaviour
     public GameObject backgroundOverlay;
 
     private GameObject selectedObject;
+    private bool isOpen = false;
 
-    void Awake()
-    {
-        Instance = this;
-    }
+    void Awake() { Instance = this; }
 
-    void OnEnable()
-    {
-        HideToolBox();
-    }
+    void Start() { HideToolBox(); }
+
 
     public void SelectObject(GameObject obj)
     {
+        if (obj == null) return;
+
+        if (isOpen && selectedObject == obj) return;
+
         selectedObject = obj;
 
-        if (colorToolBox != null)
-            colorToolBox.SetActive(true);
-
-        if (backgroundOverlay != null)
-            backgroundOverlay.SetActive(true);
+        CancelInvoke(nameof(OpenToolBox));
+        Invoke(nameof(OpenToolBox), 0.05f);
     }
+
+    private void OpenToolBox()
+    {
+        if (selectedObject == null) return;
+        isOpen = true;
+
+        if (colorToolBox != null) colorToolBox.SetActive(true);
+        if (backgroundOverlay != null) backgroundOverlay.SetActive(true);
+
+        Debug.Log($"[Color] فُتح التول بوكس: {selectedObject.name}");
+    }
+
 
     public void ChangeColor(string colorName)
     {
@@ -48,15 +58,20 @@ public class ArtColorManager : MonoBehaviour
             case "green": targetImage.color = Color.green; break;
             default: targetImage.color = Color.white; break;
         }
+
+        ArtAssessmentManager.Instance?.OnColorApplied(colorName);
+        Debug.Log($"[Color] لون '{colorName}' على {selectedObject.name}");
+
     }
+
 
     public void HideToolBox()
     {
-        if (colorToolBox != null)
-            colorToolBox.SetActive(false);
+        CancelInvoke(nameof(OpenToolBox));
+        isOpen = false;
 
-        if (backgroundOverlay != null)
-            backgroundOverlay.SetActive(false);
+        if (colorToolBox != null) colorToolBox.SetActive(false);
+        if (backgroundOverlay != null) backgroundOverlay.SetActive(false);
 
         selectedObject = null;
     }

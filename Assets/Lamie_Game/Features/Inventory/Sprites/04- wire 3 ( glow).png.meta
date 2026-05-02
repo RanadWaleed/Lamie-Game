@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: d434c3f7d1f153143ac23b6c8912899b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2786676380884003597
+    second: 04- wire 3 ( glow)_0
+  - first:
+      213: -7799864374321667126
+    second: 04- wire 3 ( glow)_1
+  - first:
+      213: -1896203594448006120
+    second: 04- wire 3 ( glow)_2
+  - first:
+      213: 8969733457908915052
+    second: 04- wire 3 ( glow)_3
+  - first:
+      213: 5653025226433955862
+    second: 04- wire 3 ( glow)_4
+  - first:
+      213: -8423780496742913170
+    second: 04- wire 3 ( glow)_5
+  - first:
+      213: -3491091417413848276
+    second: 04- wire 3 ( glow)_6
+  - first:
+      213: 4442665141122824760
+    second: 04- wire 3 ( glow)_7
+  - first:
+      213: 3020569887439449201
+    second: 04- wire 3 ( glow)_8
+  - first:
+      213: 5864541336072421451
+    second: 04- wire 3 ( glow)_9
+  - first:
+      213: -3965014050522332897
+    second: 04- wire 3 ( glow)_10
+  - first:
+      213: 1721559617270253214
+    second: 04- wire 3 ( glow)_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 04- wire 3 ( glow)_0
+      rect:
+        serializedVersion: 2
+        x: 3474
+        y: 1138
+        width: 57
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0bef8a67634ca620800000000000000
+      internalID: 2786676380884003597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04- wire 3 ( glow)_1
+      rect:
+        serializedVersion: 2
+        x: 3542
+        y: 388
+        width: 554
+        height: 1419
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac325505da051c390800000000000000
+      internalID: -7799864374321667126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04- wire 3 ( glow)_2
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 676
+        width: 273
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8149b1b90e45fa5e0800000000000000
+      internalID: -1896203594448006120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04- wire 3 ( glow)_3
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 922
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6bd8986e05ea7c70800000000000000
+      internalID: 8969733457908915052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04- wire 3 ( glow)_4
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 791
+        width: 128
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6180bef0e74937e40800000000000000
+      internalID: 5653025226433955862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04- wire 3 ( glow)_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 301
+        width: 398
+        height: 468
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6b66c1f448b81b80800000000000000
+      internalID: -8423780496742913170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04- wire 3 ( glow)_6
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 220
+        width: 194
+        height: 399
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c23f1aa3ad62d8fc0800000000000000
+      internalID: -3491091417413848276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04- wire 3 ( glow)_7
+      rect:
+        serializedVersion: 2
+        x: 2012
+        y: 317
+        width: 52
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83af2a8586487ad30800000000000000
+      internalID: 4442665141122824760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04- wire 3 ( glow)_8
+      rect:
+        serializedVersion: 2
+        x: 2729
+        y: 336
+        width: 63
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17ce1181f483be920800000000000000
+      internalID: 3020569887439449201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04- wire 3 ( glow)_9
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 0
+        width: 174
+        height: 216
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4001330649036150800000000000000
+      internalID: 5864541336072421451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04- wire 3 ( glow)_10
+      rect:
+        serializedVersion: 2
+        x: 1965
+        y: 0
+        width: 307
+        height: 318
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f110f258ab079f8c0800000000000000
+      internalID: -3965014050522332897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04- wire 3 ( glow)_11
+      rect:
+        serializedVersion: 2
+        x: 2704
+        y: 0
+        width: 282
+        height: 318
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e960d07c95534e710800000000000000
+      internalID: 1721559617270253214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      04- wire 3 ( glow)_0: 2786676380884003597
+      04- wire 3 ( glow)_1: -7799864374321667126
+      04- wire 3 ( glow)_10: -3965014050522332897
+      04- wire 3 ( glow)_11: 1721559617270253214
+      04- wire 3 ( glow)_2: -1896203594448006120
+      04- wire 3 ( glow)_3: 8969733457908915052
+      04- wire 3 ( glow)_4: 5653025226433955862
+      04- wire 3 ( glow)_5: -8423780496742913170
+      04- wire 3 ( glow)_6: -3491091417413848276
+      04- wire 3 ( glow)_7: 4442665141122824760
+      04- wire 3 ( glow)_8: 3020569887439449201
+      04- wire 3 ( glow)_9: 5864541336072421451
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -19,6 +19,9 @@ public class TaskManager : MonoBehaviour
     public AudioClip paintVoice;
     public AudioClip questionVoice;
 
+    [Header("References")]
+    public QuestionManager questionManager; // اربطه في الـ Inspector
+
     public void StartTaskMode()
     {
         taskRoot.SetActive(true);
@@ -41,7 +44,8 @@ public class TaskManager : MonoBehaviour
         if (audioSource && clip)
         {
             audioSource.Stop();
-            audioSource.PlayOneShot(clip);
+            audioSource.clip = clip;
+            audioSource.Play();
         }
     }
 
@@ -49,12 +53,15 @@ public class TaskManager : MonoBehaviour
     {
         ShowStep(designTaskStep);
         PlayVoice(designVoice);
+        ArtAssessmentManager.Instance?.StartTracking();
     }
 
     public void GoToAlignment()
     {
+        ArtAssessmentManager.Instance?.StopTracking();
         StartCoroutine(GoToAlignmentSequence());
     }
+
     IEnumerator GoToAlignmentSequence()
     {
         BoardManager.Instance.Deselect();
@@ -64,11 +71,17 @@ public class TaskManager : MonoBehaviour
         yield return null;
     }
 
-
-
     public void GoToQuestion()
     {
         ShowStep(questionStep);
         PlayVoice(questionVoice);
+
+        float voiceDuration = (questionVoice != null) ? questionVoice.length : 3f;
+        questionManager?.EnableButtonsAfterDelay(voiceDuration);
+    }
+
+    public void GoToNextScene()
+    {
+        Debug.Log("انتقال للسين التالي");
     }
 }

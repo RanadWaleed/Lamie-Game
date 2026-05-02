@@ -21,6 +21,7 @@ public class ProfileManager : MonoBehaviour
         }
     }
 
+
     IEnumerator FetchProfileData(string id)
     {
         UnityWebRequest req = UnityWebRequest.Get(getProfileURL + id);

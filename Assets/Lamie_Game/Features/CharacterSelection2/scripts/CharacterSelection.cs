@@ -25,9 +25,9 @@ public class CharacterSelection : MonoBehaviour
         if (characterNameDisplay != null) characterNameDisplay.text = childName;
 
         string gender = PlayerPrefs.GetString("UserGender", "أنثى").Trim();
-        Debug.Log("Gender length: " + gender.Length); 
+        Debug.Log("Gender length: " + gender.Length);
 
-        if (gender == "ذكر" || gender == "ركذ")
+        if (gender == "M" || gender == "m")
         {
             activeCharacters = boySprites;
             Debug.Log("Boy list activated successfully.");
@@ -104,5 +104,5 @@ public class CharacterSelection : MonoBehaviour
         isMoving = false;
     }
 
-   
+
 }

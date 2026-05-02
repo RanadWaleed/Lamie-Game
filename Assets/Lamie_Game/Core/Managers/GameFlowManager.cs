@@ -6,8 +6,9 @@ public enum GameFlowState
 {
     Intro,
     Login,
-    Home,
     CharacterSelection,
+    Home,
+    Inventory,
     Game01,
     Game02
 }
@@ -17,12 +18,26 @@ public class GameFlowManager : MonoBehaviour
     public static GameFlowManager Instance;
     public GameFlowState currentState;
 
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            string scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            currentState = scene switch
+            {
+                "IntroScene" => GameFlowState.Intro,
+                "LoginScene" => GameFlowState.Login,
+                "CharacterSelectionScene" => GameFlowState.CharacterSelection,
+                "HomeScene" => GameFlowState.Home,
+                "InventoryScene" => GameFlowState.Inventory,
+                "Game01Scene" => GameFlowState.Game01,
+                "Game02Scene" => GameFlowState.Game02,
+                _ => GameFlowState.Intro
+            };
         }
         else
         {
@@ -30,52 +45,42 @@ public class GameFlowManager : MonoBehaviour
         }
     }
 
+
+
     public void GoToState(GameFlowState newState)
     {
         currentState = newState;
-        string sceneName = GetSceneName(newState);
-        StartCoroutine(LoadSceneAsync(sceneName));
-    }
-
-    private string GetSceneName(GameFlowState state)
-    {
-        switch (state)
-        {
-            case GameFlowState.Intro: return "IntroScene";
-            case GameFlowState.Login: return "LoginScene";
-            case GameFlowState.Home: return "HomeScene";
-            case GameFlowState.CharacterSelection: return "CharacterSelectionScene";
-            case GameFlowState.Game01: return "Game01Scene";
-            case GameFlowState.Game02: return "Game02Scene";
-            default: return "HomeScene";
-        }
-    }
-
-    IEnumerator LoadSceneAsync(string sceneName)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-        while (!operation.isDone)
-        {
-            yield return null;
-        }
+        StartCoroutine(LoadSceneAsync(GetSceneName(newState)));
     }
 
     public void GoToNextState()
     {
         switch (currentState)
         {
-            case GameFlowState.Intro:
-                GoToState(GameFlowState.Login);
-                break;
-            case GameFlowState.Login:
-                GoToState(GameFlowState.CharacterSelection);
-                break;
-            case GameFlowState.CharacterSelection:
-                GoToState(GameFlowState.Home);
-                break;
-            case GameFlowState.Home:
-                GoToState(GameFlowState.Game01);
-                break;
+            case GameFlowState.Intro: GoToState(GameFlowState.Login); break;
+            case GameFlowState.Login: GoToState(GameFlowState.CharacterSelection); break;
+            case GameFlowState.CharacterSelection: GoToState(GameFlowState.Home); break;
+            case GameFlowState.Home: GoToState(GameFlowState.Inventory); break;
+            case GameFlowState.Inventory: GoToState(GameFlowState.Game01); break;
         }
     }
+
+    private string GetSceneName(GameFlowState state) => state switch
+    {
+        GameFlowState.Intro => "IntroScene",
+        GameFlowState.Login => "LoginScene",
+        GameFlowState.CharacterSelection => "CharacterSelectionScene",
+        GameFlowState.Home => "HomeScene",
+        GameFlowState.Inventory => "InventoryScene",
+        GameFlowState.Game01 => "Game01Scene",
+        GameFlowState.Game02 => "Game02Scene",
+        _ => "HomeScene"
+    };
+
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        var op = SceneManager.LoadSceneAsync(sceneName);
+        while (!op.isDone) yield return null;
+    }
+
 }

@@ -63,7 +63,7 @@ public class PsychometricReportManager : MonoBehaviour
     private float sessionStartTime = 0f;
 
     private AspectResultDto currentAspect = null;
-    private IndicatorResultDto currentIndicator = null;
+    public IndicatorResultDto currentIndicator = null;
 
     // Stage 1 data — تُحفظ لاستخدامها في البند 6 (العشوائية)
     private float stage1_C, stage1_A;

@@ -6,7 +6,7 @@ using TMPro;
 
 public class BadgeSlot : MonoBehaviour, IPointerClickHandler
 {
-    [Header("Identity (Auto-Assigned)")]
+    [Header("Identity")]
     public string intelligenceId;
     public string badgeName;
 

@@ -10,6 +10,8 @@ public class PaintAlignmentManager : MonoBehaviour, IBeginDragHandler, IDragHand
     public RectTransform paintingRect;
     public RectTransform hangPoint;
     public RectTransform parentCanvas;
+    public AudioSource taskAudioSource;
+
 
     [Header("Settings")]
     public float snapDistance = 150f;
@@ -52,6 +54,7 @@ public class PaintAlignmentManager : MonoBehaviour, IBeginDragHandler, IDragHand
             paintingRect.position = hangPoint.position;
             isHanged = true;
 
+            if (taskAudioSource != null) taskAudioSource.Stop();
             if (audioSource && hangSound) audioSource.PlayOneShot(hangSound);
             StartCoroutine(DropLights());
         }

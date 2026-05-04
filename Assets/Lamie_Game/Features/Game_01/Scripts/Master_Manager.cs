@@ -182,7 +182,6 @@ public class MasterManager : MonoBehaviour
 
     public void SubmitStageData()
     {
-        // Stop timer immediately so Invoke delays don't pollute next stage time
         isGameActive = false;
         string itemName = "";
 

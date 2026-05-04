@@ -250,7 +250,6 @@ public class ArtAssessmentManager : MonoBehaviour
             return;
         }
 
-        // ── قراءة الحالة النهائية من الـ Layers ──
         string finalSky = "";
         string finalBuilding = "";
         string finalCharacter = "";

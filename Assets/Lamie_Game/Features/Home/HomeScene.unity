@@ -2092,7 +2092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneFlowTrigger
   useSpecificState: 0
-  targetState: 0
+  targetState: 6
 --- !u!4 &1550310750
 Transform:
   m_ObjectHideFlags: 0

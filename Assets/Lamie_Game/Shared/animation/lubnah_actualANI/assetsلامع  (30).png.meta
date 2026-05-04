@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 86ca6355260b8324586590b00c2daebc
+guid: c218687cfc32a9e4588623f1694a2f18
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2793286064792290627
-    second: 139_0
-  - first:
-      213: -2320838870684875356
-    second: 139_1
-  - first:
-      213: 5589192296341742112
-    second: 139_2
-  - first:
-      213: -7670819722487570483
-    second: 139_3
-  - first:
-      213: -6081384612951015593
-    second: 139_4
+      213: 7040526109823631969
+    second: "assets\u0644\u0627\u0645\u0639  (30)_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,9 +46,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -112,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 139_0
+      name: "assets\u0644\u0627\u0645\u0639  (30)_0"
       rect:
         serializedVersion: 2
-        x: 328
-        y: 729
-        width: 1811
-        height: 474
+        x: 820
+        y: 210
+        width: 1177
+        height: 1612
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,96 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3454eff50eeb3c620800000000000000
-      internalID: 2793286064792290627
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 139_1
-      rect:
-        serializedVersion: 2
-        x: 510
-        y: 1191
-        width: 11
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a5c8ebe759bacfd0800000000000000
-      internalID: -2320838870684875356
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 139_2
-      rect:
-        serializedVersion: 2
-        x: 314
-        y: 1122
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 022acccd7ccc09d40800000000000000
-      internalID: 5589192296341742112
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 139_3
-      rect:
-        serializedVersion: 2
-        x: 307
-        y: 1094
-        width: 19
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dcf5119aa16cb8590800000000000000
-      internalID: -7670819722487570483
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 139_4
-      rect:
-        serializedVersion: 2
-        x: 302
-        y: 1073
-        width: 15
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 75f37824ae49a9ba0800000000000000
-      internalID: -6081384612951015593
+      spriteID: 16286efc139f4b160800000000000000
+      internalID: 7040526109823631969
       vertices: []
       indices: 
       edges: []
@@ -225,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -235,11 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      139_0: 2793286064792290627
-      139_1: -2320838870684875356
-      139_2: 5589192296341742112
-      139_3: -7670819722487570483
-      139_4: -6081384612951015593
+      "assets\u0644\u0627\u0645\u0639  (30)_0": 7040526109823631969
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

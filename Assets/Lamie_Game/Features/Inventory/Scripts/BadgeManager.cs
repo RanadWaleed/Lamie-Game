@@ -21,7 +21,6 @@ public class BadgeManager : MonoBehaviour
     public GameObject starObject;
     public RTLTextMeshPro missionLabel;
 
-
     private BadgeSlot _selected;
     private AudioSource _audio;
     private bool _starHidden;
@@ -36,30 +35,42 @@ public class BadgeManager : MonoBehaviour
     private void Start()
     {
         SetAlpha(expandedBadgeImage, 0f);
-
-        if (GameSession.Instance != null)
-        {
-            InitializeBadges(GameSession.Instance.GetBadges());
-        }
+        LoadBadgesFromLocal();
     }
 
-    public void InitializeBadges(List<GameSession.BadgeStatus> badges)
+    // ─────────────────────────────────────────────
+    // LOAD FROM LOCAL
+    // ─────────────────────────────────────────────
+
+    private void LoadBadgesFromLocal()
     {
+        if (LocalProgressManager.Instance == null)
+        {
+            Debug.LogWarning("BadgeManager: LocalProgressManager not found!");
+            return;
+        }
+
         foreach (var slot in UI_Slots)
             slot.Setup(slot.intelligenceId, false);
 
+        var allIntelligences = LocalProgressManager.Instance.allIntelligences;
         int entranceIndex = 0;
-        foreach (var badge in badges)
+
+        foreach (var intel in allIntelligences)
         {
             var slot = UI_Slots.Find(s =>
-                string.Equals(s.intelligenceId, badge.intelligenceId, StringComparison.OrdinalIgnoreCase)
-                || string.Equals(s.badgeName, badge.intelligenceName, StringComparison.OrdinalIgnoreCase));
+                string.Equals(s.intelligenceId, intel.intelligenceId, StringComparison.OrdinalIgnoreCase));
 
             if (slot == null) continue;
 
-            slot.Setup(badge.intelligenceId, badge.isUnlocked);
+            bool unlocked = LocalProgressManager.Instance.IsBadgeUnlocked(intel.intelligenceId);
 
-            if (badge.isUnlocked)
+            slot.Setup(
+                id: intel.intelligenceId,
+                unlocked: unlocked
+                );
+
+            if (unlocked)
             {
                 slot.PlayEntranceFade(0.2f + entranceIndex * 0.15f);
                 entranceIndex++;
@@ -67,36 +78,23 @@ public class BadgeManager : MonoBehaviour
         }
     }
 
-    public void UnlockBadge(string intelligenceId)
-    {
-        var slot = UI_Slots.Find(s =>
-            string.Equals(s.intelligenceId, intelligenceId, StringComparison.OrdinalIgnoreCase));
-        if (slot == null || slot.IsUnlocked) return;
-
-        slot.Setup(intelligenceId, true);
-        slot.UpdateVisuals(true);
-    }
+    // ─────────────────────────────────────────────
+    // SLOT CLICK
+    // ─────────────────────────────────────────────
 
     public void OnSlotClicked(BadgeSlot slot)
     {
-        Debug.Log($"description='{slot.description}' | mission='{slot.missionText}'");
-        Debug.Log($"descriptionText null? {descriptionText == null}");
-        Debug.Log($"missionLabel null? {missionLabel == null}");
-
         if (!slot.IsUnlocked) return;
         _selected = slot;
+
         if (missionLabel != null)
         {
             missionLabel.text = slot.missionText;
-            Color c = missionLabel.color;
-            c.a = 1f;
-            missionLabel.color = c;
+            Color c = missionLabel.color; c.a = 1f; missionLabel.color = c;
         }
+
         if (descriptionText != null)
             descriptionText.text = slot.description;
-
-        if (missionLabel != null)
-            missionLabel.text = slot.missionText;
 
         if (_audio.isPlaying) _audio.Stop();
         if (slot.badgeAudio != null)
@@ -114,6 +112,10 @@ public class BadgeManager : MonoBehaviour
 
         if (!_starHidden) StartCoroutine(HideStar());
     }
+
+    // ─────────────────────────────────────────────
+    // ANIMATIONS
+    // ─────────────────────────────────────────────
 
     private IEnumerator HideStar()
     {

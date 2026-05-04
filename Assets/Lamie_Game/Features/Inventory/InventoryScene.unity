@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825431a7cb8f8254b91c90b5f41802ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BadgeSlot
-  intelligenceId: 
+  intelligenceId: Naturalistic
   badgeName: "\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0637\u0628\u064A\u0639\u064A"
   badgeImage: {fileID: 200323386}
   badgeSprite: {fileID: -5251048955757391970, guid: a6caa1acad7102f4dac3d8d49878c63c, type: 3}
@@ -938,7 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825431a7cb8f8254b91c90b5f41802ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BadgeSlot
-  intelligenceId: 
+  intelligenceId: Linguistic
   badgeName: "\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0644\u063A\u0648\u064A"
   badgeImage: {fileID: 519431326}
   badgeSprite: {fileID: -5338137517783519160, guid: 4c0070af3d2504e46916821805acf07d, type: 3}
@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825431a7cb8f8254b91c90b5f41802ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BadgeSlot
-  intelligenceId: 
+  intelligenceId: Spatial
   badgeName: "\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0645\u0643\u0627\u0646\u064A"
   badgeImage: {fileID: 543511720}
   badgeSprite: {fileID: 612503877335938971, guid: 0f5e575ce47f9ec4daeb2a325930313a, type: 3}
@@ -2192,7 +2192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825431a7cb8f8254b91c90b5f41802ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BadgeSlot
-  intelligenceId: 
+  intelligenceId: Musical
   badgeName: "\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0645\u0648\u0633\u064A\u0642\u064A"
   badgeImage: {fileID: 897672688}
   badgeSprite: {fileID: -1837765469705951330, guid: 0e0df31a2cf1999459af96aaab09158f, type: 3}
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825431a7cb8f8254b91c90b5f41802ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BadgeSlot
-  intelligenceId: 
+  intelligenceId: "Bodily\u2013Kinesthetic"
   badgeName: "\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u062C\u0633\u062F\u064A"
   badgeImage: {fileID: 997593958}
   badgeSprite: {fileID: -7039730194118529762, guid: e8d492a76896b7742962637323fa46ef, type: 3}
@@ -2715,7 +2715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825431a7cb8f8254b91c90b5f41802ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BadgeSlot
-  intelligenceId: 
+  intelligenceId: Interpersonal
   badgeName: "\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u062C\u062A\u0645\u0627\u0639\u064A"
   badgeImage: {fileID: 1071362846}
   badgeSprite: {fileID: 1361197079381891536, guid: 5d8ab0fa1ddcb3d40b2611539207f418, type: 3}
@@ -4110,7 +4110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825431a7cb8f8254b91c90b5f41802ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BadgeSlot
-  intelligenceId: 
+  intelligenceId: "Logical\u2013Mathematical"
   badgeName: "\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0645\u0646\u0637\u0642\u064A"
   badgeImage: {fileID: 2085929828}
   badgeSprite: {fileID: -1095660262961110300, guid: 62537b936eb5a354f9c893a4464abb4e, type: 3}
@@ -4208,7 +4208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825431a7cb8f8254b91c90b5f41802ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BadgeSlot
-  intelligenceId: 
+  intelligenceId: Intrapersonal
   badgeName: "\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0630\u0627\u062A\u064A"
   badgeImage: {fileID: 2104971857}
   badgeSprite: {fileID: -7193873020485348705, guid: 3383363b77fafbb4f92c7fc810b57801, type: 3}

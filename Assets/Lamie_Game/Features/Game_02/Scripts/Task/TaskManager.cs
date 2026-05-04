@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
+
+    public static TaskManager Instance { get; private set; }
+
     [Header("Main Sections")]
     public GameObject taskRoot;
 
@@ -20,8 +23,15 @@ public class TaskManager : MonoBehaviour
     public AudioClip questionVoice;
 
     [Header("References")]
-    public QuestionManager questionManager; // اربطه في الـ Inspector
+    public QuestionManager questionManager;
 
+    [Header("SFX")]
+    public AudioClip clickSound;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void StartTaskMode()
     {
         taskRoot.SetActive(true);
@@ -29,6 +39,13 @@ public class TaskManager : MonoBehaviour
         PlayVoice(frameChoiceVoice);
     }
 
+    public void PlayClickSound()
+    {
+        if (audioSource && clickSound)
+        {
+            audioSource.PlayOneShot(clickSound);
+        }
+    }
     void ShowStep(GameObject stepToShow)
     {
         frameChooseStep.SetActive(false);
@@ -67,12 +84,14 @@ public class TaskManager : MonoBehaviour
         BoardManager.Instance.Deselect();
         BoardManager.Instance.CaptureBoard();
         ShowStep(paintAlignmentStep);
+        yield return null;
         PlayVoice(paintVoice);
         yield return null;
     }
 
     public void GoToQuestion()
     {
+
         ShowStep(questionStep);
         PlayVoice(questionVoice);
 

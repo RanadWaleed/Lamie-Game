@@ -4,22 +4,22 @@ using System.Collections;
 
 public class QuestionManager : MonoBehaviour
 {
-    [Header("أزرار العناوين")]
+    [Header("Title Buttons")]
     public Button[] titleButtons;
 
-    [Header("زر التأكيد")]
+    [Header("Confirm Button")]
     public Button confirmButton;
 
-    [Header("إطارات الخيارات — صورة فوق كل زر")]
+    [Header("Option Frames")]
     public Image[] optionFrames;
 
-    [Header("أصوات قراءة الخيارات")]
+    [Header("Option Voices")]
     public AudioClip[] optionVoices;
 
-    [Header("مصدر الصوت")]
+    [Header("Audio Source")]
     public AudioSource audioSource;
 
-    [Header("إعدادات الـ Fade")]
+    [Header("Fade Settings")]
     public float fadeDuration = 0.3f;
 
     private int selectedIndex = -1;
@@ -97,7 +97,7 @@ public class QuestionManager : MonoBehaviour
         return "";
     }
 
-    [Header("عناوين الخيارات بنفس ترتيب الأزرار")]
+    [Header("Button Titles")]
     public string[] buttonTitles;
 
     public void OnConfirm()

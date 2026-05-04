@@ -7,7 +7,6 @@ public class ItemInteraction : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        // التحديث هنا: أرسلنا نوع العنصر للبورد مانجر
         BoardManager.Instance.SelectItem(this.gameObject, itemType == "BG");
     }
 

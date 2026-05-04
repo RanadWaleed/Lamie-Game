@@ -69,6 +69,7 @@ public class GalleryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
         placedItem.GetComponent<CanvasGroup>().blocksRaycasts = true;
         BoardManager.Instance.SelectItem(placedItem, itemType == "BG");
+        TaskManager.Instance?.PlayClickSound();
 
         RectTransform rt = placedItem.GetComponent<RectTransform>();
         AssessmentTag placedTag = placedItem.GetComponent<AssessmentTag>();

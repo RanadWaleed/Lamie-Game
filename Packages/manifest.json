@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.hecomi.ulipsync": "https://github.com/hecomi/uLipSync.git#upm",
     "com.unity.2d.animation": "12.0.3",
     "com.unity.2d.aseprite": "2.0.2",
     "com.unity.2d.psdimporter": "11.0.2",

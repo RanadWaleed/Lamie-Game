@@ -1,0 +1,44 @@
+[33m0385e78[m[33m ([m[1;36mHEAD -> [m[1;32mJoudBranch[m[33m, [m[1;31morigin/JoudBranch[m[33m)[m Restore Game_01 from renad-branch
+[33m02073ed[m Merge renad-branch - keeping ours on conflicts
+[33m971fa70[m Add gitignore to exclude large font assets
+[33md778197[m Adding Badge Scene & Some Modifications
+[33m54711c1[m[33m ([m[1;31morigin/renad-branch[m[33m)[m fix game 1
+[33m58e7578[m Fix UI bugs and update Level Complete Panel
+[33m66c4221[m Modifications
+[33m617bd99[m Modifications
+[33m8d794b6[m Merge pull request #4 from RanadWaleed/JoudBranch
+[33meb90289[m Merge branch 'main' of https://github.com/RanadWaleed/Lamie-Game into JoudBranch
+[33m126304a[m Modifying HomeScene
+[33m9185f95[m Merge branch 'renad-branch'
+[33m9de1f0b[m Fix character selection persistence and home settings display
+[33m09e2d1a[m Merge pull request #3 from RanadWaleed/JoudBranch
+[33m6f0856d[m Merge pull request #3 from RanadWaleed/JoudBranch
+[33m10e786c[m Merge branch 'main' into JoudBranch
+[33mc5569a9[m Merge branch 'main' into JoudBranch
+[33mda51543[m implement psychometric assessment backend and update Game 2
+[33m38e42c8[m implement psychometric assessment backend and update Game 2
+[33mf6afcba[m Fix character selection persistence and home settings display
+[33m1fc6d1b[m Fix character selection persistence and home settings display
+[33m136a4d6[m Merge pull request #2 from RanadWaleed/JoudBranch
+[33m7cb0145[m Merge pull request #2 from RanadWaleed/JoudBranch
+[33ma6630c8[m Merge branch 'main' of https://github.com/RanadWaleed/Lamie-Game into JoudBranch
+[33m23af3d8[m Merge branch 'main' of https://github.com/RanadWaleed/Lamie-Game into JoudBranch
+[33md3f0bab[m Merge branch 'main' of https://github.com/RanadWaleed/Lamie-Game into renad-branch
+[33m703dbea[m Merge branch 'main' of https://github.com/RanadWaleed/Lamie-Game into renad-branch
+[33mcb58538[m Fix psychometric reports Arabic encoding and resolve HTTP 400 Error
+[33m5ae39d0[m Fix psychometric reports Arabic encoding and resolve HTTP 400 Error
+[33m7ea1393[m Modifying Game2
+[33m7c7e8ba[m Modifying Game2
+[33m992e02c[m Modifying Game2
+[33m3fdc815[m Modifying Game2
+[33me7d8b9f[m backend integration for psychometric reports and fix stage 6 logic
+[33m05e91b5[m backend integration for psychometric reports and fix stage 6 logic
+[33m9e5ada7[m Merge pull request #1 from RanadWaleed/renad-branch
+[33m4a22c9c[m Merge pull request #1 from RanadWaleed/renad-branch
+[33m27e09d4[m Fixed Login scene and updated Game transitions and overall game flow
+[33mfdb8b35[m[33m ([m[1;32mrenad-branch[m[33m)[m Fixed Login scene and updated Game transitions and overall game flow
+[33m57cee35[m Adding game scenes
+[33m50aace1[m Adding game scenes
+[33mf420dca[m Game Files
+[33m2519695[m Game Files
+[33m06aa175[m Initial commit

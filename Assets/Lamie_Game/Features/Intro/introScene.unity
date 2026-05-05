@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 199101293}
   - component: {fileID: 199101292}
+  - component: {fileID: 199101294}
   m_Layer: 0
   m_Name: GameFlowManager
   m_TagString: Untagged
@@ -164,6 +165,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &199101294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199101291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3257c9c956723949bc8d375ce7333f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LocalProgressManager
+  allIntelligences:
+  - {fileID: 11400000, guid: e3bc27aa29f36a147921b68b5676a0b7, type: 2}
 --- !u!1 &667607648
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +632,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1103410092068397305, guid: 89e90534f98ccea45b6cd3bda1d94229, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 465.77106
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 1103410092068397305, guid: 89e90534f98ccea45b6cd3bda1d94229, type: 3}
       propertyPath: m_LocalPosition.y

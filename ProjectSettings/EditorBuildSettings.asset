@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Lamie_Game/Features/Login/LoginScene.unity
     guid: 7016cb641a6dce444b9b12e7466817fb
+  - enabled: 1
+    path: Assets/Lamie_Game/Features/CharacterSelection2/CharacterSelectionScene.unity
+    guid: e2f3055b1661db149abfeaec67efadbd
   - enabled: 0
     path: Assets/Scenes/ChooseCharacterScene.unity
     guid: 1660222138a724444a96c85b3f52740c
@@ -21,20 +24,20 @@ EditorBuildSettings:
     path: Assets/Lamie_Game/Features/CharacterSelection/characterSelectionFinal.unity
     guid: 26e28a2ae0298f04a8de96a17a10c9de
   - enabled: 1
+    path: Assets/Lamie_Game/Features/Home/HomeScene.unity
+    guid: c48b55830aa43ab44a56cd298f05aabc
+  - enabled: 1
+    path: Assets/Lamie_Game/Features/Inventory/InventoryScene.unity
+    guid: fd24e2a0736d2b442965be1eb1338f57
+  - enabled: 1
     path: Assets/Lamie_Game/Features/Game_01/Game01Scene.unity
     guid: fec2edad43df5de4b90aaba96db31178
   - enabled: 0
     path: Assets/Scenes/Percepition2.unity
     guid: 79cb9230227a810459467a6d914539ad
-  - enabled: 1
-    path: Assets/Lamie_Game/Features/Home/HomeScene.unity
-    guid: c48b55830aa43ab44a56cd298f05aabc
   - enabled: 0
     path: Assets/Lamie_Game/Features/Login/LoginScene.unity
     guid: 7016cb641a6dce444b9b12e7466817fb
-  - enabled: 1
-    path: Assets/Lamie_Game/Features/CharacterSelection2/CharacterSelectionScene.unity
-    guid: e2f3055b1661db149abfeaec67efadbd
   - enabled: 1
     path: Assets/Lamie_Game/Features/Game_02/Game02Scene.unity
     guid: eb8c0e4cbb9ed4240b9d02b4836431af

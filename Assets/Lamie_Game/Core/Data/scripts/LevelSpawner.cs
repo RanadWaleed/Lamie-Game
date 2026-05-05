@@ -26,7 +26,10 @@ public class LevelSpawner : MonoBehaviour
     {
         if (index >= levels.Count)
         {
+            Debug.Log("All Levels Completed!");
+
             if (MasterManager.Instance != null) MasterManager.Instance.ShowNextButton();
+
             return;
         }
 
@@ -47,6 +50,7 @@ public class LevelSpawner : MonoBehaviour
         candiesNeededToPlace = currentStage.matchPairs.Count;
         candiesCurrentlyPlaced = 0;
 
+        // --- Setup Level Data in Backend ---
         if (MasterManager.Instance != null)
         {
             MasterManager.Instance.totalRequiredMatches = candiesNeededToPlace;
@@ -107,10 +111,6 @@ public class LevelSpawner : MonoBehaviour
     {
         GameObject newCandy = Instantiate(candyPrefab, candiesContainer);
         newCandy.transform.localScale = Vector3.one;
-
-        RectTransform rt = newCandy.GetComponent<RectTransform>();
-        if (rt != null) rt.pivot = new Vector2(0.5f, 0.7f);
-
         newCandy.GetComponent<Image>().sprite = sprite;
 
         DragDrop dragScript = newCandy.GetComponent<DragDrop>();
@@ -125,8 +125,6 @@ public class LevelSpawner : MonoBehaviour
     {
         if (candiesContainer.GetComponent<LayoutGroup>() != null)
             candiesContainer.GetComponent<LayoutGroup>().enabled = false;
-
-        if (MasterManager.Instance != null) MasterManager.Instance.StartTimer();
     }
 
     void RandomizeChildren(Transform container)
@@ -144,6 +142,7 @@ public class LevelSpawner : MonoBehaviour
         candiesCurrentlyPlaced++;
         if (candiesCurrentlyPlaced >= candiesNeededToPlace)
         {
+            // --- Submit Stage Data to Backend ---
             if (MasterManager.Instance != null)
             {
                 MasterManager.Instance.SubmitStageData();

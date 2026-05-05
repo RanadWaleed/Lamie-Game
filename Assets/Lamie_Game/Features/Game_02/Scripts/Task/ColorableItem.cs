@@ -2,11 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ColorableItem : MonoBehaviour, IPointerClickHandler
+public class ColorableItem : MonoBehaviour
 {
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        ArtColorManager.Instance.SelectObject(gameObject);
 
-    }
 }

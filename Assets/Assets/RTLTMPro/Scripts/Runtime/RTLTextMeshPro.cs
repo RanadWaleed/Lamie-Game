@@ -6,7 +6,6 @@ namespace RTLTMPro
     [ExecuteInEditMode]
     public class RTLTextMeshPro : TextMeshProUGUI
     {
-        // ReSharper disable once InconsistentNaming
 #if TMP_VERSION_2_1_0_OR_NEWER
         public override string text
 #else
@@ -20,7 +19,6 @@ namespace RTLTMPro
                     return;
 
                 originalText = value;
-
                 UpdateText();
             }
         }
@@ -37,7 +35,6 @@ namespace RTLTMPro
             {
                 if (preserveNumbers == value)
                     return;
-
                 preserveNumbers = value;
                 havePropertiesChanged = true;
             }
@@ -50,7 +47,6 @@ namespace RTLTMPro
             {
                 if (farsi == value)
                     return;
-
                 farsi = value;
                 havePropertiesChanged = true;
             }
@@ -63,7 +59,6 @@ namespace RTLTMPro
             {
                 if (fixTags == value)
                     return;
-
                 fixTags = value;
                 havePropertiesChanged = true;
             }
@@ -76,30 +71,24 @@ namespace RTLTMPro
             {
                 if (forceFix == value)
                     return;
-
                 forceFix = value;
                 havePropertiesChanged = true;
             }
         }
 
         [SerializeField] protected bool preserveNumbers;
-
         [SerializeField] protected bool farsi = true;
-
-        [SerializeField] [TextArea(3, 10)] protected string originalText;
-
+        [SerializeField][TextArea(3, 10)] protected string originalText;
         [SerializeField] protected bool fixTags = true;
-
         [SerializeField] protected bool forceFix;
 
-        protected readonly FastStringBuilder finalText = new FastStringBuilder(RTLSupport.DefaultBufferSize);
+        protected readonly FastStringBuilder finalText =
+            new FastStringBuilder(RTLSupport.DefaultBufferSize);
 
         protected void Update()
         {
             if (havePropertiesChanged)
-            {
                 UpdateText();
-            }
         }
 
         public void UpdateText()
@@ -111,7 +100,8 @@ namespace RTLTMPro
             {
                 isRightToLeftText = false;
                 base.text = originalText;
-            } else
+            }
+            else
             {
                 isRightToLeftText = true;
                 base.text = GetFixedText(originalText);

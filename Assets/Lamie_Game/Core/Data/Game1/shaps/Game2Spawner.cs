@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
@@ -47,6 +47,7 @@ public class Game2Spawner : MonoBehaviour
         shapesNeededToPlace = currentStage.matchPairs.Count;
         shapesCurrentlyPlaced = 0;
 
+        // --- Setup Level Data in Backend ---
         if (MasterManager.Instance != null)
         {
             MasterManager.Instance.totalRequiredMatches = shapesNeededToPlace;
@@ -89,38 +90,26 @@ public class Game2Spawner : MonoBehaviour
         if (shapesContainer.GetComponent<LayoutGroup>() != null)
             shapesContainer.GetComponent<LayoutGroup>().enabled = true;
 
-        bool isStage3 = (currentLevelIndex == 2);
-
         foreach (var pair in stage.matchPairs)
         {
-            SpawnShape(pair.draggableSprite, pair.pairID, activeMolds.ToArray(), isStage3);
+            SpawnShape(pair.draggableSprite, pair.pairID, activeMolds.ToArray());
         }
 
         foreach (var distractor in stage.distractors)
         {
-            SpawnShape(distractor, "Distractor", activeMolds.ToArray(), isStage3);
+            SpawnShape(distractor, "Distractor", activeMolds.ToArray());
         }
 
         RandomizeChildren(shapesContainer);
         Invoke("UnlockShapesForDragging", 0.5f);
     }
 
-    void SpawnShape(Sprite sprite, string id, RectTransform[] molds, bool isStage3 = false)
+    void SpawnShape(Sprite sprite, string id, RectTransform[] molds)
     {
         GameObject newShape = Instantiate(shapePrefab, shapesContainer);
 
         newShape.transform.localRotation = Quaternion.Euler(customShapeRotation);
         newShape.transform.localScale = new Vector3(defaultShapeScale, defaultShapeScale, 1f);
-
-        RectTransform rt = newShape.GetComponent<RectTransform>();
-        if (rt != null)
-        {
-            if (isStage3)
-            {
-                rt.pivot = new Vector2(0.5f, 0.8f);
-                rt.sizeDelta = new Vector2(rt.sizeDelta.x + 20f, rt.sizeDelta.y + 20f);
-            }
-        }
 
         newShape.GetComponent<Image>().sprite = sprite;
 
@@ -136,8 +125,6 @@ public class Game2Spawner : MonoBehaviour
     {
         if (shapesContainer.GetComponent<LayoutGroup>() != null)
             shapesContainer.GetComponent<LayoutGroup>().enabled = false;
-
-        if (MasterManager.Instance != null) MasterManager.Instance.StartTimer();
     }
 
     void RandomizeChildren(Transform container)
@@ -155,6 +142,7 @@ public class Game2Spawner : MonoBehaviour
         shapesCurrentlyPlaced++;
         if (shapesCurrentlyPlaced >= shapesNeededToPlace)
         {
+            // --- Submit Stage Data to Backend ---
             if (MasterManager.Instance != null)
             {
                 MasterManager.Instance.SubmitStageData();

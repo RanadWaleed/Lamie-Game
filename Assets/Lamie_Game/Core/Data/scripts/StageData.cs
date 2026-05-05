@@ -14,7 +14,7 @@ public class StageData : ScriptableObject
 {
     public string stageName;
     public float standardTime = 12f;
-    public GameObject stagePrefab;
     public List<MatchPair> matchPairs = new List<MatchPair>();
+
     public List<Sprite> distractors = new List<Sprite>();
 }

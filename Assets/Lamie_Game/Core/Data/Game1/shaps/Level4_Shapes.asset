@@ -16,21 +16,21 @@ MonoBehaviour:
   standardTime: 12
   matchPairs:
   - pairID: Tbig
-    draggableSprite: {fileID: 8708853004429096985, guid: cb02fefd05f88e840a054aebed59d0fc, type: 3}
-    targetSprite: {fileID: 8402687291573795029, guid: cb02fefd05f88e840a054aebed59d0fc, type: 3}
+    draggableSprite: {fileID: -4051775243478953174, guid: dcdfec3ffcdad8b47b0187ce815c336e, type: 3}
+    targetSprite: {fileID: 6051461806625355020, guid: 09225ed9bf8e00346b49d9092ab7103e, type: 3}
   - pairID: Tbig
-    draggableSprite: {fileID: 8708853004429096985, guid: cb02fefd05f88e840a054aebed59d0fc, type: 3}
-    targetSprite: {fileID: 8402687291573795029, guid: cb02fefd05f88e840a054aebed59d0fc, type: 3}
+    draggableSprite: {fileID: -4051775243478953174, guid: dcdfec3ffcdad8b47b0187ce815c336e, type: 3}
+    targetSprite: {fileID: 6051461806625355020, guid: 09225ed9bf8e00346b49d9092ab7103e, type: 3}
   - pairID: Tsmall
-    draggableSprite: {fileID: -6737006825974308459, guid: cb02fefd05f88e840a054aebed59d0fc, type: 3}
-    targetSprite: {fileID: -1663208901078229091, guid: cb02fefd05f88e840a054aebed59d0fc, type: 3}
+    draggableSprite: {fileID: 989123813363763071, guid: 486670b05ecd18a49b9824abae5900d9, type: 3}
+    targetSprite: {fileID: -8350017915244704703, guid: 034f372a5d50a224eb3bcc86cbf3d1cb, type: 3}
   - pairID: Tsmall
-    draggableSprite: {fileID: -6737006825974308459, guid: cb02fefd05f88e840a054aebed59d0fc, type: 3}
-    targetSprite: {fileID: -1663208901078229091, guid: cb02fefd05f88e840a054aebed59d0fc, type: 3}
+    draggableSprite: {fileID: 989123813363763071, guid: 486670b05ecd18a49b9824abae5900d9, type: 3}
+    targetSprite: {fileID: -8350017915244704703, guid: 034f372a5d50a224eb3bcc86cbf3d1cb, type: 3}
   - pairID: Tmidum
-    draggableSprite: {fileID: -6365632451215190288, guid: cb02fefd05f88e840a054aebed59d0fc, type: 3}
-    targetSprite: {fileID: 5446888911018831040, guid: cb02fefd05f88e840a054aebed59d0fc, type: 3}
+    draggableSprite: {fileID: -1667026861839801225, guid: ab5d22927f440b54fab349b992f93bec, type: 3}
+    targetSprite: {fileID: 3973187760570444981, guid: b5f69fc7063befd4cb7b4ba1d7544fd9, type: 3}
   - pairID: Tmidum
-    draggableSprite: {fileID: -6365632451215190288, guid: cb02fefd05f88e840a054aebed59d0fc, type: 3}
-    targetSprite: {fileID: 5446888911018831040, guid: cb02fefd05f88e840a054aebed59d0fc, type: 3}
+    draggableSprite: {fileID: -1667026861839801225, guid: ab5d22927f440b54fab349b992f93bec, type: 3}
+    targetSprite: {fileID: 3973187760570444981, guid: b5f69fc7063befd4cb7b4ba1d7544fd9, type: 3}
   distractors: []

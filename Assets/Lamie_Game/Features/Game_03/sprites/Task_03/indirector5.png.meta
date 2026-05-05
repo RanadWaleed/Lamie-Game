@@ -1,0 +1,481 @@
+fileFormatVersion: 2
+guid: 40c384ed385e7bc42afe26bf8342553a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 410341391935620838
+    second: indirector5_0
+  - first:
+      213: -2764389873800497928
+    second: indirector5_1
+  - first:
+      213: -3483968231272230967
+    second: indirector5_2
+  - first:
+      213: 1230010633965687030
+    second: indirector5_3
+  - first:
+      213: 6967190624121654031
+    second: indirector5_4
+  - first:
+      213: 9106882116836696836
+    second: indirector5_5
+  - first:
+      213: 2150482695269134299
+    second: indirector5_6
+  - first:
+      213: -5306088532357257789
+    second: indirector5_7
+  - first:
+      213: 4800397585959724903
+    second: indirector5_8
+  - first:
+      213: -8721302551513326537
+    second: indirector5_9
+  - first:
+      213: -5936011121479053958
+    second: indirector5_10
+  - first:
+      213: 8784297724486824317
+    second: indirector5_11
+  - first:
+      213: -5632960855038115647
+    second: indirector5_12
+  - first:
+      213: 6606770996602775179
+    second: indirector5_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: indirector5_0
+      rect:
+        serializedVersion: 2
+        x: 1231
+        y: 1217
+        width: 211
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e646f66253d1b500800000000000000
+      internalID: 410341391935620838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_1
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 887
+        width: 134
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f43f6f5e0ae2a9d0800000000000000
+      internalID: -2764389873800497928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_2
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 997
+        width: 87
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cfc54e3a5576afc0800000000000000
+      internalID: -3483968231272230967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_3
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 1021
+        width: 70
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f05a7b9720e11110800000000000000
+      internalID: 1230010633965687030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_4
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 924
+        width: 178
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0b043975fe60b060800000000000000
+      internalID: 6967190624121654031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_5
+      rect:
+        serializedVersion: 2
+        x: 1667
+        y: 1079
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 403a861f805226e70800000000000000
+      internalID: 9106882116836696836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_6
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 266
+        width: 543
+        height: 776
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdf242b1e9c08dd10800000000000000
+      internalID: 2150482695269134299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_7
+      rect:
+        serializedVersion: 2
+        x: 1236
+        y: 786
+        width: 120
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c5621ab79cfc56b0800000000000000
+      internalID: -5306088532357257789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_8
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 790
+        width: 94
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 767a5cbbb207e9240800000000000000
+      internalID: 4800397585959724903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_9
+      rect:
+        serializedVersion: 2
+        x: 1523
+        y: 919
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73c175e6985b7f680800000000000000
+      internalID: -8721302551513326537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_10
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 349
+        width: 177
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7d0979d55d0f9da0800000000000000
+      internalID: -5936011121479053958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_11
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 543
+        width: 277
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d713f4d3d3818e970800000000000000
+      internalID: 8784297724486824317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_12
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 370
+        width: 174
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c0c5c172f3b3d1b0800000000000000
+      internalID: -5632960855038115647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indirector5_13
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 309
+        width: 294
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b86acdc9737ffab50800000000000000
+      internalID: 6606770996602775179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      indirector5_0: 410341391935620838
+      indirector5_1: -2764389873800497928
+      indirector5_10: -5936011121479053958
+      indirector5_11: 8784297724486824317
+      indirector5_12: -5632960855038115647
+      indirector5_13: 6606770996602775179
+      indirector5_2: -3483968231272230967
+      indirector5_3: 1230010633965687030
+      indirector5_4: 6967190624121654031
+      indirector5_5: 9106882116836696836
+      indirector5_6: 2150482695269134299
+      indirector5_7: -5306088532357257789
+      indirector5_8: 4800397585959724903
+      indirector5_9: -8721302551513326537
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

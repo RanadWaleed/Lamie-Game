@@ -44,9 +44,7 @@ public class SaveGameResultRequest
     public AspectResultDto aspectResult;
 }
 
-// ─────────────────────────────────────────────────────────────
-// PsychometricReportManager — النسخة المحدّثة
-// ─────────────────────────────────────────────────────────────
+
 
 public class PsychometricReportManager : MonoBehaviour
 {

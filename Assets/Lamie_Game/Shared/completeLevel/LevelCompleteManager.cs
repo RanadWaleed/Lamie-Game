@@ -18,16 +18,16 @@ public class LevelCompleteManager : MonoBehaviour
     public Image[] nodeGlows;
 
     [Header("Audio")]
-    public AudioSource audioSource; 
+    public AudioSource audioSource;
     public AudioClip successVoiceClip;
     public AudioClip barFillSoundEffect;
     public AudioClip nodePopSound;
 
     public float panelFadeDuration = 0.5f;
-    public float barFillDuration = 1.5f;
+    public float barFillDuration = 1.5f; // الوقت الإجمالي للتعبئة
 
-    private float currentFill = 0f;
     private AudioSource loopAudioSource;
+    private int totalNodes;
 
     void Awake()
     {
@@ -38,6 +38,8 @@ public class LevelCompleteManager : MonoBehaviour
     {
         loopAudioSource = gameObject.AddComponent<AudioSource>();
         loopAudioSource.playOnAwake = false;
+
+        totalNodes = nodeGlows.Length; // يحسب النودز تلقائياً (4 نودز)
 
         if (completePanelCG != null)
         {
@@ -54,27 +56,17 @@ public class LevelCompleteManager : MonoBehaviour
         }
     }
 
-    public void ShowCompleteScreen(int levelNumber)
+    // حافظت على نفس شكل الدالة عشان ما يخرب السكربت الثاني اللي يستدعيها
+    public void ShowCompleteScreen(int levelNumber = 0)
     {
-        StartCoroutine(CompleteScreenRoutine(levelNumber));
+        StartCoroutine(CompleteScreenRoutine());
     }
 
-    IEnumerator CompleteScreenRoutine(int levelNumber)
+    IEnumerator CompleteScreenRoutine()
     {
-        float startFill = (levelNumber - 1) / 3f;
-        float targetFill = levelNumber / 3f;
-        currentFill = startFill;
+        if (progressBarFill != null) progressBarFill.fillAmount = 0f;
 
-        if (progressBarFill != null) progressBarFill.fillAmount = startFill;
-
-        for (int i = 0; i < levelNumber - 1; i++)
-        {
-            if (i < nodeGlows.Length && nodeGlows[i] != null)
-            {
-                nodeGlows[i].color = new Color(1, 1, 1, 1);
-            }
-        }
-
+        // 1. إظهار الشاشة (Fade In)
         if (completePanelCG != null)
         {
             completePanelCG.blocksRaycasts = true;
@@ -90,9 +82,7 @@ public class LevelCompleteManager : MonoBehaviour
             completePanelCG.alpha = 1f;
         }
 
-        if (audioSource != null && successVoiceClip != null)
-            audioSource.PlayOneShot(successVoiceClip);
-
+        // 2. تشغيل صوت تعبئة البار
         if (loopAudioSource != null && barFillSoundEffect != null)
         {
             loopAudioSource.clip = barFillSoundEffect;
@@ -100,30 +90,47 @@ public class LevelCompleteManager : MonoBehaviour
             loopAudioSource.Play();
         }
 
-        float fillTimer = 0f;
+        // 3. تقسيم وقت التعبئة على عدد النودز (عشان يمشي ويوقف)
+        float segmentDuration = barFillDuration / totalNodes;
 
-        while (fillTimer < barFillDuration)
+        for (int i = 0; i < totalNodes; i++)
         {
-            fillTimer += Time.deltaTime;
-            float progress = Mathf.SmoothStep(0f, 1f, fillTimer / barFillDuration);
-            currentFill = Mathf.Lerp(startFill, targetFill, progress);
+            // حساب بداية ونهاية كل جزء
+            float currentSegmentStart = (float)i / totalNodes;
+            float targetSegmentFill = (float)(i + 1) / totalNodes;
 
-            if (progressBarFill != null) progressBarFill.fillAmount = currentFill;
+            float timer = 0f;
+            while (timer < segmentDuration)
+            {
+                timer += Time.deltaTime;
+                float progress = Mathf.SmoothStep(0f, 1f, timer / segmentDuration);
+                if (progressBarFill != null)
+                    progressBarFill.fillAmount = Mathf.Lerp(currentSegmentStart, targetSegmentFill, progress);
 
-            CheckAndAnimateNodes(currentFill);
-            yield return null;
+                yield return null;
+            }
+
+            if (progressBarFill != null) progressBarFill.fillAmount = targetSegmentFill;
+
+            // === هنا السر: نوقف صوت التعبئة مؤقتاً عشان نسمع صوت النود ===
+            if (loopAudioSource != null) loopAudioSource.Pause();
+
+            // === ننتظر النود الحالية تنتفخ وتخلص حركتها قبل ما يكمل البار ===
+            yield return StartCoroutine(AnimateNode(nodeGlows[i]));
+
+            // نرجع نشغل صوت التعبئة للجزء اللي بعده (إلا لو كانت آخر نود)
+            if (loopAudioSource != null && i < totalNodes - 1) loopAudioSource.UnPause();
         }
 
-        if (progressBarFill != null) progressBarFill.fillAmount = targetFill;
-        currentFill = targetFill;
-        CheckAndAnimateNodes(currentFill);
+        if (loopAudioSource != null) loopAudioSource.Stop();
 
-        if (loopAudioSource != null)
+        // 4. تشغيل صوت النجاح النهائي بعد ما خلصنا كل النودز
+        if (audioSource != null && successVoiceClip != null)
         {
-            loopAudioSource.loop = false;
-            loopAudioSource.Stop();
+            audioSource.PlayOneShot(successVoiceClip);
         }
 
+        // 5. إظهار زر التالي (Next Button)
         if (nextButton != null)
         {
             nextButton.SetActive(true);
@@ -140,13 +147,6 @@ public class LevelCompleteManager : MonoBehaviour
             }
             nextButton.transform.localScale = endScale;
         }
-    }
-
-    void CheckAndAnimateNodes(float fill)
-    {
-        if (fill >= 0.3f && nodeGlows.Length > 0 && nodeGlows[0].color.a == 0) StartCoroutine(AnimateNode(nodeGlows[0]));
-        if (fill >= 0.65f && nodeGlows.Length > 1 && nodeGlows[1].color.a == 0) StartCoroutine(AnimateNode(nodeGlows[1]));
-        if (fill >= 0.99f && nodeGlows.Length > 2 && nodeGlows[2].color.a == 0) StartCoroutine(AnimateNode(nodeGlows[2]));
     }
 
     IEnumerator AnimateNode(Image glowImage)

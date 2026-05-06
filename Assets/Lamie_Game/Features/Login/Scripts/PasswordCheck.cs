@@ -66,7 +66,14 @@ public class PasswordCheck : MonoBehaviour
     {
         if (GameFlowManager.Instance != null)
         {
-            GameFlowManager.Instance.GoToState(GameFlowState.CharacterSelection);
+            if (PlayerPrefs.GetInt("CharacterSelected", 0) == 1)
+            {
+                GameFlowManager.Instance.GoToState(GameFlowState.Home);
+            }
+            else
+            {
+                GameFlowManager.Instance.GoToState(GameFlowState.CharacterSelection);
+            }
         }
     }
 }

@@ -387,6 +387,10 @@ public class MasterManager : MonoBehaviour
     public void FinalizeAndUploadReport()
     {
         isGameActive = false;
+        if (LocalProgressManager.Instance != null)
+        {
+            LocalProgressManager.Instance.MarkGameComplete(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
         if (PsychometricReportManager.Instance != null)
         {
             PsychometricReportManager.Instance.FinishCurrentIndicator();

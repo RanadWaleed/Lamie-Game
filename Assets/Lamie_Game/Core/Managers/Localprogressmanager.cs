@@ -19,19 +19,26 @@ public class LocalProgressManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-
     public bool MarkGameComplete(string sceneNameCompleted)
     {
-        IntelligenceData intel = GetIntelligenceForScene(sceneNameCompleted);
-        if (intel == null) return false;
-
         PlayerPrefs.SetInt(KeyPrefix + "game_" + sceneNameCompleted, 1);
         PlayerPrefs.Save();
 
-        if (!IsBadgeUnlocked(intel.intelligenceId) && AreAllGamesComplete(intel))
+        try
         {
-            UnlockBadge(intel.intelligenceId);
-            return true;
+            IntelligenceData intel = GetIntelligenceForScene(sceneNameCompleted);
+            if (intel != null)
+            {
+                if (!IsBadgeUnlocked(intel.intelligenceId) && AreAllGamesComplete(intel))
+                {
+                    UnlockBadge(intel.intelligenceId);
+                    return true;
+                }
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("[LocalProgressManager] تم حفظ المرحلة، لكن هناك قائمة فارغة في الـ Inspector تخص الشارات: " + e.Message);
         }
 
         return false;

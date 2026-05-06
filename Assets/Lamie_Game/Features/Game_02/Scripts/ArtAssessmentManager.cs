@@ -308,7 +308,10 @@ public class ArtAssessmentManager : MonoBehaviour
         SubmitInd6_VisualBalance(usedLayerCategories, finalDecorTypeCounts, allPositions);
         SubmitInd7_VerbalAwareness();
         SubmitInd8_ElementDiversity(usedLayerCategories, finalDecorNames);
-
+        if (LocalProgressManager.Instance != null)
+        {
+            LocalProgressManager.Instance.MarkGameComplete(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
         PsychometricReportManager.Instance?.UploadCurrentGameResult();
         Debug.Log("[Art] ══ اكتمل القياس ══");
     }

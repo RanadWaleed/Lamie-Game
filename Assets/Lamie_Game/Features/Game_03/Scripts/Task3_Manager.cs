@@ -59,7 +59,7 @@ public class Task3_Manager : MonoBehaviour
     {
         if (PsychometricReportManager.Instance != null)
         {
-            PsychometricReportManager.Instance.StartNewIndicator("Symbolic Representation");
+            PsychometricReportManager.Instance.StartNewIndicator("تمثيل الرموز البصرية المألوفة");
         }
 
         if (finalDisplayImage != null)
@@ -169,7 +169,13 @@ public class Task3_Manager : MonoBehaviour
 
         if (PsychometricReportManager.Instance != null)
         {
-            PsychometricReportManager.Instance.SaveItemData(itemIndex, firstTrySuccess, totalPiecesInCurrentLevel, totalAttempts, actualTime, standardTimePerLevel, "Symbol " + itemIndex);
+            string itemName = "بند " + itemIndex;
+            if (Game3_MasterManager.ItemNames.TryGetValue("تمثيل الرموز البصرية المألوفة", out var names))
+            {
+                int nameIndex = itemIndex - 1;
+                if (nameIndex >= 0 && nameIndex < names.Length) itemName = names[nameIndex];
+            }
+            PsychometricReportManager.Instance.SaveItemData(itemIndex, firstTrySuccess, totalPiecesInCurrentLevel, totalAttempts, actualTime, standardTimePerLevel, itemName);
         }
 
         if (itemIndex == 1)
@@ -232,6 +238,7 @@ public class Task3_Manager : MonoBehaviour
 
         if (isLastLevel)
         {
+            // (أكواد حساب الدرجات خليتها زي ما هي لا تمسحينها اللي فيها item6)
             float item6_acc = item6_totalPieces > 0 ? Mathf.Clamp01((float)item6_firstTrySuccess / item6_totalPieces) : 0f;
             float item6_err = item6_totalAttempts > 0 ? Mathf.Clamp01((float)item6_firstTrySuccess / item6_totalAttempts) : 0f;
             float item6_spd = item6_actualTime > 0 ? Mathf.Clamp01(item6_standardTime / item6_actualTime) : 0f;
@@ -242,18 +249,23 @@ public class Task3_Manager : MonoBehaviour
 
             if (PsychometricReportManager.Instance != null)
             {
-                PsychometricReportManager.Instance.SaveItemData(6, item6_firstTrySuccess, item6_totalPieces, item6_totalAttempts, item6_actualTime, item6_standardTime, "Symbol 6");
+                PsychometricReportManager.Instance.SaveItemData(6, item6_firstTrySuccess, item6_totalPieces, item6_totalAttempts, item6_actualTime, item6_standardTime, Game3_MasterManager.ItemNames["تمثيل الرموز البصرية المألوفة"][5]);
                 PsychometricReportManager.Instance.FinishCurrentIndicator();
-
-
             }
 
+            // 🎇 التعديل هنا: نشغل الغبار الأخير حق الإنجاز ونطلعه!
+            if (dustParticles != null)
+            {
+                dustParticles.gameObject.SetActive(true);
+                dustParticles.Play();
+            }
+
+            // 🖼️ ونطلع صورة الرفوف زي ما طلبتي
             if (finalGrandImageToShow != null)
             {
                 finalGrandImageToShow.SetActive(true);
             }
 
-    
             if (Game3_MasterManager.Instance != null)
             {
                 Game3_MasterManager.Instance.OnTask3Completed();

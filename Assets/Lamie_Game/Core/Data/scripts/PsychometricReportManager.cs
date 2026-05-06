@@ -45,6 +45,7 @@ public class SaveGameResultRequest
 }
 
 
+
 public class PsychometricReportManager : MonoBehaviour
 {
     public static PsychometricReportManager Instance;
@@ -63,6 +64,8 @@ public class PsychometricReportManager : MonoBehaviour
     private float sessionStartTime = 0f;
 
     private AspectResultDto currentAspect = null;
+
+    // تم التعديل هنا: تحويل currentIndicator إلى public عشان باقي الملفات تقدر توصل له بدون مشاكل
     public IndicatorResultDto currentIndicator = null;
 
     // Stage 1 data — تُحفظ لاستخدامها في البند 6 (العشوائية)
@@ -84,7 +87,9 @@ public class PsychometricReportManager : MonoBehaviour
         StartCoroutine(FetchLevelIDs());
     }
 
-
+    // ─────────────────────────────────────────────
+    // جلب الـ Level IDs من الـ API
+    // ─────────────────────────────────────────────
     [System.Serializable] public class LevelData { public string levelId; public string levelName; }
     [System.Serializable] public class LevelListWrapper { public List<LevelData> levels; }
 
@@ -115,11 +120,15 @@ public class PsychometricReportManager : MonoBehaviour
         }
     }
 
+    // ─────────────────────────────────────────────
+    // إعداد جانب جديد (يُستدعى من MasterManager عند بداية كل لعبة)
+    // ─────────────────────────────────────────────
     public void SetupNewAspect(string aspectName, string gameNumber)
     {
         currentChildId = PlayerPrefs.GetString("CurrentChildID", "No_ID_Found");
         sessionStartTime = Time.time;
 
+        // اختار الـ levelId حسب رقم اللعبة
         currentLevelId = gameNumber switch
         {
             "Game_1" => level1ID,
@@ -134,7 +143,9 @@ public class PsychometricReportManager : MonoBehaviour
         Debug.Log($"[Aspect] بدأ جانب جديد: {aspectName} | LevelID: {currentLevelId}");
     }
 
+    // ─────────────────────────────────────────────
     // بدء مؤشر جديد
+    // ─────────────────────────────────────────────
     public void StartNewIndicator(string indicatorName)
     {
         currentIndicator = new IndicatorResultDto { indicatorName = indicatorName };
@@ -143,7 +154,9 @@ public class PsychometricReportManager : MonoBehaviour
         Debug.Log($"[Indicator] بدأ مؤشر: {indicatorName}");
     }
 
-    // حفظ بيانات بند 
+    // ─────────────────────────────────────────────
+    // حفظ بيانات بند (يُستدعى من MasterManager.SubmitStageData)
+    // ─────────────────────────────────────────────
     public void SaveItemData(int index, float c, float n, float a, float actualTime, float standardTime, string itemName = "")
     {
         if (index == 1)
@@ -156,7 +169,9 @@ public class PsychometricReportManager : MonoBehaviour
         Debug.Log($"[Item {index}] Final={item.finalScore:F2} → {item.rating}");
     }
 
+    // ─────────────────────────────────────────────
     // إغلاق المؤشر الحالي (يضيف البند 6 تلقائياً ويحسب درجة المؤشر)
+    // ─────────────────────────────────────────────
     public void FinishCurrentIndicator()
     {
         if (currentIndicator == null) return;
@@ -185,6 +200,7 @@ public class PsychometricReportManager : MonoBehaviour
             Debug.Log($"[Item 6 - Randomness] Final={item6.finalScore:F2} → {item6.rating}");
         }
 
+        // احسب درجة المؤشر = متوسط البنود
         float total = 0f;
         foreach (var item in currentIndicator.items) total += item.finalScore;
         currentIndicator.indicatorScore = currentIndicator.items.Count > 0
@@ -197,6 +213,7 @@ public class PsychometricReportManager : MonoBehaviour
         Debug.Log($"[Indicator Done] Score={currentAspect?.indicators[^1].indicatorScore:F2}");
     }
 
+    // رفع نتيجة اللعبة الحالية (يُستدعى عند نهاية كل لعبة)
     public void UploadCurrentGameResult()
     {
         if (currentAspect == null)
@@ -205,6 +222,7 @@ public class PsychometricReportManager : MonoBehaviour
             return;
         }
 
+        // احسب درجة الجانب = متوسط المؤشرات
         float total = 0f;
         foreach (var ind in currentAspect.indicators) total += ind.indicatorScore;
         currentAspect.aspectScore = currentAspect.indicators.Count > 0
@@ -225,6 +243,7 @@ public class PsychometricReportManager : MonoBehaviour
         string json = JsonUtility.ToJson(payload, true);
         Debug.Log("[Upload] Payload:\n" + json);
 
+        // احفظ نسخة احتياطية
         PlayerPrefs.SetString("LastBackup_" + currentChildId + "_" + currentLevelId, json);
         PlayerPrefs.Save();
 
@@ -232,7 +251,9 @@ public class PsychometricReportManager : MonoBehaviour
         currentAspect = null;
     }
 
+    // ─────────────────────────────────────────────
     // Helpers
+    // ─────────────────────────────────────────────
     private AssessmentItemDto BuildItem(int index, float c, float n, float a, float actualTime, float standardTime, string itemName = "")
     {
         float accuracy = n > 0 ? Mathf.Clamp01(c / n) : 0f;
@@ -271,7 +292,9 @@ public class PsychometricReportManager : MonoBehaviour
         else { asp.aspectRating = "نادرًا"; asp.psychometricPts = 1; }
     }
 
+    // ─────────────────────────────────────────────
     // POST مع retry
+    // ─────────────────────────────────────────────
     private IEnumerator PostWithRetry(string url, string json, int retryCount)
     {
         int attempt = 0;
@@ -308,6 +331,45 @@ public class PsychometricReportManager : MonoBehaviour
 
         if (!success)
             Debug.LogError($"[Upload] فشلت كل المحاولات. البيانات محفوظة محلياً.");
+    }
+
+    // تم التعديل هنا: إرجاع دالة SyncOfflineData التي كانت مفقودة
+    // Call this function from Start in HomeScene or when internet connection is confirmed
+    public void SyncOfflineData()
+    {
+        string childId = PlayerPrefs.GetString("CurrentChildID", "");
+        if (string.IsNullOrEmpty(childId)) return;
+
+        // Check saved keys for all levels
+        string[] levels = { level1ID, level2ID, level3ID, level4ID };
+        foreach (var lvl in levels)
+        {
+            string key = "LastBackup_" + childId + "_" + lvl;
+            if (PlayerPrefs.HasKey(key))
+            {
+                string jsonPayload = PlayerPrefs.GetString(key);
+                Debug.Log($"[Sync] Attempting to upload previous data for level {lvl}");
+                StartCoroutine(PostOfflineBackup(apiURL, jsonPayload, key));
+            }
+        }
+    }
+
+    private IEnumerator PostOfflineBackup(string url, string json, string prefsKey)
+    {
+        var request = new UnityWebRequest(url, "POST");
+        request.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(json));
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            // Upload successful, delete the local backup
+            PlayerPrefs.DeleteKey(prefsKey);
+            PlayerPrefs.Save();
+            Debug.Log("<color=green>[Sync] Delayed data uploaded successfully.</color>");
+        }
     }
 
     // Safety net — لو الطفل خرج قبل نهاية اللعبة

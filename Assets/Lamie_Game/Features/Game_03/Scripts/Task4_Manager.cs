@@ -50,7 +50,8 @@ public class Task4_Manager : MonoBehaviour
         if (bottomPanel != null)
         {
             panelVisibleY = bottomPanel.anchoredPosition.y;
-            panelHiddenY = panelVisibleY - hideDropDistance;
+
+            panelHiddenY = panelVisibleY - 300f;
         }
     }
 
@@ -58,16 +59,18 @@ public class Task4_Manager : MonoBehaviour
     {
         if (PsychometricReportManager.Instance != null)
         {
-         
-            PsychometricReportManager.Instance.StartNewIndicator("Spatial Placement");
+            PsychometricReportManager.Instance.StartNewIndicator("وضع العناصر في مواقعها المكانية الصحيحة داخل المشهد");
         }
 
         foreach (var item in levelItemsParents) if (item != null) item.SetActive(false);
         foreach (var zone in levelDropZonesParents) if (zone != null) zone.SetActive(false);
 
-        targetY = panelHiddenY;
-        targetAlpha = 0f;
-        if (bottomPanel != null) bottomPanel.anchoredPosition = new Vector2(bottomPanel.anchoredPosition.x, targetY);
+        targetY = panelVisibleY;
+        targetAlpha = 0.9f;
+
+        if (bottomPanel != null)
+            bottomPanel.anchoredPosition = new Vector2(bottomPanel.anchoredPosition.x, panelHiddenY);
+        StartGame4AfterLubnah();
     }
 
     void Update()
@@ -185,7 +188,13 @@ public class Task4_Manager : MonoBehaviour
 
         if (PsychometricReportManager.Instance != null)
         {
-            PsychometricReportManager.Instance.SaveItemData(itemIndex, firstTrySuccess, totalPiecesInCurrentLevel, totalAttempts, actualTime, stdTime, "Spatial " + itemIndex);
+            string itemName = "بند " + itemIndex;
+            if (Game3_MasterManager.ItemNames.TryGetValue("وضع العناصر في مواقعها المكانية الصحيحة داخل المشهد", out var names))
+            {
+                int nameIndex = itemIndex - 1;
+                if (nameIndex >= 0 && nameIndex < names.Length) itemName = names[nameIndex];
+            }
+            PsychometricReportManager.Instance.SaveItemData(itemIndex, firstTrySuccess, totalPiecesInCurrentLevel, totalAttempts, actualTime, stdTime, itemName);
         }
 
         yield return new WaitForSeconds(1.0f);

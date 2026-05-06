@@ -11,12 +11,23 @@ public class PasswordCheck : MonoBehaviour
 
     public void CheckCode()
     {
-        StartCoroutine(VerifyCodeFromAPI());
+        string code = codeInput.text;
+
+        string savedCode = PlayerPrefs.GetString("SavedLoginCode", "");
+
+        if (!string.IsNullOrEmpty(savedCode) && code == savedCode)
+        {
+            Debug.Log("The code was successfully verified locally");
+            ProceedToNextState();
+        }
+        else
+        {
+            StartCoroutine(VerifyCodeFromAPI(code));
+        }
     }
 
-    IEnumerator VerifyCodeFromAPI()
+    IEnumerator VerifyCodeFromAPI(string code)
     {
-        string code = codeInput.text;
         string json = "{\"Code\":\"" + code + "\"}";
 
         UnityWebRequest req = new UnityWebRequest(apiURL, "POST");
@@ -33,15 +44,29 @@ public class PasswordCheck : MonoBehaviour
 
             if (response.Success)
             {
+                PlayerPrefs.SetString("SavedLoginCode", code);
                 PlayerPrefs.SetString("CurrentChildID", response.ChildId);
                 PlayerPrefs.SetString("UserGender", response.Gender);
                 PlayerPrefs.Save();
 
-                if (GameFlowManager.Instance != null)
-                {
-                    GameFlowManager.Instance.GoToState(GameFlowState.CharacterSelection);
-                }
+                ProceedToNextState();
             }
+            else
+            {
+                Debug.LogWarning("The code does not exist in the database.");
+            }
+        }
+        else
+        {
+            Debug.LogError("The connection to the server failed.");
+        }
+    }
+
+    private void ProceedToNextState()
+    {
+        if (GameFlowManager.Instance != null)
+        {
+            GameFlowManager.Instance.GoToState(GameFlowState.CharacterSelection);
         }
     }
 }

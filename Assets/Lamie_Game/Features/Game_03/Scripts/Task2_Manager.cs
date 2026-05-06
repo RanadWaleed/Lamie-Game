@@ -62,7 +62,7 @@ public class Task2_Manager : MonoBehaviour
 
         if (PsychometricReportManager.Instance != null)
         {
-            PsychometricReportManager.Instance.StartNewIndicator("Coloring Spatial");
+            PsychometricReportManager.Instance.StartNewIndicator("اختيار الألوان الواقعية للعناصر");
         }
     }
 
@@ -297,7 +297,13 @@ public class Task2_Manager : MonoBehaviour
 
         if (PsychometricReportManager.Instance != null)
         {
-            PsychometricReportManager.Instance.SaveItemData(itemIndex, firstTrySuccess, totalPiecesInCurrentLevel, totalAttempts, actualTime, standardTimePerLevel, "Coloring " + itemIndex);
+            string itemName = "بند " + itemIndex;
+            if (Game3_MasterManager.ItemNames.TryGetValue("اختيار الألوان الواقعية للعناصر", out var names))
+            {
+                int nameIndex = itemIndex - 1;
+                if (nameIndex >= 0 && nameIndex < names.Length) itemName = names[nameIndex];
+            }
+            PsychometricReportManager.Instance.SaveItemData(itemIndex, firstTrySuccess, totalPiecesInCurrentLevel, totalAttempts, actualTime, standardTimePerLevel, itemName);
         }
     }
 

@@ -1,12 +1,49 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+using System.Collections.Generic;
 public class Game3_MasterManager : MonoBehaviour
+
 {
+
+    public static readonly Dictionary<string, string[]> ItemNames = new Dictionary<string, string[]>
+    {
+        { "إعادة تركيب الأجزاء المبعثرة", new[] {
+            "يعيد تركيب شكل بسيط مكوّن من عدد قليل من الأجزاء بدقة.",
+            "يحافظ على الدقة مع زيادة عدد الأجزاء.",
+            "يكمل التركيب رغم وجود قطع مشتتة.",
+            "يتجنب الأخطاء عند وجود قطع متشابهة جدًا لكنها ليست جزءًا من الحل.",
+            "يحافظ على الدقة مع زيادة تعقيد الشكل.",
+            "يقل اعتماده على المحاولة العشوائية (C/A)."
+        }},
+        { "اختيار الألوان الواقعية للعناصر", new[] {
+            "يختار اللون الواقعي لجزء واحد واضح.",
+            "يختار الألوان الواقعية لجميع أجزاء النخلة.",
+            "يحافظ على الدقة رغم وجود ألوان مشتتة.",
+            "يتجنب الأخطاء عند وجود درجات لونية متقاربة.",
+            "يحافظ على الدقة مع زيادة عدد الأجزاء.",
+            "يقل اعتماده على المحاولة العشوائية (C/A)."
+        }},
+        { "تمثيل الرموز البصرية المألوفة", new[] {
+            "يركب رمزًا بسيطًا من عدد قليل من الأجزاء.",
+            "يركب رمزًا مركبًا (هلال + نجمة) بدقة.",
+            "يحافظ على الدقة رغم وجود قطع متشابهة.",
+            "يتجنب الأخطاء عند وجود قطع مشتتة.",
+            "يحافظ على الدقة مع زيادة عدد الأجزاء.",
+            "يقل اعتماده على المحاولة العشوائية (C/A)."
+        }},
+        { "وضع العناصر في مواقعها المكانية الصحيحة داخل المشهد", new[] {
+            "يضع عنصرًا واحدًا في موقعه الصحيح.",
+            "يضع عنصرين في مواقع صحيحة دون تردد.",
+            "يتجنب الأخطاء عند وجود مواقع متقاربة.",
+            "يحافظ على الدقة رغم وجود مشتتات مكانية.",
+            "يضع جميع العناصر في مواقعها الصحيحة رغم زيادة التعقيد.",
+            "يقل اعتماده على المحاولة العشوائية (C/A)."
+        }}
+    };
     public static Game3_MasterManager Instance;
 
-    [Header("Lubnah Guide Settings (إعدادات لبنى)")]
+    [Header("Lubnah Guide Settings ")]
     public GameObject lubnahCharacter;
     public AudioSource lubnahMouthAudioSource;
     public AudioClip voiceTask1;
@@ -14,6 +51,7 @@ public class Game3_MasterManager : MonoBehaviour
     public AudioClip voiceTask3;
     public AudioClip voiceTask4;
     public AudioClip voiceEnding;
+    public AudioClip voiceBadge;
     public GameObject lubnahBrushProp;
 
     [Header("Camera Settings")]
@@ -45,6 +83,7 @@ public class Game3_MasterManager : MonoBehaviour
     public Transform taskBoard;
     public GameObject finalTableObject;
     public GameObject task3Outline;
+    public GameObject badgeUnlockPanel;
 
     [Header("Environment")]
     public GameObject mainEnvironmentTable;
@@ -199,14 +238,11 @@ public class Game3_MasterManager : MonoBehaviour
 
     IEnumerator CinematicTransitionToTask4()
     {
-        // 1. إخفاء عناصر اللعبة 3
         if (taskBoard != null) taskBoard.gameObject.SetActive(false);
         if (darkOverlay != null) darkOverlay.gameObject.SetActive(false);
         if (task3BottomPanel != null) task3BottomPanel.gameObject.SetActive(false);
         if (task3Outline != null) task3Outline.SetActive(false);
-        if (task3Manager != null) task3Manager.gameObject.SetActive(false);
 
-        // 2. زوم أوت للغرفة
         float elapsed = 0;
         float duration = 1.0f;
         Vector3 currentPos = mainCamera.transform.position;
@@ -222,17 +258,22 @@ public class Game3_MasterManager : MonoBehaviour
         mainCamera.transform.position = originalPosition;
         mainCamera.orthographicSize = originalSize;
 
-        // 3. لبنى تتكلم للمهمة الرابعة
         yield return StartCoroutine(PlayLubnahSpeech(4));
 
-        // 4. تشغيل المهمة الرابعة
+        if (finalTableObject != null) finalTableObject.SetActive(false);
+        if (task3Manager != null && task3Manager.finalGrandImageToShow != null)
+        {
+            task3Manager.finalGrandImageToShow.SetActive(false);
+        }
+        if (task3Manager != null) task3Manager.gameObject.SetActive(false);
+
         if (task4Manager != null)
         {
             task4Manager.gameObject.SetActive(true);
             task4Manager.StartGame4AfterLubnah();
         }
     }
-    
+
     public void PlayEndSequence()
     {
         StartCoroutine(EndSequence());
@@ -251,6 +292,7 @@ public class Game3_MasterManager : MonoBehaviour
         else if (taskNumber == 3) clipToPlay = voiceTask3;
         else if (taskNumber == 4) clipToPlay = voiceTask4; 
         else if (taskNumber == 5) clipToPlay = voiceEnding;
+        else if (taskNumber == 6) clipToPlay = voiceBadge;
         if (clipToPlay != null && lubnahMouthAudioSource != null)
         {
             lubnahMouthAudioSource.clip = clipToPlay;
@@ -308,10 +350,10 @@ public class Game3_MasterManager : MonoBehaviour
     IEnumerator CinematicTransitionToTask2()
     {
         if (taskBoard != null) taskBoard.gameObject.SetActive(false);
+        if (finalTableObject != null) finalTableObject.gameObject.SetActive(false);
 
         float startAlpha = 0f;
         if (darkOverlay != null) startAlpha = darkOverlay.color.a;
-
         float elapsed = 0;
         float duration = 1.2f;
         Vector3 startPos = mainCamera.transform.position;
@@ -407,15 +449,15 @@ public class Game3_MasterManager : MonoBehaviour
 
     IEnumerator EndSequence()
     {
-    
         if (task4Manager != null)
         {
             task4Manager.HidePanelCompletely();
             yield return new WaitForSeconds(0.5f);
-            task4Manager.gameObject.SetActive(false);
         }
 
-      
+        if (task3BottomPanel != null) task3BottomPanel.gameObject.SetActive(false);
+        if (taskBoard != null) taskBoard.gameObject.SetActive(false);
+
         if (finalEndDust != null)
         {
             finalEndDust.gameObject.SetActive(true);
@@ -423,15 +465,18 @@ public class Game3_MasterManager : MonoBehaviour
             finalEndDust.Play();
         }
 
-       
         yield return StartCoroutine(PlayLubnahSpeech(5));
 
         yield return new WaitForSeconds(0.4f);
 
         if (finalGrandImage != null) finalGrandImage.SetActive(true);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
-        if (MasterManager.Instance != null) MasterManager.Instance.ShowNextButton();
+        if (badgeUnlockPanel != null)
+        {
+            badgeUnlockPanel.SetActive(true);
+        }
+        yield return StartCoroutine(PlayLubnahSpeech(6));
     }
 }

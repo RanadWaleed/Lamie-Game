@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class SpatialPieceDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -26,6 +26,9 @@ public class SpatialPieceDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandl
         if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
 
         originalScale = transform.localScale;
+
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup.interactable = true;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -50,7 +53,9 @@ public class SpatialPieceDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandl
     {
         if (isPlaced) return;
 
+        // ✅ دايماً نرجع القطعة قابلة للمسك أول شي — قبل أي منطق ثاني
         canvasGroup.blocksRaycasts = true;
+        canvasGroup.interactable = true;
 
         RectTransform closestMold = null;
         float minDistance = Mathf.Infinity;
@@ -69,28 +74,26 @@ public class SpatialPieceDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandl
         {
             if (closestMold.name == pieceID)
             {
+                // ✅ صح! نثبتها ونقفل عليها
                 if (MasterManager.Instance != null) MasterManager.Instance.PlayDropSound();
                 if (MasterManager.Instance != null) MasterManager.Instance.PlaySuccessSound();
 
                 rectTransform.position = closestMold.position;
                 rectTransform.rotation = closestMold.rotation;
-
                 rectTransform.sizeDelta = closestMold.sizeDelta;
                 transform.localScale = closestMold.localScale;
                 selectedMoldName = closestMold.name;
                 isPlaced = true;
 
+                // ✅ بس هنا نقفل الـ Raycast — لأنها اتركبت صح
                 canvasGroup.blocksRaycasts = false;
+                canvasGroup.interactable = false;
                 transform.SetSiblingIndex(originalSiblingIndex);
 
                 if (Task1_Manager.Instance != null && Task1_Manager.Instance.boardParent != null && transform.IsChildOf(Task1_Manager.Instance.boardParent))
-                {
                     Task1_Manager.Instance.PiecePlacedCorrectly();
-                }
                 else if (Task3_Manager.Instance != null && Task3_Manager.Instance.boardParent != null && transform.IsChildOf(Task3_Manager.Instance.boardParent))
-                {
                     Task3_Manager.Instance.PiecePlacedCorrectly();
-                }
 
                 Debug.Log("<color=green>SUCCESS! Placed perfectly. Distance:</color> " + minDistance);
                 return;
@@ -101,15 +104,11 @@ public class SpatialPieceDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandl
                 isPlaced = false;
 
                 if (Task1_Manager.Instance != null && Task1_Manager.Instance.boardParent != null && transform.IsChildOf(Task1_Manager.Instance.boardParent))
-                {
                     Task1_Manager.Instance.PiecePlacedWrong();
-                }
                 else if (Task3_Manager.Instance != null && Task3_Manager.Instance.boardParent != null && transform.IsChildOf(Task3_Manager.Instance.boardParent))
-                {
                     Task3_Manager.Instance.PiecePlacedWrong();
-                }
 
-                Debug.Log("<color=red>WRONG MOLD! Attempt Counted. Distance:</color> " + minDistance + " | Snap Limit: " + snapDistance);
+                Debug.Log("<color=red>WRONG MOLD! Distance:</color> " + minDistance + " | Snap Limit: " + snapDistance);
             }
         }
         else
@@ -117,14 +116,13 @@ public class SpatialPieceDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandl
             selectedMoldName = "";
             isPlaced = false;
 
-            Debug.Log("<color=blue>FAR AWAY! Ignored. Distance:</color> " + minDistance + " | Snap Limit: " + snapDistance);
+            Debug.Log("<color=blue>FAR AWAY! Distance:</color> " + minDistance + " | Snap Limit: " + snapDistance);
         }
     }
 
     void OnDrawGizmosSelected()
     {
         if (allMolds == null) return;
-
         foreach (RectTransform mold in allMolds)
         {
             if (mold != null)

@@ -19,8 +19,13 @@ public class ProfileManager : MonoBehaviour
         {
             StartCoroutine(FetchProfileData(childId));
         }
-    }
 
+        // استدعاء مزامنة البيانات القديمة (تعديلنا السابق)
+        if (PsychometricReportManager.Instance != null)
+        {
+            PsychometricReportManager.Instance.SyncOfflineData();
+        }
+    }
 
     IEnumerator FetchProfileData(string id)
     {
@@ -29,20 +34,33 @@ public class ProfileManager : MonoBehaviour
 
         if (req.result == UnityWebRequest.Result.Success)
         {
+            // السيرفر متصل ورد علينا بنجاح
             string json = System.Text.Encoding.UTF8.GetString(req.downloadHandler.data);
             ChildProfile profile = JsonUtility.FromJson<ChildProfile>(json);
 
             if (profile != null)
             {
-                if (nameText != null)
-                    nameText.text = profile.fullName;
-                if (ageText != null)
-                    ageText.text = profile.age + " سنوات";
+                // 1. تحديث الواجهة
+                if (nameText != null) nameText.text = profile.fullName;
+                if (ageText != null) ageText.text = profile.age + " سنوات";
+
+                // 2. حفظ البيانات محلياً (عشان لو فصل النت أو السيرفر تقفل مستقبلاً)
+                PlayerPrefs.SetString("SavedChildName", profile.fullName);
+                PlayerPrefs.SetInt("SavedChildAge", profile.age);
+                PlayerPrefs.Save();
             }
         }
         else
         {
-            Debug.LogError("فشل جلب البيانات: " + req.error);
+            // السيرفر مقفل، مافي نت، أو رجع إيرور 404
+            Debug.LogWarning("[ProfileManager] السيرفر غير متاح حالياً. سيتم عرض البيانات المحلية. السبب: " + req.error);
+
+            // جلب البيانات المخزنة محلياً (أو وضع قيم افتراضية لو كانت أول مرة ومافي نت)
+            string savedName = PlayerPrefs.GetString("SavedChildName", "بطل لامع");
+            int savedAge = PlayerPrefs.GetInt("SavedChildAge", 6);
+
+            if (nameText != null) nameText.text = savedName;
+            if (ageText != null) ageText.text = savedAge + " سنوات";
         }
     }
 }

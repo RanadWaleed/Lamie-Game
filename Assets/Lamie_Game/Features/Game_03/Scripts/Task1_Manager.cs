@@ -38,7 +38,7 @@ public class Task1_Manager : MonoBehaviour
         if (PsychometricReportManager.Instance != null)
         {
             PsychometricReportManager.Instance.SetupNewAspect("Game 3 Aspect", "Game_3");
-            PsychometricReportManager.Instance.StartNewIndicator("Table Assembly");
+            PsychometricReportManager.Instance.StartNewIndicator("إعادة تركيب الأجزاء المبعثرة");
         }
     }
 
@@ -107,9 +107,13 @@ public class Task1_Manager : MonoBehaviour
 
         if (PsychometricReportManager.Instance != null)
         {
-            PsychometricReportManager.Instance.SaveItemData(
-                itemIndex, firstTrySuccess, totalPiecesInCurrentLevel, totalAttempts, actualTime, standardTimePerLevel, "Table " + itemIndex
-            );
+            string itemName = "بند " + itemIndex;
+            if (Game3_MasterManager.ItemNames.TryGetValue("إعادة تركيب الأجزاء المبعثرة", out var names))
+            {
+                int nameIndex = itemIndex - 1;
+                if (nameIndex >= 0 && nameIndex < names.Length) itemName = names[nameIndex];
+            }
+            PsychometricReportManager.Instance.SaveItemData(itemIndex, firstTrySuccess, totalPiecesInCurrentLevel, totalAttempts, actualTime, standardTimePerLevel, itemName);
         }
 
         if (successSound) successSound.Play();

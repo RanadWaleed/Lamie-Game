@@ -69,6 +69,7 @@ public class Game3Manager : MonoBehaviour
             {
                 MasterManager.Instance.totalRequiredMatches = 1;
                 MasterManager.Instance.maxTimeForCurrentLevel = currentSet.standardTime;
+                MasterManager.Instance.StartTimer();
             }
         }
         else

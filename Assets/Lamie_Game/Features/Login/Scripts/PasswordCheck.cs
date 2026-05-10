@@ -12,17 +12,34 @@ public class PasswordCheck : MonoBehaviour
     public void CheckCode()
     {
         string code = codeInput.text;
+        StartCoroutine(TryOnlineThenOffline(code));
+    }
 
-        string savedCode = PlayerPrefs.GetString("SavedLoginCode", "");
+    IEnumerator TryOnlineThenOffline(string code)
+    {
+        // نجرب الاتصال بالسيرفر أولاً
+        UnityWebRequest ping = UnityWebRequest.Get("http://localhost:5194/");
+        ping.timeout = 3;
+        yield return ping.SendWebRequest();
 
-        if (!string.IsNullOrEmpty(savedCode) && code == savedCode)
+        if (ping.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("The code was successfully verified locally");
-            ProceedToNextState();
+            // البورت مفتوح — نتحقق من API
+            StartCoroutine(VerifyCodeFromAPI(code));
         }
         else
         {
-            StartCoroutine(VerifyCodeFromAPI(code));
+            // البورت مقفول — نتحقق محلياً
+            string savedCode = PlayerPrefs.GetString("SavedLoginCode", "");
+            if (!string.IsNullOrEmpty(savedCode) && code == savedCode)
+            {
+                Debug.Log("تم التحقق محلياً بنجاح");
+                ProceedToNextState();
+            }
+            else
+            {
+                Debug.LogWarning("الكود غلط ولا يوجد اتصال بالسيرفر");
+            }
         }
     }
 
@@ -46,19 +63,19 @@ public class PasswordCheck : MonoBehaviour
             {
                 PlayerPrefs.SetString("SavedLoginCode", code);
                 PlayerPrefs.SetString("CurrentChildID", response.ChildId);
-                PlayerPrefs.SetString("UserGender", response.Gender);
+                PlayerPrefs.SetString("UserGender", response.Gender.Trim());
                 PlayerPrefs.Save();
 
                 ProceedToNextState();
             }
             else
             {
-                Debug.LogWarning("The code does not exist in the database.");
+                Debug.LogWarning("الكود غير موجود في قاعدة البيانات.");
             }
         }
         else
         {
-            Debug.LogError("The connection to the server failed.");
+            Debug.LogError("فشل الاتصال بالسيرفر.");
         }
     }
 

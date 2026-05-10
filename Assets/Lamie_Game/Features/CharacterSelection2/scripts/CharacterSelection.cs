@@ -27,10 +27,10 @@ public class CharacterSelection : MonoBehaviour
         string gender = PlayerPrefs.GetString("UserGender", "أنثى").Trim();
         Debug.Log("Gender length: " + gender.Length);
 
-        if (gender == "M" || gender == "m")
+        if (gender == "ذكر" || gender == "ركذ")
         {
             activeCharacters = boySprites;
-            Debug.Log("Boy list activated successfully.");
+            Debug.Log("biy list activated successfully.");
         }
         else
         {

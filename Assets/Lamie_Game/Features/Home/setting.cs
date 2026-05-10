@@ -44,6 +44,7 @@ public class setting : MonoBehaviour
 
     public void LoadSelectedCharacter()
     {
+        Debug.Log("Gender from PlayerPrefs: " + PlayerPrefs.GetString("UserGender", "not found"));
         if (characterPreview == null)
         {
             Debug.LogError("CharacterPreview Image is NOT assigned in the Inspector!");

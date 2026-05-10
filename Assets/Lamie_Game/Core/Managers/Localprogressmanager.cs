@@ -11,7 +11,7 @@ public class LocalProgressManager : MonoBehaviour
     [Header("All Intelligences")]
     public IntelligenceData[] allIntelligences;
 
-    private const string KeyPrefix = "lamie_";
+    private string KeyPrefix => "lamie_" + PlayerPrefs.GetString("CurrentChildID", "default") + "_";
 
     private void Awake()
     {
@@ -19,6 +19,7 @@ public class LocalProgressManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
     public bool MarkGameComplete(string sceneNameCompleted)
     {
         PlayerPrefs.SetInt(KeyPrefix + "game_" + sceneNameCompleted, 1);
@@ -85,14 +86,16 @@ public class LocalProgressManager : MonoBehaviour
     [ContextMenu("Reset All Progress")]
     public void ResetAllProgress()
     {
-        foreach (var intel in allIntelligences)
-        {
-            PlayerPrefs.DeleteKey(KeyPrefix + "badge_" + intel.intelligenceId);
-            foreach (var scene in intel.gameSceneNames)
-                PlayerPrefs.DeleteKey(KeyPrefix + "game_" + scene);
-        }
+        string childId = PlayerPrefs.GetString("CurrentChildID", "default");
+        string prefix = "lamie_" + childId + "_";
+
+        PlayerPrefs.DeleteKey(prefix + "game_Game01Scene");
+        PlayerPrefs.DeleteKey(prefix + "game_Game02Scene");
+        PlayerPrefs.DeleteKey(prefix + "game_Game_03");
+        PlayerPrefs.DeleteKey(prefix + "badge_A78BE3B0-39D1-F011-8780-3003C8C8982E");
         PlayerPrefs.Save();
-        Debug.Log("Lamie: All progress reset.");
+
+        Debug.Log("Lamie: All progress reset for child: " + childId);
     }
 #endif
 }

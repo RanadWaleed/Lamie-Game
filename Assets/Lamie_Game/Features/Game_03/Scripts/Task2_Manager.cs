@@ -197,17 +197,24 @@ public class Task2_Manager : MonoBehaviour
 
         AdvanceToNextLevel();
     }
+   
+    
+    /** Tracks each color attempt — records accuracy, 
+    * first-try success, and triggers completion check*/
 
     public void RegisterColorAttempt(bool isCorrect, bool isFirstTry)
     {
         totalAttempts++;
+
         if (isCorrect)
         {
+            // First-try count if no wrong color was applied before
             correctAttempts++;
             if (isFirstTry) firstTrySuccess++;
 
             CheckLevelCompletion();
         }
+        
         else
         {
             wrongAttempts++;

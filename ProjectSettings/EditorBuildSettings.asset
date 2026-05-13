@@ -44,6 +44,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Lamie_Game/Features/Game_03/Game_03.unity
     guid: 8199fbe2ff885f34a8f344b167001f78
+  - enabled: 1
+    path: Assets/Lamie_Game/Features/FIRST_STORY/STROYSECNE.unity
+    guid: 842d1057a6d3af047b54781df4dd2955
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

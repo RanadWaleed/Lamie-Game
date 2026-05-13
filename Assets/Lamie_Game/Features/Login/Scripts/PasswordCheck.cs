@@ -83,19 +83,24 @@ public class PasswordCheck : MonoBehaviour
     {
         if (GameFlowManager.Instance != null)
         {
-            if (PlayerPrefs.GetInt("CharacterSelected", 0) == 1)
+            string childId = PlayerPrefs.GetString("CurrentChildID", "default");
+
+            if (PlayerPrefs.GetInt("HasSeenStory_" + childId, 0) == 0)
             {
-                GameFlowManager.Instance.GoToState(GameFlowState.Home);
+                GameFlowManager.Instance.GoToState(GameFlowState.Story);
+            }
+            else if (PlayerPrefs.GetInt("CharacterSelected", 0) == 0)
+            {
+                GameFlowManager.Instance.GoToState(GameFlowState.CharacterSelection);
             }
             else
             {
-                GameFlowManager.Instance.GoToState(GameFlowState.CharacterSelection);
+                GameFlowManager.Instance.GoToState(GameFlowState.Home);
             }
         }
     }
 }
-
-[System.Serializable]
+    [System.Serializable]
 public class LoginResponse
 {
     public bool Success;

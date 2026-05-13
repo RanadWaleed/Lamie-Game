@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 25.937996, y: 8.520493}
+  m_AnchoredPosition: {x: 118, y: -73.069}
   m_SizeDelta: {x: 117.7484, y: 197.0809}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1874370453493628625
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -260,7 +260,7 @@ MonoBehaviour:
   - {fileID: 2578727054799839867}
   - {fileID: 435126918411945448}
   - {fileID: 6000825038525104052}
-  snapDistance: 1
+  snapDistance: 3
   scaleMultiplier: 1.15
   pieceID: part_08
   selectedMoldName: part_08
@@ -375,7 +375,7 @@ MonoBehaviour:
   - {fileID: 2578727054799839867}
   - {fileID: 435126918411945448}
   - {fileID: 6000825038525104052}
-  snapDistance: 1
+  snapDistance: 3
   scaleMultiplier: 1.15
   pieceID: part_04
   selectedMoldName: part_04
@@ -414,7 +414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.5954, y: 397.7126}
+  m_AnchoredPosition: {x: -2.3215, y: 449}
   m_SizeDelta: {x: 61.2295, y: 78.5427}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &759255804245110579
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -565,7 +565,7 @@ MonoBehaviour:
   - {fileID: 2578727054799839867}
   - {fileID: 435126918411945448}
   - {fileID: 6000825038525104052}
-  snapDistance: 1
+  snapDistance: 3
   scaleMultiplier: 1.15
   pieceID: part_05
   selectedMoldName: part_05
@@ -641,7 +641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 77.22533, y: 201.93864}
+  m_AnchoredPosition: {x: 243, y: 185.4}
   m_SizeDelta: {x: 44.6554, y: 119.857}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4671266037288575014
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -792,7 +792,7 @@ MonoBehaviour:
   - {fileID: 2578727054799839867}
   - {fileID: 435126918411945448}
   - {fileID: 6000825038525104052}
-  snapDistance: 1
+  snapDistance: 3
   scaleMultiplier: 1.15
   pieceID: part_02
   selectedMoldName: part_02
@@ -839,7 +839,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 116, y: 22}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4869170220628202340
@@ -900,7 +900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1027,7 +1027,7 @@ MonoBehaviour:
   - {fileID: 2578727054799839867}
   - {fileID: 435126918411945448}
   - {fileID: 6000825038525104052}
-  snapDistance: 1
+  snapDistance: 4
   scaleMultiplier: 1.15
   pieceID: part_03
   selectedMoldName: part_03
@@ -1142,7 +1142,7 @@ MonoBehaviour:
   - {fileID: 2578727054799839867}
   - {fileID: 435126918411945448}
   - {fileID: 6000825038525104052}
-  snapDistance: 1
+  snapDistance: 3
   scaleMultiplier: 1.15
   pieceID: part_07
   selectedMoldName: part_07
@@ -1257,7 +1257,7 @@ MonoBehaviour:
   - {fileID: 2578727054799839867}
   - {fileID: 435126918411945448}
   - {fileID: 6000825038525104052}
-  snapDistance: 1
+  snapDistance: 3
   scaleMultiplier: 1.15
   pieceID: part_06
   selectedMoldName: part_06
@@ -1372,7 +1372,7 @@ MonoBehaviour:
   - {fileID: 2578727054799839867}
   - {fileID: 435126918411945448}
   - {fileID: 6000825038525104052}
-  snapDistance: 1
+  snapDistance: 3
   scaleMultiplier: 1.15
   pieceID: Distractor
   selectedMoldName: Distractor
@@ -1487,7 +1487,7 @@ MonoBehaviour:
   - {fileID: 2578727054799839867}
   - {fileID: 435126918411945448}
   - {fileID: 6000825038525104052}
-  snapDistance: 1
+  snapDistance: 3
   scaleMultiplier: 1.15
   pieceID: part_01
   selectedMoldName: part_01
@@ -1645,7 +1645,7 @@ MonoBehaviour:
   - {fileID: 2578727054799839867}
   - {fileID: 435126918411945448}
   - {fileID: 6000825038525104052}
-  snapDistance: 1
+  snapDistance: 3
   scaleMultiplier: 1.15
   pieceID: Distractor
   selectedMoldName: Distractor
@@ -1708,7 +1708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1759,7 +1759,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -90.67493, y: 310.56378}
+  m_AnchoredPosition: {x: -277, y: 201.94}
   m_SizeDelta: {x: 81.8701, y: 86.7816}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4140223881045200067
@@ -1783,7 +1783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1834,7 +1834,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.31}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 114.53145, y: 322.23468}
+  m_AnchoredPosition: {x: 243, y: 376.68}
   m_SizeDelta: {x: 98.1472, y: 62.7105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1894165438543010043
@@ -1858,7 +1858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

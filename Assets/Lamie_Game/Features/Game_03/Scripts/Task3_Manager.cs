@@ -102,13 +102,15 @@ public class Task3_Manager : MonoBehaviour
         levelStartTime = Time.time;
     }
 
+    // Collects: C (firstTrySuccess), A (totalAttempts), triggers scoring when C >= N
+   
     public void PiecePlacedCorrectly()
     {
+        // Tracks a correct piece placement,checks level completion
         if (successSound != null && pieceSnapClip != null)
         {
             successSound.PlayOneShot(pieceSnapClip);
         }
-
         if (!pieceAlreadyFailed)
         {
             firstTrySuccess++;
@@ -123,7 +125,7 @@ public class Task3_Manager : MonoBehaviour
             StartCoroutine(LevelCompleteSequence());
         }
     }
-
+    // Tracks a wrong placement — increments error counter and flags the piece
     public void PiecePlacedWrong()
     {
         if (successSound != null && pieceSnapClip != null)

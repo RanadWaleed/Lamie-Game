@@ -6,6 +6,7 @@ public enum GameFlowState
 {
     Intro,
     Login,
+    Story,
     CharacterSelection,
     Home,
     Game01,
@@ -31,6 +32,7 @@ public class GameFlowManager : MonoBehaviour
             {
                 "IntroScene" => GameFlowState.Intro,
                 "LoginScene" => GameFlowState.Login,
+                "STROYSECNE" => GameFlowState.Story,
                 "CharacterSelectionScene" => GameFlowState.CharacterSelection,
                 "HomeScene" => GameFlowState.Home,
                 "Game01Scene" => GameFlowState.Game01,
@@ -60,6 +62,9 @@ public class GameFlowManager : MonoBehaviour
                 GoToState(GameFlowState.Login);
                 break;
             case GameFlowState.Login:
+                GoToState(GameFlowState.Story);
+                break;
+            case GameFlowState.Story:
                 GoToState(GameFlowState.CharacterSelection);
                 break;
             case GameFlowState.CharacterSelection:
@@ -104,6 +109,7 @@ public class GameFlowManager : MonoBehaviour
     {
         GameFlowState.Intro => "IntroScene",
         GameFlowState.Login => "LoginScene",
+        GameFlowState.Story => "STROYSECNE",
         GameFlowState.CharacterSelection => "CharacterSelectionScene",
         GameFlowState.Home => "HomeScene",
         GameFlowState.Game01 => "Game01Scene",

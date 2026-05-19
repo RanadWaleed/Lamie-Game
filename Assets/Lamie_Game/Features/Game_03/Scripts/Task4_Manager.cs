@@ -36,9 +36,9 @@ public class Task4_Manager : MonoBehaviour
     private int totalPiecesInCurrentLevel = 0;
     private int correctAttempts = 0;
     private int totalAttempts = 0;
-    private int wrongAttempts = 0; 
+    private int wrongAttempts = 0;
     private int firstTrySuccess = 0;
-    private float levelStartTime = 0f; 
+    private float levelStartTime = 0f;
 
     private float targetY;
     private float targetAlpha;
@@ -102,7 +102,6 @@ public class Task4_Manager : MonoBehaviour
 
         currentLevelIndex = index;
 
-        // 🚨 تصفير العدادات للبند الجديد
         correctAttempts = 0;
         totalAttempts = 0;
         wrongAttempts = 0;
@@ -116,7 +115,6 @@ public class Task4_Manager : MonoBehaviour
 
         ShowPanelNormal();
 
-        // ⏱️ التايمر يبدأ هنااااا! (بعد ما يطلع البانل وتبان العناصر للطفل)
         levelStartTime = Time.time;
     }
 
@@ -151,7 +149,7 @@ public class Task4_Manager : MonoBehaviour
         totalAttempts++;
         if (isCorrect)
         {
-            correctAttempts++; //  CorrectPlacements
+            correctAttempts++;
             if (isFirstTry) firstTrySuccess++;
             if (successSound != null) successSound.Play();
 
@@ -169,12 +167,12 @@ public class Task4_Manager : MonoBehaviour
 
     IEnumerator LevelCompleteSequence()
     {
-      
+
         float actualTime = Mathf.Max(0.1f, Time.time - levelStartTime);
-        float stdTime = currentLevelIndex < standardTimes.Count ? standardTimes[currentLevelIndex] : 10f; 
+        float stdTime = currentLevelIndex < standardTimes.Count ? standardTimes[currentLevelIndex] : 10f;
         int itemIndex = currentLevelIndex + 1;
 
-        
+
         float accuracy = totalPiecesInCurrentLevel > 0 ? ((float)correctAttempts / totalPiecesInCurrentLevel) * 100f : 0f;
         float randomness = totalAttempts > 0 ? ((float)wrongAttempts / totalAttempts) * 100f : 0f;
         float speed = actualTime > 0 ? (stdTime / actualTime) : 0f;

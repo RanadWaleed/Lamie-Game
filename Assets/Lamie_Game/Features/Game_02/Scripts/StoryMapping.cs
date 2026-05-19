@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class StoryMapping : ScriptableObject
 {
     public string storyId;
-    public string storyMood; // "H" أو "S"
+    public string storyMood;
     public string correctTitleId;
 
     [Header("Shapes")]

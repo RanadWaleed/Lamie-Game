@@ -28,7 +28,6 @@ public class ItemInteraction : MonoBehaviour, IPointerDownHandler, IDragHandler
 
         rt.anchoredPosition = localPoint;
 
-        // التحديث هنا
         BoardManager.Instance.SelectItem(this.gameObject, false);
     }
 }

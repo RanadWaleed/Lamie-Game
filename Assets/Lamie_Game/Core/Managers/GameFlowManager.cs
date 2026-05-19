@@ -9,6 +9,7 @@ public enum GameFlowState
     Story,
     CharacterSelection,
     Home,
+    GameLevel,
     Game01,
     Game02,
     Game03,
@@ -35,6 +36,7 @@ public class GameFlowManager : MonoBehaviour
                 "STROYSECNE" => GameFlowState.Story,
                 "CharacterSelectionScene" => GameFlowState.CharacterSelection,
                 "HomeScene" => GameFlowState.Home,
+                "GameLevelScene" => GameFlowState.GameLevel,
                 "Game01Scene" => GameFlowState.Game01,
                 "Game02Scene" => GameFlowState.Game02,
                 "Game_03" => GameFlowState.Game03,
@@ -71,7 +73,10 @@ public class GameFlowManager : MonoBehaviour
                 GoToState(GameFlowState.Home);
                 break;
             case GameFlowState.Home:
-                GoToState(GetResumeState());
+                GoToState(GameFlowState.GameLevel);
+                break;
+            case GameFlowState.GameLevel:
+                GoToState(GameFlowState.Game01);
                 break;
             case GameFlowState.Game01:
                 GoToState(GameFlowState.Game02);
@@ -88,23 +93,6 @@ public class GameFlowManager : MonoBehaviour
         }
     }
 
-    private GameFlowState GetResumeState()
-    {
-        if (LocalProgressManager.Instance != null)
-        {
-            if (!LocalProgressManager.Instance.IsGameComplete("Game01Scene"))
-                return GameFlowState.Game01;
-
-            if (!LocalProgressManager.Instance.IsGameComplete("Game02Scene"))
-                return GameFlowState.Game02;
-
-            if (!LocalProgressManager.Instance.IsGameComplete("Game_03"))
-                return GameFlowState.Game03;
-        }
-
-        return GameFlowState.Inventory;
-    }
-
     private string GetSceneName(GameFlowState state) => state switch
     {
         GameFlowState.Intro => "IntroScene",
@@ -112,6 +100,7 @@ public class GameFlowManager : MonoBehaviour
         GameFlowState.Story => "STROYSECNE",
         GameFlowState.CharacterSelection => "CharacterSelectionScene",
         GameFlowState.Home => "HomeScene",
+        GameFlowState.GameLevel => "GameLevelScene",
         GameFlowState.Game01 => "Game01Scene",
         GameFlowState.Game02 => "Game02Scene",
         GameFlowState.Game03 => "Game_03",

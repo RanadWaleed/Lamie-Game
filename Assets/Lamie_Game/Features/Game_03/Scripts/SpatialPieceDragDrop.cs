@@ -53,7 +53,6 @@ public class SpatialPieceDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandl
     {
         if (isPlaced) return;
 
-        // ✅ دايماً نرجع القطعة قابلة للمسك أول شي — قبل أي منطق ثاني
         canvasGroup.blocksRaycasts = true;
         canvasGroup.interactable = true;
 
@@ -74,7 +73,6 @@ public class SpatialPieceDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandl
         {
             if (closestMold.name == pieceID)
             {
-                // ✅ صح! نثبتها ونقفل عليها
                 if (MasterManager.Instance != null) MasterManager.Instance.PlayDropSound();
                 if (MasterManager.Instance != null) MasterManager.Instance.PlaySuccessSound();
 
@@ -85,7 +83,6 @@ public class SpatialPieceDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandl
                 selectedMoldName = closestMold.name;
                 isPlaced = true;
 
-                // ✅ بس هنا نقفل الـ Raycast — لأنها اتركبت صح
                 canvasGroup.blocksRaycasts = false;
                 canvasGroup.interactable = false;
                 transform.SetSiblingIndex(originalSiblingIndex);

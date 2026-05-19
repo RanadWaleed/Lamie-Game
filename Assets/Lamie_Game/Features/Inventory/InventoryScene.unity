@@ -1026,8 +1026,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uFEB7\uFE8E\uFEAD\uFE8D\uFE95 \uFEFB\uFEE3\u0650\uFECA"
   m_isRightToLeft: 1
-  m_fontAsset: {fileID: 11400000, guid: 2fc4562f5d35bf14bbec525c3b491ead, type: 2}
-  m_sharedMaterial: {fileID: -4538736222617497622, guid: 2fc4562f5d35bf14bbec525c3b491ead, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3fbde2e562e333d488bc46986fc6f4f1, type: 2}
+  m_sharedMaterial: {fileID: -6949820610600499109, guid: 3fbde2e562e333d488bc46986fc6f4f1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1183,7 +1183,7 @@ MonoBehaviour:
   badgeSprite: {fileID: 612503877335938971, guid: 0f5e575ce47f9ec4daeb2a325930313a, type: 3}
   badgeAudio: {fileID: 8300000, guid: 5f60932fc9325d74b9366c43a5bd6ab4, type: 3}
   description: "\u0623\u0646\u0627 \u0623\u0631\u0633\u0645 \u0648\u0623\u0631\u0649
-    \u0627\u0644\u0623\u0634\u0643\u0627\u0644 \u0648\u0627\u0644\u0623\u0644\u0648\u0627\u0646"
+    \u0627\u0644\u0623\u0644\u0648\u0627\u0646 \u0648\u0627\u0644\u0623\u0634\u0643\u0627\u0644"
   missionText: "\u0634\u0627\u0631\u0629 \u0627\u0644\u0631\u0633\u0645"
   lockedColor: {r: 0.2, g: 0.2, b: 0.2, a: 0.5}
   unlockedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1618,7 +1618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &699141871
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3727,8 +3727,8 @@ MonoBehaviour:
   m_text: "\uFE8D\uFEDF\uFECC\uFE90 \uFEDF\uFE98\uFEAE\uFE91\uFEA2 \uFEB7\uFE8E\uFEAD\uFE8D\uFE95
     \uFEFB\uFEE3\u0650\uFECA!"
   m_isRightToLeft: 1
-  m_fontAsset: {fileID: 11400000, guid: 2fc4562f5d35bf14bbec525c3b491ead, type: 2}
-  m_sharedMaterial: {fileID: -4538736222617497622, guid: 2fc4562f5d35bf14bbec525c3b491ead, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3fbde2e562e333d488bc46986fc6f4f1, type: 2}
+  m_sharedMaterial: {fileID: -6949820610600499109, guid: 3fbde2e562e333d488bc46986fc6f4f1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

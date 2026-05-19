@@ -24,7 +24,7 @@ public class LevelCompleteManager : MonoBehaviour
     public AudioClip nodePopSound;
 
     public float panelFadeDuration = 0.5f;
-    public float barFillDuration = 1.5f; // الوقت الإجمالي للتعبئة
+    public float barFillDuration = 1.5f;
 
     private AudioSource loopAudioSource;
     private int totalNodes;
@@ -39,7 +39,7 @@ public class LevelCompleteManager : MonoBehaviour
         loopAudioSource = gameObject.AddComponent<AudioSource>();
         loopAudioSource.playOnAwake = false;
 
-        totalNodes = nodeGlows.Length; // يحسب النودز تلقائياً (4 نودز)
+        totalNodes = nodeGlows.Length;
 
         if (completePanelCG != null)
         {
@@ -56,7 +56,6 @@ public class LevelCompleteManager : MonoBehaviour
         }
     }
 
-    // حافظت على نفس شكل الدالة عشان ما يخرب السكربت الثاني اللي يستدعيها
     public void ShowCompleteScreen(int levelNumber = 0)
     {
         StartCoroutine(CompleteScreenRoutine());
@@ -66,7 +65,6 @@ public class LevelCompleteManager : MonoBehaviour
     {
         if (progressBarFill != null) progressBarFill.fillAmount = 0f;
 
-        // 1. إظهار الشاشة (Fade In)
         if (completePanelCG != null)
         {
             completePanelCG.blocksRaycasts = true;
@@ -82,7 +80,6 @@ public class LevelCompleteManager : MonoBehaviour
             completePanelCG.alpha = 1f;
         }
 
-        // 2. تشغيل صوت تعبئة البار
         if (loopAudioSource != null && barFillSoundEffect != null)
         {
             loopAudioSource.clip = barFillSoundEffect;
@@ -90,12 +87,10 @@ public class LevelCompleteManager : MonoBehaviour
             loopAudioSource.Play();
         }
 
-        // 3. تقسيم وقت التعبئة على عدد النودز (عشان يمشي ويوقف)
         float segmentDuration = barFillDuration / totalNodes;
 
         for (int i = 0; i < totalNodes; i++)
         {
-            // حساب بداية ونهاية كل جزء
             float currentSegmentStart = (float)i / totalNodes;
             float targetSegmentFill = (float)(i + 1) / totalNodes;
 
@@ -112,25 +107,20 @@ public class LevelCompleteManager : MonoBehaviour
 
             if (progressBarFill != null) progressBarFill.fillAmount = targetSegmentFill;
 
-            // === هنا السر: نوقف صوت التعبئة مؤقتاً عشان نسمع صوت النود ===
             if (loopAudioSource != null) loopAudioSource.Pause();
 
-            // === ننتظر النود الحالية تنتفخ وتخلص حركتها قبل ما يكمل البار ===
             yield return StartCoroutine(AnimateNode(nodeGlows[i]));
 
-            // نرجع نشغل صوت التعبئة للجزء اللي بعده (إلا لو كانت آخر نود)
             if (loopAudioSource != null && i < totalNodes - 1) loopAudioSource.UnPause();
         }
 
         if (loopAudioSource != null) loopAudioSource.Stop();
 
-        // 4. تشغيل صوت النجاح النهائي بعد ما خلصنا كل النودز
         if (audioSource != null && successVoiceClip != null)
         {
             audioSource.PlayOneShot(successVoiceClip);
         }
 
-        // 5. إظهار زر التالي (Next Button)
         if (nextButton != null)
         {
             nextButton.SetActive(true);

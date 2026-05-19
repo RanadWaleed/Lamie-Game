@@ -25,7 +25,6 @@ public class Task2_ColorablePart : MonoBehaviour, IPointerClickHandler
             }
             catch (System.Exception)
             {
-                Debug.LogWarning($"<color=orange>⚠️ انتبهي: الرسمة ({gameObject.name}) ناسية تفعلين لها خيار Read/Write من مجلد الصور!</color>");
             }
         }
     }
@@ -39,10 +38,8 @@ public class Task2_ColorablePart : MonoBehaviour, IPointerClickHandler
 
         if (string.IsNullOrEmpty(currentSelectedColor)) return;
 
-        // 🎨 تلوين الجزء
         partImage.color = colorToPaint;
 
-        // 🔊 تشغيل صوت التلوين فوراً
         Task2_Manager.Instance.PlayColorSound();
 
         if (partImage.fillAmount < 1f)

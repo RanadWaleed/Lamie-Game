@@ -23,7 +23,7 @@ public class BadgeUnlockEffect : MonoBehaviour
     public float maxAlpha = 0.8f;
 
     [Header("Scene Transition")]
-    public string badgesSceneName = "BadgesScene";
+    public string badgesSceneName = "Inventory";
 
     private Vector3 targetScale = Vector3.one;
     private float currentSpinTime = 0f;
@@ -70,9 +70,8 @@ public class BadgeUnlockEffect : MonoBehaviour
             raysImageComponent.color = c;
         }
     }
-
     void GoToBadgesPage()
     {
-        SceneManager.LoadScene(badgesSceneName);
+        GameFlowManager.Instance?.GoToState(GameFlowState.Inventory);
     }
 }

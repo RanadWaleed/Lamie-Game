@@ -51,7 +51,6 @@ public class ToolboxLogic : MonoBehaviour
             return totalWidth;
         }
 
-        // fallback
         return decorationContent.rect.width;
     }
 
@@ -76,8 +75,6 @@ public class ToolboxLogic : MonoBehaviour
             float viewportWidth = scrollRect.viewport.rect.width;
             minX = -(contentWidth - viewportWidth);
             if (minX > 0) minX = 0;
-
-            Debug.Log($"contentWidth={contentWidth} viewportWidth={viewportWidth} minX={minX}");
 
             Vector2 p = decorationContent.anchoredPosition;
             p.x = maxX;

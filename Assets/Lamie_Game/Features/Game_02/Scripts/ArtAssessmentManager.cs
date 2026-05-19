@@ -1,11 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-/// <summary>
-/// ArtAssessmentManager — النسخة المصححة الكاملة
-/// يتتبع كل حركة الطفل في لعبة الإخراج الفني بشكل صحيح 100%
-/// بما فيها: الحذف، التغيير، إعادة الوضع، تغيير اللون، واختيار العنوان
-/// </summary>
+
 public class ArtAssessmentManager : MonoBehaviour
 {
     public static ArtAssessmentManager Instance;
@@ -16,59 +12,38 @@ public class ArtAssessmentManager : MonoBehaviour
     [Header("References")]
     public BoardManager boardManager;
 
-    // ══════════════════════════════════════════════════════
-    // تتبع الوقت
-    // ══════════════════════════════════════════════════════
     private float designStartTime;
     private float designEndTime;
     private bool isTracking = false;
 
-    // ══════════════════════════════════════════════════════
-    // هياكل بيانات التتبع الكامل
-    // كل event يُسجَّل بالكامل — لا نعتمد على الحالة النهائية فقط
-    // ══════════════════════════════════════════════════════
-
-    // تتبع السماء
-    private int skyPlaceCount = 0;             // كم مرة وضع سماء (بما فيها الاستبدال)
-    private bool skyFirstWasCorrect = false;   // هل أول سماء وضعها كانت صحيحة؟
+    private int skyPlaceCount = 0;
+    private bool skyFirstWasCorrect = false;
     private float firstSkyTime = -1f;
 
-    // تتبع المبنى
     private int buildingPlaceCount = 0;
     private bool buildingFirstWasCorrect = false;
     private float firstBuildingTime = -1f;
 
-    // تتبع الشخصية
     private int characterPlaceCount = 0;
     private bool characterFirstWasCorrect = false;
     private float firstCharacterTime = -1f;
 
-    // تتبع الزينة — لكل عنصر نحتفظ بتاريخ كامل
-    // Key = prefabName, Value = عدد مرات الوضع (بما فيها الحذف والإعادة)
     private Dictionary<string, int> decorPlaceCounts = new Dictionary<string, int>();
     private float firstDecorTime = -1f;
 
-    // تتبع الألوان
-    // Key = colorName, Value = عدد مرات التطبيق
     private Dictionary<string, int> colorApplyCounts = new Dictionary<string, int>();
 
-    // تتبع العنوان — بنفس منطق معادلة الدكتور
     private string lastSelectedTitle = "";
-    private int titleAttemptCount = 0;          // كم مرة اختار عنوان
-    private bool titleFirstWasCorrect = false;  // هل أول اختيار كان صح؟
-    private float titleFirstTime = -1f;         // وقت أول اختيار من فتح السؤال
-    private float titleQuestionOpenTime = -1f;  // وقت فتح صفحة السؤال (بعد الصوت)
+    private int titleAttemptCount = 0;
+    private bool titleFirstWasCorrect = false;
+    private float titleFirstTime = -1f;
+    private float titleQuestionOpenTime = -1f;
 
-    // ══════════════════════════════════════════════════════
     void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
-
-    // ══════════════════════════════════════════════════════
-    // بداية ونهاية التتبع
-    // ══════════════════════════════════════════════════════
 
     public void StartTracking()
     {
@@ -77,7 +52,6 @@ public class ArtAssessmentManager : MonoBehaviour
         isTracking = true;
 
         PsychometricReportManager.Instance?.SetupNewAspect("الإخراج الفني", "Game_3");
-        Debug.Log("[Art] ══ بدأ القياس ══");
     }
 
     public void StopTracking()
@@ -103,14 +77,6 @@ public class ArtAssessmentManager : MonoBehaviour
         titleQuestionOpenTime = -1f;
     }
 
-    // ══════════════════════════════════════════════════════
-    // تسجيل الأحداث — يُستدعى من GalleryItem و BoardManager
-    // ══════════════════════════════════════════════════════
-
-    /// <summary>
-    /// يُستدعى كل مرة يضع الطفل عنصراً (أو يستبدل عنصراً موجوداً)
-    /// حتى لو حذفه لاحقاً — التتبع يشمل كل المحاولات
-    /// </summary>
     public void OnItemPlaced(GameObject item, string prefabName, Vector2 pos)
     {
         if (!isTracking || storyMapping == null) return;
@@ -128,7 +94,6 @@ public class ArtAssessmentManager : MonoBehaviour
         {
             case "BG":
                 if (firstSkyTime < 0f) firstSkyTime = now;
-                // المرة الأولى فقط تُحدد هل "الاختيار الأول صحيح"
                 if (skyPlaceCount == 0)
                     skyFirstWasCorrect = storyMapping.allowedSky.Contains(prefabName);
                 skyPlaceCount++;
@@ -165,22 +130,13 @@ public class ArtAssessmentManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// يُستدعى من BoardManager.DeleteCurrent() عند حذف عنصر
-    /// لا نحذف من التاريخ — الحذف يُعد محاولة إضافية
-    /// </summary>
     public void OnItemDeleted(GameObject item)
     {
         if (!isTracking || item == null) return;
         AssessmentTag tag = item.GetComponent<AssessmentTag>();
-        // نسجل الحذف في الـ log فقط — البيانات التاريخية محفوظة
         Debug.Log($"[Art][Delete] حُذف: {item.name} | category={tag?.category}");
     }
 
-    /// <summary>
-    /// يُستدعى من ArtColorManager.ChangeColor() عند تطبيق لون
-    /// نحتفظ بعدد مرات استخدام كل لون
-    /// </summary>
     public void OnColorApplied(string colorName)
     {
         if (!isTracking) return;
@@ -190,13 +146,9 @@ public class ArtAssessmentManager : MonoBehaviour
         Debug.Log($"[Art][Color] {colorName} | إجمالي استخدام هذا اللون: {colorApplyCounts[c]}");
     }
 
-    /// <summary>
-    /// يُستدعى من QuestionManager عند اختيار العنوان
-    /// </summary>
     public void OnTitleSelected(string titleId)
     {
-        // titleQuestionOpenTime يُضبط من StartTitleTimer — لو ما اتضبط يعني السؤال ما فتح بعد
-        if (titleQuestionOpenTime < 0) return; // السؤال لم يُفتح بعد
+        if (titleQuestionOpenTime < 0) return;
 
         float now = Time.time - designStartTime;
         bool isCorrect = titleId == storyMapping?.correctTitleId;
@@ -205,8 +157,6 @@ public class ArtAssessmentManager : MonoBehaviour
         if (titleAttemptCount == 1)
         {
             titleFirstWasCorrect = isCorrect;
-            // now = وقت من بداية التصميم
-            // titleFirstTime = وقت من بداية التصميم عند أول اختيار
             titleFirstTime = now;
         }
 
@@ -214,39 +164,25 @@ public class ArtAssessmentManager : MonoBehaviour
         Debug.Log($"[Art][Title] #{titleAttemptCount}: {titleId} | صح={isCorrect}");
     }
 
-    /// <summary>
-    /// يُستدعى من QuestionManager بعد انتهاء صوت السؤال
-    /// يبدأ توقيت المؤشر 7 من لحظة فهم الطفل للسؤال
-    /// </summary>
     public void StartTitleTimer()
     {
         titleQuestionOpenTime = Time.time;
         Debug.Log("[Art] بدأ توقيت السؤال اللفظي");
     }
 
-    /// <summary>
-    /// يُستدعى عند الضغط على Confirm في شاشة السؤال
-    /// </summary>
     public void OnConfirm()
     {
-        Debug.Log("[Art] ══ تأكيد — بدأ الحساب ══");
         CalculateAll();
     }
-
-    // ══════════════════════════════════════════════════════
-    // الحساب الرئيسي — يقرأ الحالة النهائية + التاريخ
-    // ══════════════════════════════════════════════════════
 
     private void CalculateAll()
     {
         if (storyMapping == null)
         {
-            Debug.LogError("[Art] storyMapping غير موجود!");
             return;
         }
         if (boardManager == null)
         {
-            Debug.LogError("[Art] boardManager غير موجود!");
             return;
         }
 
@@ -274,13 +210,10 @@ public class ArtAssessmentManager : MonoBehaviour
             ref finalSky, ref finalBuilding, ref finalCharacter,
             finalDecorNames, finalDecorTypeCounts, allPositions, usedLayerCategories);
 
-        // ── الألوان المستخدمة (الفريدة فقط) ──
         HashSet<string> uniqueColorsUsed = new HashSet<string>(colorApplyCounts.Keys);
 
-        // ── حساب الأوقات ──
         float totalDesignTime = designEndTime - designStartTime;
 
-        // وقت الأشكال الرئيسية: من أول وضع سماء أو مبنى
         float shapesAnchor = Mathf.Min(
             firstSkyTime >= 0 ? firstSkyTime : totalDesignTime,
             firstBuildingTime >= 0 ? firstBuildingTime : totalDesignTime
@@ -288,7 +221,6 @@ public class ArtAssessmentManager : MonoBehaviour
         float shapesTimeTaken = totalDesignTime - shapesAnchor;
         if (shapesTimeTaken <= 0f) shapesTimeTaken = totalDesignTime;
 
-        // وقت الرموز والشخصية: من أول وضع شخصية أو زينة
         float symbolsAnchor = Mathf.Min(
             firstCharacterTime >= 0 ? firstCharacterTime : totalDesignTime,
             firstDecorTime >= 0 ? firstDecorTime : totalDesignTime
@@ -299,7 +231,6 @@ public class ArtAssessmentManager : MonoBehaviour
         Debug.Log($"[Art] الحالة النهائية → sky={finalSky} | bld={finalBuilding} | char={finalCharacter} | decor={finalDecorNames.Count} | colors={uniqueColorsUsed.Count}");
         Debug.Log($"[Art] الأوقات → total={totalDesignTime:F1}s | shapes={shapesTimeTaken:F1}s | symbols={symbolsTimeTaken:F1}s");
 
-        // ── إرسال المؤشرات بالترتيب ──
         SubmitInd1_Shapes(finalSky, finalBuilding, shapesTimeTaken);
         SubmitInd2_Colors(uniqueColorsUsed);
         SubmitInd3_CharactersAndSymbols(finalCharacter, finalDecorNames, symbolsTimeTaken);
@@ -316,10 +247,6 @@ public class ArtAssessmentManager : MonoBehaviour
         Debug.Log("[Art] ══ اكتمل القياس ══");
     }
 
-    // ══════════════════════════════════════════════════════
-    // قراءة الـ Layer
-    // ══════════════════════════════════════════════════════
-
     private void ReadLayer(Transform layer, string category,
         ref string sky, ref string building, ref string character,
         HashSet<string> decorNames,
@@ -331,7 +258,6 @@ public class ArtAssessmentManager : MonoBehaviour
 
         foreach (Transform child in layer)
         {
-            // ✅ نقرأ itemId من AssessmentTag بدل اسم الـ GameObject (دايماً ItemPrefab)
             AssessmentTag childTag = child.GetComponent<AssessmentTag>();
             string prefabName = (childTag != null && !string.IsNullOrEmpty(childTag.itemId))
                 ? childTag.itemId
@@ -361,7 +287,6 @@ public class ArtAssessmentManager : MonoBehaviour
                     decorNames.Add(prefabName);
                     usedLayers.Add("Decoration");
 
-                    // نستخرج "نوع" الزينة بدون prefix الشعور (H_, S_, N_)
                     string decorType = prefabName.Length > 2 ? prefabName.Substring(2) : prefabName;
                     if (decorTypeCounts.ContainsKey(decorType)) decorTypeCounts[decorType]++;
                     else decorTypeCounts[decorType] = 1;
@@ -370,23 +295,15 @@ public class ArtAssessmentManager : MonoBehaviour
         }
     }
 
-    // ══════════════════════════════════════════════════════
-    // المؤشر 1: اختيار أشكال أساسية ترمز للشعور
-    // يقيس: هل الخلفية والمبنى مناسبان للشعور؟
-    // المعادلة: دقة (0.6) + سرعة (0.2) + أول محاولة صحيحة (0.2)
-    // ══════════════════════════════════════════════════════
     private void SubmitInd1_Shapes(string sky, string building, float timeTaken)
     {
         bool skyCorrect = !string.IsNullOrEmpty(sky) && storyMapping.allowedSky.Contains(sky);
         bool buildingCorrect = !string.IsNullOrEmpty(building) && storyMapping.allowedBuildings.Contains(building);
 
-        // الدقة: كم من العنصرين النهائيين صحيح
         float accuracy = ((skyCorrect ? 1 : 0) + (buildingCorrect ? 1 : 0)) / 2f;
 
-        // السرعة: نسبة الوقت المعياري للوقت الفعلي
         float speed = Mathf.Clamp01(storyMapping.standardTimeShapes / Mathf.Max(timeTaken, 0.1f));
 
-        // أول محاولة: هل أول سماء وأول مبنى وضعهما كانا صحيحين؟
         float firstAttempt = ((skyFirstWasCorrect ? 1 : 0) + (buildingFirstWasCorrect ? 1 : 0)) / 2f;
 
         float score = (accuracy * 0.6f) + (speed * 0.2f) + (firstAttempt * 0.2f);
@@ -398,17 +315,10 @@ public class ArtAssessmentManager : MonoBehaviour
             score);
     }
 
-    // ══════════════════════════════════════════════════════
-    // المؤشر 2: توظيف الألوان كسمة مجردة عن الشعور
-    // يقيس: من الألوان التي استخدمها، كم منها يناسب الشعور؟
-    // المعادلة المصححة: ألوان مناسبة ÷ كل الألوان المستخدمة
-    // (لا نقيس غطاءه للـ palette — نقيس نقاء اختياراته)
-    // ══════════════════════════════════════════════════════
     private void SubmitInd2_Colors(HashSet<string> uniqueColorsUsed)
     {
         if (uniqueColorsUsed.Count == 0)
         {
-            // لم يستخدم ألوان → درجة متوسطة (لا يعني فشلاً كاملاً)
             BuildAndSubmit(
                 "توظيف الألوان كسمة مجردة عن الشعور",
                 "يستخدم ألوانًا متسقة مع الشعور ويختار الدرجات المناسبة.",
@@ -425,12 +335,10 @@ public class ArtAssessmentManager : MonoBehaviour
             return;
         }
 
-        // عدد الألوان التي استخدمها وهي مناسبة للشعور
         int appropriateColors = 0;
         foreach (string c in uniqueColorsUsed)
             if (storyMapping.paletteMood.Contains(c)) appropriateColors++;
 
-        // النسبة = مناسبة ÷ كل ما استخدمه (نقاء الاختيار)
         float score = (float)appropriateColors / uniqueColorsUsed.Count;
         score = Mathf.Clamp01(score);
 
@@ -441,17 +349,11 @@ public class ArtAssessmentManager : MonoBehaviour
             score);
     }
 
-    // ══════════════════════════════════════════════════════
-    // المؤشر 3: اختيار الملامح والرموز التي تعبر عن الشعور
-    // يقيس: الشخصية المختارة + عناصر الزينة المناسبة
-    // المعادلة: دقة (0.6) + سرعة (0.2) + أول محاولة (0.2) — مجموعها 1.0
-    // ══════════════════════════════════════════════════════
     private void SubmitInd3_CharactersAndSymbols(string character, HashSet<string> finalDecorNames, float timeTaken)
     {
         bool charCorrect = !string.IsNullOrEmpty(character) && storyMapping.allowedCharacters.Contains(character);
-        int N = 1 + storyMapping.expectedSymbolsCount; // شخصية + عناصر متوقعة
+        int N = 1 + storyMapping.expectedSymbolsCount;
 
-        // عناصر الزينة المناسبة في الحالة النهائية
         int correctSymbols = 0;
         foreach (string sym in finalDecorNames)
             if (storyMapping.allowedSymbols.Contains(sym)) correctSymbols++;
@@ -460,8 +362,6 @@ public class ArtAssessmentManager : MonoBehaviour
 
         float speed = Mathf.Clamp01(storyMapping.standardTimeSymbols / Mathf.Max(timeTaken, 0.1f));
 
-        // أول محاولة: هل أول شخصية وضعها كانت صحيحة؟
-        // للزينة: هل أول وضع لكل رمز كان بمحاولة واحدة؟
         int firstAttemptCorrect = characterFirstWasCorrect ? 1 : 0;
         foreach (string sym in finalDecorNames)
         {
@@ -471,7 +371,6 @@ public class ArtAssessmentManager : MonoBehaviour
         }
         float firstAttemptRatio = Mathf.Clamp01((float)firstAttemptCorrect / N);
 
-        // الأوزان: دقة 0.6 + سرعة 0.2 + أول محاولة 0.2 = 1.0
         float score = (accuracy * 0.6f) + (speed * 0.2f) + (firstAttemptRatio * 0.2f);
 
         Debug.Log($"[Ind3] char={charCorrect}(first={characterFirstWasCorrect}) symbols={correctSymbols}/{storyMapping.expectedSymbolsCount} | acc={accuracy:F2} spd={speed:F2} fa={firstAttemptRatio:F2} → {score:F2}");
@@ -481,36 +380,27 @@ public class ArtAssessmentManager : MonoBehaviour
             score);
     }
 
-    // ══════════════════════════════════════════════════════
-    // المؤشر 4: إضافة عناصر زينة إضافية لتجميل المشهد
-    // يقيس: وعي الطفل بالزينة — ليس فقط الكمية بل النوعية
-    // المعادلة المصححة: (زينة مناسبة ÷ maxDecor × 0.6) + (نسبة الزينة المناسبة من الكلية × 0.4)
-    // ══════════════════════════════════════════════════════
     private void SubmitInd4_Decorations(HashSet<string> finalDecorNames)
     {
         int maxAvail = storyMapping.maxDecorAvailable > 0 ? storyMapping.maxDecorAvailable : 8;
 
-        // تصنيف الزينة: مناسبة (H_) = 1.0 | محايدة (N_) = 0.5 | معاكسة (S_) = 0.0
         float weightedDecor = 0f;
         int appropriateCount = 0;
         foreach (string d in finalDecorNames)
         {
             if (storyMapping.allowedSymbols.Contains(d))
             {
-                weightedDecor += 1.0f;  // مناسبة للشعور
+                weightedDecor += 1.0f;
                 appropriateCount++;
             }
             else if (d.Length > 2 && d.StartsWith("N_"))
             {
-                weightedDecor += 0.5f;  // محايدة — لا تخرب لكن لا تعبر
+                weightedDecor += 0.5f;
             }
-            // S_ أو غير معروف = 0 (لا تُضاف)
         }
 
-        // الكمية الموزونة: مجموع الأوزان مقارنة بالمتاح
         float quantityScore = Mathf.Clamp01(weightedDecor / maxAvail);
 
-        // النوعية: متوسط الوزن من ما وُضع
         float qualityScore = finalDecorNames.Count > 0
             ? Mathf.Clamp01(weightedDecor / finalDecorNames.Count)
             : 0f;
@@ -524,11 +414,6 @@ public class ArtAssessmentManager : MonoBehaviour
             score);
     }
 
-    // ══════════════════════════════════════════════════════
-    // المؤشر 5: الوصول إلى لوحة متكاملة تمثل الشعور
-    // يقيس: الاتساق الشامل لجميع عناصر اللوحة مع الشعور
-    // يشمل: السماء + المبنى + الشخصية + الزينة + الألوان
-    // ══════════════════════════════════════════════════════
     private void SubmitInd5_OverallCoherence(string sky, string building, string character,
         HashSet<string> finalDecorNames, HashSet<string> uniqueColorsUsed)
     {
@@ -536,7 +421,6 @@ public class ArtAssessmentManager : MonoBehaviour
         float mBuilding = (!string.IsNullOrEmpty(building) && storyMapping.allowedBuildings.Contains(building)) ? 1f : 0f;
         float mChar = (!string.IsNullOrEmpty(character) && storyMapping.allowedCharacters.Contains(character)) ? 1f : 0f;
 
-        // نسبة الزينة المناسبة
         int correctDecor = 0;
         foreach (string d in finalDecorNames)
             if (storyMapping.allowedSymbols.Contains(d)) correctDecor++;
@@ -544,7 +428,6 @@ public class ArtAssessmentManager : MonoBehaviour
             ? Mathf.Clamp01((float)correctDecor / finalDecorNames.Count)
             : 0f;
 
-        // نسبة الألوان المناسبة
         int correctColors = 0;
         foreach (string c in uniqueColorsUsed)
             if (storyMapping.paletteMood.Contains(c)) correctColors++;
@@ -552,7 +435,6 @@ public class ArtAssessmentManager : MonoBehaviour
             ? Mathf.Clamp01((float)correctColors / uniqueColorsUsed.Count)
             : 0f;
 
-        // المتوسط الموزون — الأشكال الرئيسية أثقل وزناً
         float score = (mSky * 0.2f) + (mBuilding * 0.2f) + (mChar * 0.2f) + (mDecor * 0.25f) + (mColors * 0.15f);
 
         Debug.Log($"[Ind5] sky={mSky} bld={mBuilding} chr={mChar} decor={mDecor:F2} clr={mColors:F2} → {score:F2}");
@@ -562,20 +444,13 @@ public class ArtAssessmentManager : MonoBehaviour
             score);
     }
 
-    // ══════════════════════════════════════════════════════
-    // المؤشر 6: تحقيق توازن بصري
-    // 3 بنود: تغطية الفئات، توزيع الزينة، انتشار العناصر
-    // ══════════════════════════════════════════════════════
     private void SubmitInd6_VisualBalance(HashSet<string> usedLayerCategories,
         Dictionary<string, int> decorTypeCounts, List<Vector2> allPositions)
     {
-        // البند 1: تغطية الفئات — كم فئة من الـ 4 استخدم؟
         float coverage = usedLayerCategories.Count / 4f;
 
-        // البند 2: توزيع الزينة — هل وزّع أو ركّز في نوع واحد؟
         float evenness = CalcEvenness(decorTypeCounts);
 
-        // البند 3: انتشار العناصر — هل ملأ اللوحة أم كدّس في مكان؟
         float spread = CalcSpread(allPositions);
 
         Debug.Log($"[Ind6] coverage={coverage:F2} evenness={evenness:F2} spread={spread:F2}");
@@ -590,10 +465,6 @@ public class ArtAssessmentManager : MonoBehaviour
         pm.FinishCurrentIndicator();
     }
 
-    // ══════════════════════════════════════════════════════
-    // المؤشر 7: التوافق بين الإنتاج البصري والوعي اللفظي
-    // يقيس: هل اسم اللوحة يعكس الشعور؟
-    // ══════════════════════════════════════════════════════
     private void SubmitInd7_VerbalAwareness()
     {
         if (titleAttemptCount == 0)
@@ -609,24 +480,18 @@ public class ArtAssessmentManager : MonoBehaviour
         bool finalCorrect = !string.IsNullOrEmpty(lastSelectedTitle) &&
                             lastSelectedTitle == storyMapping.correctTitleId;
 
-        // الدقة: الاختيار النهائي صح أم لا
         float accuracy = finalCorrect ? 1f : 0f;
 
-        // السرعة: من فتح السؤال حتى أول اختيار (بمرجع موحد = Time.time)
         float standardTime = storyMapping.standardTimeSymbols > 0 ? storyMapping.standardTimeSymbols : 15f;
-        float timeTaken = standardTime; // default
+        float timeTaken = standardTime;
         if (titleQuestionOpenTime >= 0 && titleFirstTime >= 0)
         {
-            // titleFirstTime = Time.time - designStartTime عند أول اختيار
-            // titleQuestionOpenTime = Time.time عند فتح السؤال
+
             float questionOpenRelative = titleQuestionOpenTime - designStartTime;
             timeTaken = Mathf.Max(titleFirstTime - questionOpenRelative, 0.1f);
         }
         float speed = Mathf.Clamp01(standardTime / timeTaken);
 
-        // قلة الأخطاء: نسبة محاولات الاختيار
-        // لو اختار من أول مرة = 1.0، لو اختار 4 مرات = أقل
-        // نستخدم: C/A حيث C=1 (اختيار واحد صحيح) و A=عدد المحاولات
         float errorRate = finalCorrect ? Mathf.Clamp01(1f / titleAttemptCount) : 0f;
 
         float score = (accuracy * 0.6f) + (speed * 0.2f) + (errorRate * 0.2f);
@@ -638,18 +503,11 @@ public class ArtAssessmentManager : MonoBehaviour
             score);
     }
 
-    // ══════════════════════════════════════════════════════
-    // المؤشر 8: اختيار عناصر متنوعة من فئات مختلفة
-    // يقيس: تنوع الفئات المستخدمة + تنوع عناصر الزينة
-    // ══════════════════════════════════════════════════════
     private void SubmitInd8_ElementDiversity(HashSet<string> usedLayerCategories,
         HashSet<string> finalDecorNames)
     {
-        // تنوع الفئات الكبرى (BG, Building, Character, Decoration)
         float categoryDiversity = usedLayerCategories.Count / 4f;
 
-        // تنوع الزينة: كم نوعاً مختلفاً استخدم؟
-        // نستخرج prefix الشعور من اسم الزينة للمقارنة بالنوع فقط
         HashSet<string> uniqueDecorTypes = new HashSet<string>();
         foreach (string d in finalDecorNames)
         {
@@ -659,7 +517,6 @@ public class ArtAssessmentManager : MonoBehaviour
         int maxExpectedDecorTypes = Mathf.Max(storyMapping.maxDecorAvailable, 1);
         float decorDiversity = Mathf.Clamp01((float)uniqueDecorTypes.Count / maxExpectedDecorTypes);
 
-        // المعادلة: تنوع الفئات (0.5) + تنوع أنواع الزينة (0.5)
         float score = (categoryDiversity * 0.5f) + (decorDiversity * 0.5f);
 
         Debug.Log($"[Ind8] فئات={usedLayerCategories.Count}/4 | أنواع زينة={uniqueDecorTypes.Count} → {score:F2}");
@@ -669,18 +526,10 @@ public class ArtAssessmentManager : MonoBehaviour
             score);
     }
 
-    // ══════════════════════════════════════════════════════
-    // الحسابات الرياضية المساعدة
-    // ══════════════════════════════════════════════════════
-
-    /// <summary>
-    /// يحسب مدى توزيع الزينة بين أنواع مختلفة.
-    /// 1.0 = توزيع متساوٍ تماماً | 0.0 = نوع واحد فقط
-    /// </summary>
     private float CalcEvenness(Dictionary<string, int> counts)
     {
         if (counts == null || counts.Count == 0) return 0f;
-        if (counts.Count == 1) return 0f; // نوع واحد = تركيز كامل
+        if (counts.Count == 1) return 0f;
 
         int total = 0;
         foreach (var v in counts.Values) total += v;
@@ -696,17 +545,12 @@ public class ArtAssessmentManager : MonoBehaviour
         }
         float sigma = Mathf.Sqrt(variance / m);
 
-        // sigma_max = حالة نوع واحد يأخذ كل شيء
         float sigmaMax = Mathf.Sqrt(((1f - mean) * (1f - mean) + (m - 1) * mean * mean) / m);
         if (sigmaMax <= 0f) return 1f;
 
         return Mathf.Clamp01(1f - sigma / sigmaMax);
     }
 
-    /// <summary>
-    /// يحسب مدى انتشار العناصر في مساحة اللوحة.
-    /// 1.0 = عناصر موزعة في كل اللوحة | 0.0 = كلها في نقطة واحدة
-    /// </summary>
     private float CalcSpread(List<Vector2> positions)
     {
         if (positions == null || positions.Count < 2) return 0f;
@@ -734,10 +578,6 @@ public class ArtAssessmentManager : MonoBehaviour
         return Mathf.Clamp01(occupiedArea / threshold);
     }
 
-    // ══════════════════════════════════════════════════════
-    // Helpers — بناء وإرسال المؤشر
-    // ══════════════════════════════════════════════════════
-
     private void BuildAndSubmit(string indicatorName, string itemName, float score)
     {
         var pm = PsychometricReportManager.Instance;
@@ -763,9 +603,6 @@ public class ArtAssessmentManager : MonoBehaviour
         pm.currentIndicator?.items.Add(item);
     }
 
-    // ══════════════════════════════════════════════════════
-    // Safety net
-    // ══════════════════════════════════════════════════════
     void OnApplicationQuit()
     {
         if (isTracking)

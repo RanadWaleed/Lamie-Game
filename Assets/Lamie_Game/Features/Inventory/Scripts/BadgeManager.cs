@@ -38,10 +38,6 @@ public class BadgeManager : MonoBehaviour
         LoadBadgesFromLocal();
     }
 
-    // ─────────────────────────────────────────────
-    // LOAD FROM LOCAL
-    // ─────────────────────────────────────────────
-
     private void LoadBadgesFromLocal()
     {
         if (LocalProgressManager.Instance == null)
@@ -78,10 +74,6 @@ public class BadgeManager : MonoBehaviour
         }
     }
 
-    // ─────────────────────────────────────────────
-    // SLOT CLICK
-    // ─────────────────────────────────────────────
-
     public void OnSlotClicked(BadgeSlot slot)
     {
         if (!slot.IsUnlocked) return;
@@ -112,10 +104,6 @@ public class BadgeManager : MonoBehaviour
 
         if (!_starHidden) StartCoroutine(HideStar());
     }
-
-    // ─────────────────────────────────────────────
-    // ANIMATIONS
-    // ─────────────────────────────────────────────
 
     private IEnumerator HideStar()
     {

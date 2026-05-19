@@ -17,19 +17,16 @@ public class PasswordCheck : MonoBehaviour
 
     IEnumerator TryOnlineThenOffline(string code)
     {
-        // نجرب الاتصال بالسيرفر أولاً
         UnityWebRequest ping = UnityWebRequest.Get("http://localhost:5194/");
         ping.timeout = 3;
         yield return ping.SendWebRequest();
 
         if (ping.result == UnityWebRequest.Result.Success)
         {
-            // البورت مفتوح — نتحقق من API
             StartCoroutine(VerifyCodeFromAPI(code));
         }
         else
         {
-            // البورت مقفول — نتحقق محلياً
             string savedCode = PlayerPrefs.GetString("SavedLoginCode", "");
             if (!string.IsNullOrEmpty(savedCode) && code == savedCode)
             {
@@ -70,7 +67,7 @@ public class PasswordCheck : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("الكود غير موجود في قاعدة البيانات.");
+                Debug.LogWarning(response.Message);
             }
         }
         else
@@ -100,7 +97,7 @@ public class PasswordCheck : MonoBehaviour
         }
     }
 }
-    [System.Serializable]
+[System.Serializable]
 public class LoginResponse
 {
     public bool Success;

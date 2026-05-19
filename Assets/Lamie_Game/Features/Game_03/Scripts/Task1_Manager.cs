@@ -37,7 +37,7 @@ public class Task1_Manager : MonoBehaviour
     {
         if (PsychometricReportManager.Instance != null)
         {
-            PsychometricReportManager.Instance.SetupNewAspect("Game 3 Aspect", "Game_3");
+            PsychometricReportManager.Instance.SetupNewAspect("التمثيل", "Game_3");
             PsychometricReportManager.Instance.StartNewIndicator("إعادة تركيب الأجزاء المبعثرة");
         }
     }

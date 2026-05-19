@@ -102,11 +102,8 @@ public class Task3_Manager : MonoBehaviour
         levelStartTime = Time.time;
     }
 
-    // Collects: C (firstTrySuccess), A (totalAttempts), triggers scoring when C >= N
-   
     public void PiecePlacedCorrectly()
     {
-        // Tracks a correct piece placement,checks level completion
         if (successSound != null && pieceSnapClip != null)
         {
             successSound.PlayOneShot(pieceSnapClip);
@@ -125,7 +122,6 @@ public class Task3_Manager : MonoBehaviour
             StartCoroutine(LevelCompleteSequence());
         }
     }
-    // Tracks a wrong placement — increments error counter and flags the piece
     public void PiecePlacedWrong()
     {
         if (successSound != null && pieceSnapClip != null)
@@ -240,7 +236,6 @@ public class Task3_Manager : MonoBehaviour
 
         if (isLastLevel)
         {
-            // (أكواد حساب الدرجات خليتها زي ما هي لا تمسحينها اللي فيها item6)
             float item6_acc = item6_totalPieces > 0 ? Mathf.Clamp01((float)item6_firstTrySuccess / item6_totalPieces) : 0f;
             float item6_err = item6_totalAttempts > 0 ? Mathf.Clamp01((float)item6_firstTrySuccess / item6_totalAttempts) : 0f;
             float item6_spd = item6_actualTime > 0 ? Mathf.Clamp01(item6_standardTime / item6_actualTime) : 0f;
@@ -255,14 +250,12 @@ public class Task3_Manager : MonoBehaviour
                 PsychometricReportManager.Instance.FinishCurrentIndicator();
             }
 
-            // 🎇 التعديل هنا: نشغل الغبار الأخير حق الإنجاز ونطلعه!
             if (dustParticles != null)
             {
                 dustParticles.gameObject.SetActive(true);
                 dustParticles.Play();
             }
 
-            // 🖼️ ونطلع صورة الرفوف زي ما طلبتي
             if (finalGrandImageToShow != null)
             {
                 finalGrandImageToShow.SetActive(true);
@@ -278,6 +271,6 @@ public class Task3_Manager : MonoBehaviour
             currentLevelIndex++;
             LoadLevel(currentLevelIndex);
         }
-      
+
     }
 }

@@ -137,7 +137,7 @@ public class Game3_MasterManager : MonoBehaviour
         }
         else if (currentTaskNumber == 3)
         {
-            currentTaskNumber = 4; 
+            currentTaskNumber = 4;
             if (transitionNextButton != null) transitionNextButton.SetActive(false);
             StartCoroutine(CinematicTransitionToTask4());
         }
@@ -174,13 +174,11 @@ public class Game3_MasterManager : MonoBehaviour
 
     IEnumerator CinematicTransitionToTask3()
     {
-        // 1. 🎬 اختفاء ناعم جداً لكل عناصر اللعبة الثانية (بدل ما تختفي فجأة)
         if (task2Manager != null)
         {
             yield return StartCoroutine(task2Manager.FadeOutTask2(1.0f));
         }
 
-        // 2. ترانزيشن الرجوع للغرفة (زوم أوت من اللعبة الثانية)
         float elapsed = 0;
         float duration = 1.2f;
         Vector3 startPos = mainCamera.transform.position;
@@ -196,10 +194,8 @@ public class Game3_MasterManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.8f);
 
-        // 3. 🗣️ لبنى تتكلم للمهمة الثالثة (والفرشة حقت اللعبة الثانية اختفت لحالها)
         yield return StartCoroutine(PlayLubnahSpeech(3));
 
-        // 4. زوم للرفوف حق اللعبة الثالثة
         if (task3Manager != null) task3Manager.gameObject.SetActive(true);
 
         elapsed = 0;
@@ -290,7 +286,7 @@ public class Game3_MasterManager : MonoBehaviour
         if (taskNumber == 1) clipToPlay = voiceTask1;
         else if (taskNumber == 2) clipToPlay = voiceTask2;
         else if (taskNumber == 3) clipToPlay = voiceTask3;
-        else if (taskNumber == 4) clipToPlay = voiceTask4; 
+        else if (taskNumber == 4) clipToPlay = voiceTask4;
         else if (taskNumber == 5) clipToPlay = voiceEnding;
         else if (taskNumber == 6) clipToPlay = voiceBadge;
         if (clipToPlay != null && lubnahMouthAudioSource != null)

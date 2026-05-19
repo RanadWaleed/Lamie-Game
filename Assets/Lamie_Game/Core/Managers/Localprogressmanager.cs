@@ -1,9 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Tracks game completion and badge unlocks locally via PlayerPrefs.
-/// Singleton — survives scene loads.
-/// </summary>
 public class LocalProgressManager : MonoBehaviour
 {
     public static LocalProgressManager Instance { get; private set; }
@@ -39,7 +35,7 @@ public class LocalProgressManager : MonoBehaviour
         }
         catch (System.Exception e)
         {
-            Debug.LogWarning("[LocalProgressManager] تم حفظ المرحلة، لكن هناك قائمة فارغة في الـ Inspector تخص الشارات: " + e.Message);
+            Debug.LogWarning(e.Message);
         }
 
         return false;

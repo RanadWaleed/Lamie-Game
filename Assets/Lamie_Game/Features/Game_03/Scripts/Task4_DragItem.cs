@@ -47,7 +47,6 @@ public class Task4_DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         Canvas canvas = GetMainCanvas();
         if (canvas == null)
         {
-            Debug.LogError("<color=red>Canvas مو موجود! العنصر ما يقدر ينسحب</color>");
             return;
         }
 

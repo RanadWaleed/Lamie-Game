@@ -2,8 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-// Attach to: InventoryUI — GameObject تحت Canvas في InventoryScene
-// لا يعرف أسماء سينات — كل تنقل يمر عبر GameFlowManager
 public class InventoryUI : MonoBehaviour
 {
     [Header("Border")]

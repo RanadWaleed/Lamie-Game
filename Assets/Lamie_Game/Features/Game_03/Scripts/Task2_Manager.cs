@@ -74,7 +74,6 @@ public class Task2_Manager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("<color=red><b>نسيتي تحطين صورة الفرشة في المانجر!</b></color>");
         }
     }
 
@@ -119,7 +118,6 @@ public class Task2_Manager : MonoBehaviour
 
         if (levelData.stagePrefab == null)
         {
-            Debug.LogError($"<color=red><b>🚨 اللعبة الثانية: المرحلة رقم {index + 1} ما فيها بريفاب! تأكدي إنك سحبتي البريفاب لملف الـ StageData حقها! 🚨</b></color>");
             return;
         }
 
@@ -197,10 +195,7 @@ public class Task2_Manager : MonoBehaviour
 
         AdvanceToNextLevel();
     }
-   
-    
-    /** Tracks each color attempt — records accuracy, 
-    * first-try success, and triggers completion check*/
+
 
     public void RegisterColorAttempt(bool isCorrect, bool isFirstTry)
     {
@@ -208,13 +203,12 @@ public class Task2_Manager : MonoBehaviour
 
         if (isCorrect)
         {
-            // First-try count if no wrong color was applied before
             correctAttempts++;
             if (isFirstTry) firstTrySuccess++;
 
             CheckLevelCompletion();
         }
-        
+
         else
         {
             wrongAttempts++;
@@ -285,7 +279,7 @@ public class Task2_Manager : MonoBehaviour
         if (currentActiveBoard != null) Destroy(currentActiveBoard);
         if (topTable != null) topTable.SetActive(false);
         gameObject.SetActive(false);
-        cg.alpha = 1f; 
+        cg.alpha = 1f;
     }
 
     private void CalculateAndLogMetrics()

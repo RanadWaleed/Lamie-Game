@@ -36,8 +36,6 @@ public class ArtColorManager : MonoBehaviour
 
         if (colorToolBox != null) colorToolBox.SetActive(true);
         if (backgroundOverlay != null) backgroundOverlay.SetActive(true);
-
-        Debug.Log($"[Color] فُتح التول بوكس: {selectedObject.name}");
     }
 
 

@@ -1235,6 +1235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PasswordCheck
   codeInput: {fileID: 1429483297}
+  apiURL: http://localhost:5194/api/Unity/CheckLoginCode
 --- !u!1 &1429483296
 GameObject:
   m_ObjectHideFlags: 0

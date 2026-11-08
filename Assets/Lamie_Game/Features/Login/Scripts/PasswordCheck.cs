@@ -12,6 +12,25 @@ public class PasswordCheck : MonoBehaviour
     public void CheckCode()
     {
         string code = codeInput.text;
+
+        // --- بداية التخطي المؤقت ---
+        if (code == "000")
+        {
+            Debug.Log("دخول سريع للتجربة بالكود 000!");
+
+            // حفظ بيانات وهمية عشان دالة ProceedToNextState تشتغل بدون مشاكل
+            PlayerPrefs.SetString("SavedLoginCode", code);
+            PlayerPrefs.SetString("CurrentChildID", "TestChild_000");
+            PlayerPrefs.SetString("UserGender", "Boy");
+            PlayerPrefs.Save();
+
+            ProceedToNextState();
+
+            // إنهاء الدالة هنا عشان ما يكمل ويحاول يتصل بالسيرفر
+            return;
+        }
+        // --- نهاية التخطي المؤقت ---
+
         StartCoroutine(TryOnlineThenOffline(code));
     }
 
@@ -97,6 +116,7 @@ public class PasswordCheck : MonoBehaviour
         }
     }
 }
+
 [System.Serializable]
 public class LoginResponse
 {

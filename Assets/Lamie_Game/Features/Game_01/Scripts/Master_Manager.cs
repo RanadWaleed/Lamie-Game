@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -214,6 +214,11 @@ public class MasterManager : MonoBehaviour
 
     IEnumerator IntroSequence()
     {
+        // Begin dialogue only after the scene has been fully revealed.
+        SceneIntroFade introFade = FindFirstObjectByType<SceneIntroFade>();
+        while (introFade != null && introFade.isActiveAndEnabled && !introFade.IsComplete)
+            yield return null;
+
         if (lubnaWalkerObj != null) lubnaWalkerObj.SetActive(false);
         if (lubnaTalkerObj != null) lubnaTalkerObj.SetActive(true);
 
@@ -387,10 +392,6 @@ public class MasterManager : MonoBehaviour
     public void FinalizeAndUploadReport()
     {
         isGameActive = false;
-        if (LocalProgressManager.Instance != null)
-        {
-            LocalProgressManager.Instance.MarkGameComplete(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-        }
         if (PsychometricReportManager.Instance != null)
         {
             PsychometricReportManager.Instance.FinishCurrentIndicator();
@@ -398,14 +399,6 @@ public class MasterManager : MonoBehaviour
         }
     }
 
-    void OnApplicationQuit()
-    {
-        if (isGameActive && PsychometricReportManager.Instance != null)
-        {
-            PsychometricReportManager.Instance.FinishCurrentIndicator();
-            PsychometricReportManager.Instance.UploadCurrentGameResult();
-        }
-    }
 
     public void ShowNextButton()
     {

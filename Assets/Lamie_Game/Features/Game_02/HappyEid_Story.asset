@@ -26,9 +26,10 @@ MonoBehaviour:
   - H_Light
   - H_Stars
   - H_Sunflowers
-  - H_Sunflowers
+  - H_Balloons
+  - H_Seat
   - H_Decoration
-  expectedSymbolsCount: 6
+  expectedSymbolsCount: 7
   maxDecorAvailable: 7
   paletteMood:
   - pink

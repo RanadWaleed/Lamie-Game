@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -39,10 +39,11 @@ public class Game4Manager : MonoBehaviour
         LoadLevel(0);
     }
 
-    void LoadLevel(int index)
+    void LoadLevel(int index, bool deferTimer = false)
     {
         if (index < levels.Length)
         {
+            if (MasterManager.Instance != null) MasterManager.Instance.isGameActive = false;
             isLevelCompleted = false;
             clicksThisStage = 0;
 
@@ -65,7 +66,7 @@ public class Game4Manager : MonoBehaviour
 
                         if (optionsButtons != null && i < optionsButtons.Length && optionsButtons[i] != null)
                         {
-                            optionsButtons[i].interactable = true;
+                            optionsButtons[i].interactable = !deferTimer;
                         }
                     }
                     else
@@ -86,7 +87,7 @@ public class Game4Manager : MonoBehaviour
             {
                 MasterManager.Instance.totalRequiredMatches = 1;
                 MasterManager.Instance.maxTimeForCurrentLevel = levels[index].standardTime;
-                MasterManager.Instance.StartTimer();
+                if (!deferTimer) BeginReadyQuestion();
             }
         }
         else
@@ -101,6 +102,20 @@ public class Game4Manager : MonoBehaviour
                 masterManager.ShowNextButton();
             }
         }
+    }
+
+    // Start measurement at the same moment that answers become available.
+    private void BeginReadyQuestion()
+    {
+        if (isAnimating || isLevelCompleted || currentLevel < 0 || currentLevel >= levels.Length) return;
+        if (optionsButtons != null)
+        {
+            for (int i = 0; i < optionsButtons.Length; i++)
+                if (optionsButtons[i] != null)
+                    optionsButtons[i].interactable = optionsImages != null && i < optionsImages.Length &&
+                        optionsImages[i] != null && optionsImages[i].gameObject.activeSelf;
+        }
+        if (MasterManager.Instance != null) MasterManager.Instance.StartTimer();
     }
 
     public void OnOptionClicked(int index)
@@ -178,7 +193,7 @@ public class Game4Manager : MonoBehaviour
             if (levelContainerRect != null)
             {
                 levelContainerRect.anchoredPosition = originalContainerPos + new Vector2(2500f, 0);
-                LoadLevel(currentLevel);
+                LoadLevel(currentLevel, true);
 
                 Vector2 startPos = levelContainerRect.anchoredPosition;
                 Vector2 endPos = originalContainerPos;
@@ -193,15 +208,16 @@ public class Game4Manager : MonoBehaviour
             }
             else
             {
-                LoadLevel(currentLevel);
+                LoadLevel(currentLevel, true);
             }
         }
         else
         {
-            LoadLevel(currentLevel);
+            LoadLevel(currentLevel, true);
         }
 
         isAnimating = false;
+        BeginReadyQuestion();
     }
 
     IEnumerator GoBackRoutine()
@@ -228,7 +244,7 @@ public class Game4Manager : MonoBehaviour
         if (levelContainerRect != null)
         {
             levelContainerRect.anchoredPosition = originalContainerPos + new Vector2(-2500f, 0);
-            LoadLevel(currentLevel);
+            LoadLevel(currentLevel, true);
 
             Vector2 startPos = levelContainerRect.anchoredPosition;
             Vector2 endPos = originalContainerPos;
@@ -243,9 +259,10 @@ public class Game4Manager : MonoBehaviour
         }
         else
         {
-            LoadLevel(currentLevel);
+            LoadLevel(currentLevel, true);
         }
 
         isAnimating = false;
+        BeginReadyQuestion();
     }
 }

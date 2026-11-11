@@ -3476,8 +3476,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1233554080}
-        m_TargetAssemblyTypeName: SceneFlowTrigger, Assembly-CSharp
-        m_MethodName: GoToSpecific
+        m_TargetAssemblyTypeName: GameCompleteHandler, Assembly-CSharp
+        m_MethodName: OnNextPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3534,11 +3534,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1233554075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c92158a73ab563440be8366c57515441, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a3dfd4f95ac6744faec657647236179, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneFlowTrigger
-  useSpecificState: 1
-  targetState: 8
+  m_EditorClassIdentifier: Assembly-CSharp::GameCompleteHandler
 --- !u!1 &1266518217
 GameObject:
   m_ObjectHideFlags: 0
@@ -4891,6 +4889,7 @@ MonoBehaviour:
   minAlpha: 0.2
   maxAlpha: 0.8
   badgesSceneName: InventoryScene
+  useExternalNavigation: 1
 --- !u!114 &1634018122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7222,6 +7221,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 2188000001}
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 254694493}
@@ -7239,3 +7239,49 @@ SceneRoots:
   - {fileID: 1756459831}
   - {fileID: 1614744634}
   - {fileID: 1472996011}
+--- !u!1 &2188000000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2188000001}
+  - component: {fileID: 2188000002}
+  m_Layer: 5
+  m_Name: SceneIntroFade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2188000001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2188000000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2188000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2188000000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee91bb5d1274b299cd3df7c6e552110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 2
+  holdDuration: 0.15

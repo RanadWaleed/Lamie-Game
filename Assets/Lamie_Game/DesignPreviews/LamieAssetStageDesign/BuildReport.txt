@@ -1,0 +1,1 @@
+SUCCESS: 3 original user building sprites, ready-made CraftPix ground, cobbled road and palms; GOBI Studio high-resolution clouds; native shader gradient sky. Existing scenes and build settings untouched.

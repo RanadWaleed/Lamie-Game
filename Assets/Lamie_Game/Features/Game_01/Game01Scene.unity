@@ -186,7 +186,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: e7b22748be200af419c9e574bec2e7b7, type: 3}
     - {fileID: 21300000, guid: e7b22748be200af419c9e574bec2e7b7, type: 3}
     correctSlotIndex: 1
-    standardTime: 10
+    standardTime: 12
     distractorObject: {fileID: 0}
   - candyImages:
     - {fileID: -3230691294754269663, guid: ff9bf365be0385045b76411d8c00d7e0, type: 3}
@@ -194,7 +194,7 @@ MonoBehaviour:
     - {fileID: -3230691294754269663, guid: ff9bf365be0385045b76411d8c00d7e0, type: 3}
     - {fileID: 288847819329685680, guid: b65e93913641d1946b6041d9b7ea21cc, type: 3}
     correctSlotIndex: 3
-    standardTime: 10
+    standardTime: 12
     distractorObject: {fileID: 0}
   - candyImages:
     - {fileID: 2032972958061289525, guid: e5cde78dff3803e40babc7384424555f, type: 3}
@@ -202,7 +202,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: b20fd5637299c0041b9d57188dac2f28, type: 3}
     - {fileID: 2032972958061289525, guid: e5cde78dff3803e40babc7384424555f, type: 3}
     correctSlotIndex: 2
-    standardTime: 10
+    standardTime: 12
     distractorObject: {fileID: 2091297556}
   - candyImages:
     - {fileID: 21300000, guid: 873cf435629fdc54aab0a7883e364629, type: 3}
@@ -210,7 +210,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 758aa7cb388f6e14386d416cf52fa3bc, type: 3}
     - {fileID: 21300000, guid: 758aa7cb388f6e14386d416cf52fa3bc, type: 3}
     correctSlotIndex: 0
-    standardTime: 10
+    standardTime: 12
     distractorObject: {fileID: 0}
   - candyImages:
     - {fileID: 21300000, guid: a54032b74e5f4aa44bf080dad01aa7b5, type: 3}
@@ -220,7 +220,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: a54032b74e5f4aa44bf080dad01aa7b5, type: 3}
     - {fileID: 21300000, guid: a54032b74e5f4aa44bf080dad01aa7b5, type: 3}
     correctSlotIndex: 3
-    standardTime: 10
+    standardTime: 12
     distractorObject: {fileID: 0}
 --- !u!225 &38480142
 CanvasGroup:
@@ -3461,8 +3461,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 924211526}
-        m_TargetAssemblyTypeName: SceneFlowTrigger, Assembly-CSharp
-        m_MethodName: GoToNext
+        m_TargetAssemblyTypeName: GameCompleteHandler, Assembly-CSharp
+        m_MethodName: OnNextPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3519,11 +3519,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 924211521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c92158a73ab563440be8366c57515441, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a3dfd4f95ac6744faec657647236179, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneFlowTrigger
-  useSpecificState: 0
-  targetState: 0
+  m_EditorClassIdentifier: Assembly-CSharp::GameCompleteHandler
 --- !u!1 &924287878
 GameObject:
   m_ObjectHideFlags: 0
@@ -9418,6 +9416,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 2188000001}
   - {fileID: 434381409}
   - {fileID: 1295908730}
   - {fileID: 1940761893}
@@ -9425,3 +9424,49 @@ SceneRoots:
   - {fileID: 1012964265}
   - {fileID: 1133650687}
   - {fileID: 2048394111}
+--- !u!1 &2188000000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2188000001}
+  - component: {fileID: 2188000002}
+  m_Layer: 5
+  m_Name: SceneIntroFade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2188000001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2188000000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2188000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2188000000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee91bb5d1274b299cd3df7c6e552110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 2
+  holdDuration: 0.15

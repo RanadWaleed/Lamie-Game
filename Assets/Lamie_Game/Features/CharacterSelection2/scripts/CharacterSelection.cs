@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,13 +21,13 @@ public class CharacterSelection : MonoBehaviour
 
     void Start()
     {
-        string childName = PlayerPrefs.GetString("ChildName", "صديق لامع");
+        string childName = ChildLocalProfile.GetString("ChildName", "صديق لامع");
         if (characterNameDisplay != null) characterNameDisplay.text = childName;
 
-        string gender = PlayerPrefs.GetString("UserGender", "أنثى").Trim();
+        string gender = ChildLocalProfile.GetString("UserGender", PlayerPrefs.GetString("UserGender", "أنثى")).Trim();
         Debug.Log("Gender length: " + gender.Length);
 
-        if (gender == "ذكر" || gender == "ركذ")
+        if (ChildLocalProfile.IsBoy(gender))
         {
             activeCharacters = boySprites;
             Debug.Log("biy list activated successfully.");
@@ -38,6 +38,8 @@ public class CharacterSelection : MonoBehaviour
             Debug.Log("Girl list activated successfully.");
         }
 
+        centerIndex = activeCharacters != null && activeCharacters.Count > 0
+            ? Mathf.Clamp(ChildLocalProfile.GetInt("SelectedCharacterIndex"), 0, activeCharacters.Count - 1) : 0;
         UpdateCenterSprite();
     }
 
@@ -79,8 +81,11 @@ public class CharacterSelection : MonoBehaviour
     public void ConfirmSelection()
     {
         Debug.Log("Start Button Clicked. Saving Index: " + centerIndex);
-        PlayerPrefs.SetInt("SelectedCharacterIndex", centerIndex);
-        PlayerPrefs.Save();
+        if (!ChildLocalProfile.SaveCharacter(centerIndex))
+        {
+            Debug.LogError("Choose a child profile before saving a character.");
+            return;
+        }
 
         if (GameFlowManager.Instance != null)
             GameFlowManager.Instance.GoToNextState();

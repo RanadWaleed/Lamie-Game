@@ -15,6 +15,8 @@ public class ArtAssessmentManager : MonoBehaviour
     private float designStartTime;
     private float designEndTime;
     private bool isTracking = false;
+    private float shapesActiveTime;
+    private float shapesTabOpenedAt = -1f;
 
     private int skyPlaceCount = 0;
     private bool skyFirstWasCorrect = false;
@@ -50,6 +52,8 @@ public class ArtAssessmentManager : MonoBehaviour
         ResetAll();
         designStartTime = Time.time;
         isTracking = true;
+        ToolboxLogic toolbox = FindFirstObjectByType<ToolboxLogic>();
+        OnToolCategoryChanged(toolbox != null ? toolbox.ActiveTabIndex : 0);
 
         PsychometricReportManager.Instance?.SetupNewAspect("الإخراج الفني", "Game_3");
     }
@@ -57,13 +61,25 @@ public class ArtAssessmentManager : MonoBehaviour
     public void StopTracking()
     {
         if (!isTracking) return;
+        OnToolCategoryChanged(-1);
         isTracking = false;
         designEndTime = Time.time;
         Debug.Log($"[Art] انتهى التصميم | المدة: {designEndTime - designStartTime:F1}s");
     }
 
+    // Count time spent in the background/building tabs, excluding other design categories.
+    public void OnToolCategoryChanged(int tabIndex)
+    {
+        if (!isTracking) return;
+        if (shapesTabOpenedAt >= 0f)
+            shapesActiveTime += Mathf.Max(0f, Time.time - shapesTabOpenedAt);
+        shapesTabOpenedAt = tabIndex == 0 || tabIndex == 1 ? Time.time : -1f;
+    }
+
     private void ResetAll()
     {
+        shapesActiveTime = 0f;
+        shapesTabOpenedAt = -1f;
         skyPlaceCount = 0; skyFirstWasCorrect = false; firstSkyTime = -1f;
         buildingPlaceCount = 0; buildingFirstWasCorrect = false; firstBuildingTime = -1f;
         characterPlaceCount = 0; characterFirstWasCorrect = false; firstCharacterTime = -1f;
@@ -148,7 +164,8 @@ public class ArtAssessmentManager : MonoBehaviour
 
     public void OnTitleSelected(string titleId)
     {
-        if (titleQuestionOpenTime < 0) return;
+        if (titleQuestionOpenTime < 0 || string.IsNullOrEmpty(titleId) ||
+            string.Equals(lastSelectedTitle, titleId, System.StringComparison.Ordinal)) return;
 
         float now = Time.time - designStartTime;
         bool isCorrect = titleId == storyMapping?.correctTitleId;
@@ -214,12 +231,7 @@ public class ArtAssessmentManager : MonoBehaviour
 
         float totalDesignTime = designEndTime - designStartTime;
 
-        float shapesAnchor = Mathf.Min(
-            firstSkyTime >= 0 ? firstSkyTime : totalDesignTime,
-            firstBuildingTime >= 0 ? firstBuildingTime : totalDesignTime
-        );
-        float shapesTimeTaken = totalDesignTime - shapesAnchor;
-        if (shapesTimeTaken <= 0f) shapesTimeTaken = totalDesignTime;
+        float shapesTimeTaken = shapesActiveTime;
 
         float symbolsAnchor = Mathf.Min(
             firstCharacterTime >= 0 ? firstCharacterTime : totalDesignTime,
@@ -239,10 +251,6 @@ public class ArtAssessmentManager : MonoBehaviour
         SubmitInd6_VisualBalance(usedLayerCategories, finalDecorTypeCounts, allPositions);
         SubmitInd7_VerbalAwareness();
         SubmitInd8_ElementDiversity(usedLayerCategories, finalDecorNames);
-        if (LocalProgressManager.Instance != null)
-        {
-            LocalProgressManager.Instance.MarkGameComplete(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-        }
         PsychometricReportManager.Instance?.UploadCurrentGameResult();
         Debug.Log("[Art] ══ اكتمل القياس ══");
     }
@@ -603,12 +611,4 @@ public class ArtAssessmentManager : MonoBehaviour
         pm.currentIndicator?.items.Add(item);
     }
 
-    void OnApplicationQuit()
-    {
-        if (isTracking)
-        {
-            StopTracking();
-            CalculateAll();
-        }
-    }
 }

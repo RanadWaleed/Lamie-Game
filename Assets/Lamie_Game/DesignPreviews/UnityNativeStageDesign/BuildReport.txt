@@ -1,0 +1,1 @@
+SUCCESS: native Unity geometry. No generated background image, no existing scenes edited. Clouds: 4. Stage buildings: 3. Scene: Assets/Lamie_Game/DesignPreviews/UnityNativeStageDesign/LevelBackgroundDesign_Native.unity

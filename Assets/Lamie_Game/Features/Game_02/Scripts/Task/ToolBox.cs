@@ -17,6 +17,8 @@ public class ToolboxLogic : MonoBehaviour
     public float scrollStep = 200f;
     public float maxX = 0f;
 
+    public int ActiveTabIndex { get; private set; }
+
     private float minX = 0f;
     private List<float> baseHeights = new List<float>();
 
@@ -56,6 +58,8 @@ public class ToolboxLogic : MonoBehaviour
 
     public void SwitchTab(int index)
     {
+        ActiveTabIndex = index;
+        ArtAssessmentManager.Instance?.OnToolCategoryChanged(index);
         for (int i = 0; i < tags.Count; i++)
         {
             panels[i].SetActive(i == index);

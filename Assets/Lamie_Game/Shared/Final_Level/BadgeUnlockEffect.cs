@@ -24,6 +24,7 @@ public class BadgeUnlockEffect : MonoBehaviour
 
     [Header("Scene Transition")]
     public string badgesSceneName = "Inventory";
+    public bool useExternalNavigation = false;
 
     private Vector3 targetScale = Vector3.one;
     private float currentSpinTime = 0f;
@@ -36,7 +37,8 @@ public class BadgeUnlockEffect : MonoBehaviour
             raysImageComponent.rectTransform.localScale = Vector3.zero;
         }
 
-        backgroundButton.onClick.AddListener(GoToBadgesPage);
+        if (!useExternalNavigation && backgroundButton != null)
+            backgroundButton.onClick.AddListener(GoToBadgesPage);
 
         if (unlockSound != null)
         {

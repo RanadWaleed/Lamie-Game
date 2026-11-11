@@ -1,0 +1,1 @@
+Clouds inside camera frame. Native scene compiled and rendered.

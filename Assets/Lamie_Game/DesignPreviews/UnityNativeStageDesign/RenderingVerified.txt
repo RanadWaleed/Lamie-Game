@@ -1,0 +1,1 @@
+Isolated native geometry render with dedicated illustrated depth-tested shader. Existing scenes and render pipeline assets unchanged.

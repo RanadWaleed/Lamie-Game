@@ -15,6 +15,7 @@ public class ProfileManager : MonoBehaviour
     void Start()
     {
         string childId = PlayerPrefs.GetString("CurrentChildID", "");
+        ShowLocalProfile();
         if (!string.IsNullOrEmpty(childId))
         {
             StartCoroutine(FetchProfileData(childId));
@@ -24,6 +25,12 @@ public class ProfileManager : MonoBehaviour
         {
             PsychometricReportManager.Instance.SyncOfflineData();
         }
+    }
+
+    private void ShowLocalProfile()
+    {
+        if (nameText != null) nameText.text = ChildLocalProfile.GetString("ChildName", "بطل لامع");
+        if (ageText != null) ageText.text = ChildLocalProfile.GetInt("ChildAge", 6) + " سنوات";
     }
 
     IEnumerator FetchProfileData(string id)
@@ -36,20 +43,18 @@ public class ProfileManager : MonoBehaviour
             string json = System.Text.Encoding.UTF8.GetString(req.downloadHandler.data);
             ChildProfile profile = JsonUtility.FromJson<ChildProfile>(json);
 
-            if (profile != null)
+            if (profile != null && id == ChildLocalProfile.CurrentChildId)
             {
                 if (nameText != null) nameText.text = profile.fullName;
                 if (ageText != null) ageText.text = profile.age + " سنوات";
 
-                PlayerPrefs.SetString("SavedChildName", profile.fullName);
-                PlayerPrefs.SetInt("SavedChildAge", profile.age);
-                PlayerPrefs.Save();
+                ChildLocalProfile.SaveProfile(id, profile.fullName, profile.age, profile.gender);
             }
         }
         else
         {
-            string savedName = PlayerPrefs.GetString("SavedChildName", "بطل لامع");
-            int savedAge = PlayerPrefs.GetInt("SavedChildAge", 6);
+            string savedName = ChildLocalProfile.GetString("ChildName", "بطل لامع");
+            int savedAge = ChildLocalProfile.GetInt("ChildAge", 6);
 
             if (nameText != null) nameText.text = savedName;
             if (ageText != null) ageText.text = savedAge + " سنوات";

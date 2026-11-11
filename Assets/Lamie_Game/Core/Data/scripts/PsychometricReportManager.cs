@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,296 +49,308 @@ public class SaveGameResultRequest
 public class PsychometricReportManager : MonoBehaviour
 {
     public static PsychometricReportManager Instance;
-
+    private const string AssessmentVersion = "lamie-fixed-v1";
+    private readonly LocalAssessmentStore store = new LocalAssessmentStore(new AssessmentLocalPersistence());
+    private readonly HashSet<string> activeUploads = new HashSet<string>();
     private string apiURL = "http://localhost:5194/api/Unity/SaveGameResult";
     private string levelsURL = "http://localhost:5194/api/Unity/GetGameLevels";
-
-    public string level1ID = "";
-    public string level2ID = "";
-    public string level3ID = "";
+    // Ordered by the confirmed platform aspects, not the old folder numbering.
+    public string level1ID = ""; // التصور
+    public string level2ID = ""; // الإخراج الفني
+    public string level3ID = ""; // التمثيل
     public string level4ID = "";
-    private string currentChildId = "";
-    private string currentLevelId = "";
-    private float sessionStartTime = 0f;
-    private AspectResultDto currentAspect = null;
-    public IndicatorResultDto currentIndicator = null;
+    private string currentChildId;
+    private string currentScene;
+    private float sessionStartTime;
+    private AspectResultDto currentAspect;
+    public IndicatorResultDto currentIndicator;
     private float stage1_C, stage1_A;
-    private bool hasStage1Data = false;
+    private bool hasStage1Data;
+    private int attemptNumber;
+    public bool IsPractice { get; private set; }
+    public static readonly string[] AssessmentScenes = { "Game01Scene", "Game02Scene", "Game_03" };
 
-    void Awake()
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void InstallSceneBootstrap()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else Destroy(gameObject);
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= EnsureManager;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += EnsureManager;
     }
 
-    void Start()
+    private static void EnsureManager(UnityEngine.SceneManagement.Scene scene,
+        UnityEngine.SceneManagement.LoadSceneMode mode)
     {
-        StartCoroutine(FetchLevelIDs());
+        if (Instance == null && System.Array.IndexOf(AssessmentScenes, scene.name) >= 0)
+            new GameObject("PsychometricReportManager").AddComponent<PsychometricReportManager>();
+    }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded += OnSceneUnloaded;
+    }
+
+    private void Start() => StartCoroutine(FetchLevelIDs());
+    private void OnDestroy()
+    {
+        if (Instance != this) return;
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        Instance = null;
+    }
+    private void OnSceneUnloaded(UnityEngine.SceneManagement.Scene scene)
+    {
+        if (scene.name == currentScene) DiscardIncompleteSession();
     }
 
     [System.Serializable] public class LevelData { public string levelId; public string levelName; }
     [System.Serializable] public class LevelListWrapper { public List<LevelData> levels; }
+    [System.Serializable] private class SaveResponse { public bool success; public SaveResponseData data; }
+    [System.Serializable] private class SaveResponseData { public string sessionId; }
 
     private IEnumerator FetchLevelIDs()
     {
-        UnityWebRequest request = UnityWebRequest.Get(levelsURL);
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
+        if (LocalTestAccess.IsTestChild(ChildLocalProfile.CurrentChildId)) yield break;
+        using (UnityWebRequest request = UnityWebRequest.Get(levelsURL))
         {
-            string rawJson = request.downloadHandler.text;
-            Debug.Log("[Levels] Raw Data: " + rawJson);
-
-            var wrapper = JsonUtility.FromJson<LevelListWrapper>("{\"levels\":" + rawJson + "}");
-
-            foreach (var level in wrapper.levels)
+            request.timeout = 10;
+            yield return request.SendWebRequest();
+            if (request.result != UnityWebRequest.Result.Success)
             {
-                if (level.levelName.Trim() == "لعبة التصور") level1ID = level.levelId;
-                else if (level.levelName.Trim() == "لعبة التمثيل") level2ID = level.levelId;
-                else if (level.levelName.Trim() == "لعبة الإخراج الفني") level3ID = level.levelId;
-                else if (level.levelName.Trim() == "لعبة الجوانب الأخرى") level4ID = level.levelId;
+                Debug.LogWarning("Platform unavailable; assessment remains fully local.");
+                yield break;
             }
-            Debug.Log($"[Levels] Done! Game1 ID: {level1ID}");
+            LevelListWrapper wrapper = null;
+            try { wrapper = JsonUtility.FromJson<LevelListWrapper>("{\"levels\":" + request.downloadHandler.text + "}"); }
+            catch (System.Exception e) { Debug.LogWarning("Invalid level list: " + e.Message); }
+            if (wrapper?.levels == null) yield break;
+            foreach (LevelData level in wrapper.levels)
+            {
+                if (level == null || !System.Guid.TryParse(level.levelId, out _)) continue;
+                switch (level.levelName?.Trim())
+                {
+                    case "لعبة التصور":
+                    case "لعبة التصور البصري": level1ID = level.levelId; break;
+                    case "لعبة الإخراج الفني": level2ID = level.levelId; break;
+                    case "لعبة التمثيل": level3ID = level.levelId; break;
+                    case "لعبة الجوانب الأخرى": level4ID = level.levelId; break;
+                }
+            }
         }
-        else
-        {
-            Debug.LogWarning("[Levels] Server not available, running offline: " + request.error);
-        }
+        SyncOfflineData();
     }
+
+    private string ResolveLevel(string aspect) => aspect switch
+    {
+        "التصور" => level1ID,
+        "الإخراج الفني" => level2ID,
+        "التمثيل" => level3ID,
+        _ => ""
+    };
 
     public void SetupNewAspect(string aspectName, string gameNumber)
     {
-        currentChildId = PlayerPrefs.GetString("CurrentChildID", "No_ID_Found");
-        sessionStartTime = Time.time;
-
-        currentLevelId = gameNumber switch
+        DiscardIncompleteSession();
+        currentChildId = ChildLocalProfile.CurrentChildId;
+        currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        string expectedAspect = currentScene switch
         {
-            "Game_1" => level1ID,
-            "Game_2" => level2ID,
-            "Game_3" => level3ID,
-            _ => level1ID
+            "Game01Scene" => "التصور", "Game02Scene" => "الإخراج الفني", "Game_03" => "التمثيل", _ => ""
         };
-
+        if (string.IsNullOrWhiteSpace(currentChildId) || expectedAspect != aspectName)
+        {
+            Debug.LogError("Assessment requires a logged-in child and the correct game aspect.");
+            DiscardIncompleteSession();
+            return;
+        }
+        // gameNumber is retained for compatibility; report identity follows the aspect name.
+        IsPractice = store.HasBaseline(currentChildId, currentScene);
+        attemptNumber = IsPractice ? 0 : store.BeginAttempt(currentChildId, currentScene);
+        sessionStartTime = Time.time;
         currentAspect = new AspectResultDto { aspectName = aspectName };
-
-        Debug.Log($"[Aspect] بدأ جانب جديد: {aspectName} | LevelID: {currentLevelId}");
+        Debug.Log(IsPractice ? "Lamie: practice; original assessment is protected." :
+            "Lamie: new full assessment attempt " + attemptNumber);
     }
 
     public void StartNewIndicator(string indicatorName)
     {
+        if (currentAspect == null) return;
         currentIndicator = new IndicatorResultDto { indicatorName = indicatorName };
         hasStage1Data = false;
-
-        Debug.Log($"[Indicator] بدأ مؤشر: {indicatorName}");
     }
 
     public void SaveItemData(int index, float c, float n, float a, float actualTime, float standardTime, string itemName = "")
     {
-        if (index == 1)
+        if (currentAspect == null || currentIndicator == null) return;
+        // Item six is derived once from item one, never another weighted gameplay item.
+        if (index == 6 && hasStage1Data) return;
+        if (index == 1) { stage1_C = c; stage1_A = a; hasStage1Data = true; }
+        if (currentIndicator.items.Exists(item => item.itemIndex == index))
         {
-            stage1_C = c; stage1_A = a; hasStage1Data = true;
+            Debug.LogWarning("Duplicate assessment item ignored: " + index);
+            return;
         }
-
-        AssessmentItemDto item = BuildItem(index, c, n, a, actualTime, standardTime, itemName);
-        currentIndicator?.items.Add(item);
-        Debug.Log($"[Item {index}] Final={item.finalScore:F2} → {item.rating}");
+        AssessmentItemDto value = new AssessmentItemDto
+        {
+            itemIndex = index,
+            itemName = string.IsNullOrEmpty(itemName) ? "بند " + index : itemName,
+            finalScore = (n > 0 ? Mathf.Clamp01(c / n) : 0f) * 0.6f +
+                (actualTime > 0 ? Mathf.Clamp01(standardTime / actualTime) : 0f) * 0.2f +
+                (a > 0 ? Mathf.Clamp01(c / a) : 0f) * 0.2f
+        };
+        AssignRating(value);
+        currentIndicator.items.Add(value);
     }
 
     public void FinishCurrentIndicator()
     {
-        if (currentIndicator == null) return;
-
-        if (hasStage1Data)
+        if (currentAspect == null || currentIndicator == null) return;
+        if (hasStage1Data && !currentIndicator.items.Exists(item => item.itemIndex == 6))
         {
-            string item6Name = "بند 6";
-            if (MasterManager.Instance != null &&
-                MasterManager.ItemNames.TryGetValue(currentIndicator.indicatorName, out var names) &&
-                names.Length >= 6)
+            string name = "بند 6";
+            string[] names;
+            if ((currentScene == "Game01Scene" && MasterManager.ItemNames.TryGetValue(currentIndicator.indicatorName, out names)) ||
+                (currentScene == "Game_03" && Game3_MasterManager.ItemNames.TryGetValue(currentIndicator.indicatorName, out names)))
+                name = names.Length >= 6 ? names[5] : name;
+            AssessmentItemDto derived = new AssessmentItemDto
             {
-                item6Name = names[5];
-            }
-
-            AssessmentItemDto item6 = new AssessmentItemDto
-            {
-                itemIndex = 6,
-                itemName = item6Name,
+                itemIndex = 6, itemName = name,
                 finalScore = stage1_A > 0 ? Mathf.Clamp01(stage1_C / stage1_A) : 0f
             };
-            AssignRating(item6);
-            currentIndicator.items.Add(item6);
-            hasStage1Data = false;
-
-            Debug.Log($"[Item 6 - Randomness] Final={item6.finalScore:F2} → {item6.rating}");
+            AssignRating(derived);
+            currentIndicator.items.Add(derived);
         }
-
+        hasStage1Data = false;
         float total = 0f;
-        foreach (var item in currentIndicator.items) total += item.finalScore;
-        currentIndicator.indicatorScore = currentIndicator.items.Count > 0
-            ? total / currentIndicator.items.Count : 0f;
-
-        AssignIndicatorRating(currentIndicator);
-        currentAspect?.indicators.Add(currentIndicator);
+        foreach (AssessmentItemDto item in currentIndicator.items) total += item.finalScore;
+        currentIndicator.indicatorScore = currentIndicator.items.Count > 0 ? total / currentIndicator.items.Count : 0f;
+        currentIndicator.indicatorRating = Rating(currentIndicator.indicatorScore);
+        currentIndicator.psychometricPts = Points(currentIndicator.indicatorScore);
+        currentAspect.indicators.Add(currentIndicator);
         currentIndicator = null;
-
-        Debug.Log($"[Indicator Done] Score={currentAspect?.indicators[^1].indicatorScore:F2}");
     }
 
     public void UploadCurrentGameResult()
     {
-        if (currentAspect == null)
+        if (currentAspect == null) return;
+        if (currentChildId != ChildLocalProfile.CurrentChildId ||
+            currentScene != UnityEngine.SceneManagement.SceneManager.GetActiveScene().name)
         {
-            Debug.LogError("[Upload] لا يوجد aspect للرفع!");
+            DiscardIncompleteSession();
             return;
         }
-
-        float total = 0f;
-        foreach (var ind in currentAspect.indicators) total += ind.indicatorScore;
-        currentAspect.aspectScore = currentAspect.indicators.Count > 0
-            ? total / currentAspect.indicators.Count : 0f;
-
-        AssignAspectRating(currentAspect);
-
-        float totalTime = Time.time - sessionStartTime;
-
-        var payload = new SaveGameResultRequest
+        if (IsPractice) { DiscardIncompleteSession(); return; }
+        int required = currentScene == "Game02Scene" ? 8 : 4;
+        HashSet<string> indicatorNames = new HashSet<string>();
+        bool valid = currentIndicator == null && currentAspect.indicators.Count == required;
+        foreach (IndicatorResultDto indicator in currentAspect.indicators)
         {
-            childId = currentChildId,
-            levelId = currentLevelId,
-            totalTime = totalTime,
-            aspectResult = currentAspect
-        };
-
-        string json = JsonUtility.ToJson(payload, true);
-        Debug.Log("[Upload] Payload:\n" + json);
-
-        PlayerPrefs.SetString("LastBackup_" + currentChildId + "_" + currentLevelId, json);
-        PlayerPrefs.Save();
-
-        StartCoroutine(PostWithRetry(apiURL, json, retryCount: 3));
-        currentAspect = null;
-    }
-
-    private AssessmentItemDto BuildItem(int index, float c, float n, float a, float actualTime, float standardTime, string itemName = "")
-    {
-        float accuracy = n > 0 ? Mathf.Clamp01(c / n) : 0f;
-        float speedScore = actualTime > 0 ? Mathf.Clamp01(standardTime / actualTime) : 0f;
-        float errorRate = a > 0 ? Mathf.Clamp01(c / a) : 0f;
-        float finalScore = (accuracy * 0.6f) + (speedScore * 0.2f) + (errorRate * 0.2f);
-
-        var item = new AssessmentItemDto
-        {
-            itemIndex = index,
-            itemName = string.IsNullOrEmpty(itemName) ? "بند " + index : itemName,
-            finalScore = finalScore
-        };
-        AssignRating(item);
-        return item;
-    }
-
-    private void AssignRating(AssessmentItemDto item)
-    {
-        if (item.finalScore >= 0.80f) { item.rating = "غالبًا"; item.psychometricPts = 3; }
-        else if (item.finalScore >= 0.50f) { item.rating = "أحيانًا"; item.psychometricPts = 2; }
-        else { item.rating = "نادرًا"; item.psychometricPts = 1; }
-    }
-
-    private void AssignIndicatorRating(IndicatorResultDto ind)
-    {
-        if (ind.indicatorScore >= 0.80f) { ind.indicatorRating = "غالبًا"; ind.psychometricPts = 3; }
-        else if (ind.indicatorScore >= 0.50f) { ind.indicatorRating = "أحيانًا"; ind.psychometricPts = 2; }
-        else { ind.indicatorRating = "نادرًا"; ind.psychometricPts = 1; }
-    }
-
-    private void AssignAspectRating(AspectResultDto asp)
-    {
-        if (asp.aspectScore >= 0.80f) { asp.aspectRating = "غالبًا"; asp.psychometricPts = 3; }
-        else if (asp.aspectScore >= 0.50f) { asp.aspectRating = "أحيانًا"; asp.psychometricPts = 2; }
-        else { asp.aspectRating = "نادرًا"; asp.psychometricPts = 1; }
-    }
-
-    private IEnumerator PostWithRetry(string url, string json, int retryCount)
-    {
-        int attempt = 0;
-        bool success = false;
-
-        while (attempt < retryCount && !success)
-        {
-            attempt++;
-            Debug.Log($"[Upload] محاولة {attempt} من {retryCount}...");
-
-            var request = new UnityWebRequest(url, "POST");
-            request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(json));
-            request.downloadHandler = new DownloadHandlerBuffer();
-            request.SetRequestHeader("Content-Type", "application/json");
-
-            yield return request.SendWebRequest();
-            Debug.Log("Response Code: " + request.responseCode);
-            Debug.Log("Response: " + request.downloadHandler.text);
-            Debug.Log("Error: " + request.error);
-
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                success = true;
-                PlayerPrefs.DeleteKey("LastBackup_" + currentChildId + "_" + currentLevelId);
-                PlayerPrefs.Save();
-                Debug.Log("<color=green>[Upload] نجح: " + request.downloadHandler.text + "</color>");
-            }
-            else
-            {
-                Debug.LogWarning($"[Upload] فشل المحاولة {attempt}: {request.error}");
-                if (attempt < retryCount) yield return new WaitForSeconds(2f);
-            }
+            valid &= indicatorNames.Add(indicator.indicatorName) && indicator.items.Count > 0;
+            HashSet<int> indexes = new HashSet<int>();
+            foreach (AssessmentItemDto item in indicator.items) valid &= indexes.Add(item.itemIndex);
         }
+        if (!valid)
+        {
+            Debug.LogError("Incomplete assessment was not finalized. Restart this full game to assess again.");
+            return;
+        }
+        float total = 0;
+        foreach (IndicatorResultDto indicator in currentAspect.indicators) total += indicator.indicatorScore;
+        currentAspect.aspectScore = total / required;
+        currentAspect.aspectRating = Rating(currentAspect.aspectScore);
+        currentAspect.psychometricPts = Points(currentAspect.aspectScore);
+        CompletedAssessmentRecord record = new CompletedAssessmentRecord
+        {
+            reportId = System.Guid.NewGuid().ToString("N"), sceneName = currentScene,
+            assessmentVersion = currentScene == "Game02Scene" ? "lamie-art-bugfix-v2" : AssessmentVersion,
+            completedAtUtc = System.DateTime.UtcNow.ToString("o"),
+            attemptNumber = attemptNumber, hadPreviousInterruptedAttempt = attemptNumber > 1,
+            result = new SaveGameResultRequest
+            {
+                childId = currentChildId, levelId = ResolveLevel(currentAspect.aspectName),
+                totalTime = Time.time - sessionStartTime, aspectResult = currentAspect
+            }
+        };
+        string child = currentChildId, scene = currentScene;
+        bool saved = store.TrySaveFirstCompletion(child, scene, JsonUtility.ToJson(record));
+        if (saved)
+        {
+            PlayerPrefs.SetInt("lamie_" + child + "_game_" + scene, 1);
+            PlayerPrefs.Save();
+            LocalProgressManager.Instance?.MarkGameComplete(scene);
+            Debug.Log("Lamie: first complete assessment saved locally; replay is practice.");
+        }
+        DiscardIncompleteSession();
+        if (saved) QueueUpload(child, scene);
+    }
 
-        if (!success)
-            Debug.LogError($"[Upload] فشلت كل المحاولات. البيانات محفوظة محلياً.");
+    private static int Points(float score) => score >= 0.8f ? 3 : score >= 0.5f ? 2 : 1;
+    private static string Rating(float score) => score >= 0.8f ? "غالبًا" : score >= 0.5f ? "أحيانًا" : "نادرًا";
+    private static void AssignRating(AssessmentItemDto item)
+    {
+        item.rating = Rating(item.finalScore);
+        item.psychometricPts = Points(item.finalScore);
     }
 
     public void SyncOfflineData()
     {
-        string childId = PlayerPrefs.GetString("CurrentChildID", "");
-        if (string.IsNullOrEmpty(childId)) return;
-
-        string[] levels = { level1ID, level2ID, level3ID, level4ID };
-        foreach (var lvl in levels)
-        {
-            string key = "LastBackup_" + childId + "_" + lvl;
-            if (PlayerPrefs.HasKey(key))
-            {
-                string jsonPayload = PlayerPrefs.GetString(key);
-                Debug.Log($"[Sync] Attempting to upload previous data for level {lvl}");
-                StartCoroutine(PostOfflineBackup(apiURL, jsonPayload, key));
-            }
-        }
+        string child = ChildLocalProfile.CurrentChildId;
+        if (string.IsNullOrWhiteSpace(child)) return;
+        foreach (string scene in AssessmentScenes) QueueUpload(child, scene);
     }
 
-    private IEnumerator PostOfflineBackup(string url, string json, string prefsKey)
+    private void QueueUpload(string child, string scene)
     {
-        var request = new UnityWebRequest(url, "POST");
-        request.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes(json));
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
-
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            PlayerPrefs.DeleteKey(prefsKey);
-            PlayerPrefs.Save();
-            Debug.Log("<color=green>[Sync] Delayed data uploaded successfully.</color>");
-        }
+        if (LocalTestAccess.IsTestChild(child)) return;
+        string key = child + ":" + scene;
+        if (!store.HasBaseline(child, scene) || store.ReadDelivery(child, scene) != "pending" || activeUploads.Contains(key)) return;
+        CompletedAssessmentRecord record = null;
+        try { record = JsonUtility.FromJson<CompletedAssessmentRecord>(store.ReadBaseline(child, scene)); }
+        catch (System.Exception e) { Debug.LogError("Local report could not be read: " + e.Message); }
+        if (record?.result?.aspectResult == null) return;
+        // Resolve from the current platform list; never invent an ID or overwrite the baseline.
+        string levelId = ResolveLevel(record.result.aspectResult.aspectName);
+        if (!System.Guid.TryParse(levelId, out _)) return;
+        record.result.levelId = levelId;
+        activeUploads.Add(key);
+        StartCoroutine(PostSavedResult(child, scene, key, JsonUtility.ToJson(record.result)));
     }
 
-    void OnApplicationQuit()
+    private IEnumerator PostSavedResult(string child, string scene, string key, string json)
     {
-        if (currentAspect != null)
+        if (!store.TryBeginDelivery(child, scene)) { activeUploads.Remove(key); yield break; }
+        using (UnityWebRequest request = new UnityWebRequest(apiURL, "POST"))
         {
-            FinishCurrentIndicator();
-            UploadCurrentGameResult();
+            request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(json));
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+            request.timeout = 15;
+            yield return request.SendWebRequest();
+            SaveResponse response = null;
+            if (request.result == UnityWebRequest.Result.Success)
+                try { response = JsonUtility.FromJson<SaveResponse>(request.downloadHandler.text); }
+                catch (System.Exception) { /* Ambiguous response: keep local result and do not duplicate it. */ }
+            if (response != null && response.success && !string.IsNullOrWhiteSpace(response.data?.sessionId))
+                store.ConfirmDelivery(child, scene);
+            else if (response != null && !response.success)
+                store.RejectDelivery(child, scene);
+            else
+                Debug.LogWarning("Report saved locally; delivery unconfirmed. Automatic resend paused to avoid duplicate sessions.");
         }
+        activeUploads.Remove(key);
     }
+
+    private void DiscardIncompleteSession()
+    {
+        currentAspect = null;
+        currentIndicator = null;
+        currentScene = null;
+        currentChildId = null;
+        hasStage1Data = false;
+        IsPractice = false;
+    }
+
+    // Closing is interruption, never completion. No partial assessment is saved or uploaded.
+    private void OnApplicationQuit() => DiscardIncompleteSession();
 }

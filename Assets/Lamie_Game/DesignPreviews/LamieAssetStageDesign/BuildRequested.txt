@@ -1,0 +1,1 @@
+Build separate asset based scene only.

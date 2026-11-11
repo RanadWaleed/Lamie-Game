@@ -1,0 +1,1 @@
+Independent texture bindings for all source artwork; native gradient and separate imported assets, no flattened background.

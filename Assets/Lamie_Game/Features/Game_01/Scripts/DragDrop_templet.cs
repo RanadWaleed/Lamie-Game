@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -12,6 +12,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public bool isPlaced = false;
 
     private bool hasFailed = false;
+    private bool interactionEnabled = true;
+    private bool isDragging;
 
     private RectTransform rectTransform;
     private Canvas canvas;
@@ -27,11 +29,25 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
 
         originalScale = transform.localScale;
+        canvasGroup.blocksRaycasts = interactionEnabled && !isPlaced;
+    }
+
+    public void SetInteractionEnabled(bool value)
+    {
+        interactionEnabled = value;
+        if (!value && isDragging)
+        {
+            rectTransform.position = startWorldPosition;
+            transform.localScale = originalScale;
+            isDragging = false;
+        }
+        if (canvasGroup != null) canvasGroup.blocksRaycasts = value && !isPlaced;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (isPlaced) return;
+        if (isPlaced || !interactionEnabled) return;
+        isDragging = true;
 
         canvasGroup.blocksRaycasts = false;
         transform.SetAsLastSibling();
@@ -43,13 +59,14 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (isPlaced) return;
+        if (isPlaced || !interactionEnabled || !isDragging) return;
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (isPlaced) return;
+        if (isPlaced || !interactionEnabled || !isDragging) return;
+        isDragging = false;
 
         canvasGroup.blocksRaycasts = true;
 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Video;
 
 public class IntroVideoManager : MonoBehaviour
@@ -19,7 +19,7 @@ public class IntroVideoManager : MonoBehaviour
     {
         if (GameFlowManager.Instance != null)
         {
-            if (PlayerPrefs.GetInt("CharacterSelected", 0) == 0)
+            if (!ChildLocalProfile.HasCharacter)
             {
                 GameFlowManager.Instance.GoToState(GameFlowState.CharacterSelection);
             }

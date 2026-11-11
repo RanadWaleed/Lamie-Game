@@ -17,4 +17,7 @@ public class StageData : ScriptableObject
     public GameObject stagePrefab;
     public List<MatchPair> matchPairs = new List<MatchPair>();
     public List<Sprite> distractors = new List<Sprite>();
+
+    [Header("Distractor Target Containers")]
+    public List<Sprite> distractorTargets = new List<Sprite>();
 }

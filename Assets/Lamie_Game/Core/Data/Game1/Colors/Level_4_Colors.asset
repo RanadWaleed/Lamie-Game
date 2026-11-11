@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageData
   stageName: indirector1_Matching colors with shapes
   standardTime: 12
+  stagePrefab: {fileID: 0}
   matchPairs:
   - pairID: purple
     draggableSprite: {fileID: 21300000, guid: 8b253fb61154caa4e873b0c75225a312, type: 3}
@@ -27,6 +28,13 @@ MonoBehaviour:
   - pairID: purple
     draggableSprite: {fileID: 21300000, guid: 8b253fb61154caa4e873b0c75225a312, type: 3}
     targetSprite: {fileID: 21300000, guid: d103918d4cbe9ee468b6e38398c0ea9d, type: 3}
-  distractors:
-  - {fileID: 21300000, guid: 63a7450a9aec4d1418e3948fedae080f, type: 3}
-  - {fileID: 21300000, guid: 65546d77a70350641bbda21836511b7c, type: 3}
+  - pairID: red
+    draggableSprite: {fileID: 21300000, guid: dba653a8195d4c64ba8a8478467c026d, type: 3}
+    targetSprite: {fileID: 21300000, guid: 42b20b5f82a33084eb48742db73c513b, type: 3}
+  - pairID: orange
+    draggableSprite: {fileID: 21300000, guid: ed22180d53ffee943b8f93edff86e732, type: 3}
+    targetSprite: {fileID: 21300000, guid: 68a02cd0898e9fe44a3a14e55b9e9361, type: 3}
+  distractors: []
+  distractorTargets:
+  - {fileID: -4137469978705655605, guid: d6cb7609a89ce7c46952075c7e2f2c40, type: 3}
+  - {fileID: -157653931411179800, guid: d6cb7609a89ce7c46952075c7e2f2c40, type: 3}

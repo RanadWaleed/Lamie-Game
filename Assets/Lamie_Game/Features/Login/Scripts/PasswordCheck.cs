@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using TMPro;
 using UnityEngine.Networking;
 using System.Collections;
@@ -11,25 +11,17 @@ public class PasswordCheck : MonoBehaviour
 
     public void CheckCode()
     {
-        string code = codeInput.text;
+        string code = codeInput.text.Trim();
 
-        // --- بداية التخطي المؤقت ---
-        if (code == "000")
+        // Test access is restricted by build target and uses a separate local profile.
+        if (LocalTestAccess.TryResolveCode(code, out string testChildId))
         {
-            Debug.Log("دخول سريع للتجربة بالكود 000!");
-
-            // حفظ بيانات وهمية عشان دالة ProceedToNextState تشتغل بدون مشاكل
             PlayerPrefs.SetString("SavedLoginCode", code);
-            PlayerPrefs.SetString("CurrentChildID", "TestChild_000");
-            PlayerPrefs.SetString("UserGender", "Boy");
-            PlayerPrefs.Save();
-
+            ChildLocalProfile.RememberLogin(code, testChildId, "Boy");
+            Debug.Log("Lamie: local test profile active; assessment uploads are disabled.");
             ProceedToNextState();
-
-            // إنهاء الدالة هنا عشان ما يكمل ويحاول يتصل بالسيرفر
             return;
         }
-        // --- نهاية التخطي المؤقت ---
 
         StartCoroutine(TryOnlineThenOffline(code));
     }
@@ -47,9 +39,11 @@ public class PasswordCheck : MonoBehaviour
         else
         {
             string savedCode = PlayerPrefs.GetString("SavedLoginCode", "");
-            if (!string.IsNullOrEmpty(savedCode) && code == savedCode)
+            if (ChildLocalProfile.TryRestoreLogin(code) ||
+                (!string.IsNullOrEmpty(savedCode) && code == savedCode && ChildLocalProfile.HasIdentity))
             {
                 Debug.Log("تم التحقق محلياً بنجاح");
+                ChildLocalProfile.RememberLogin(code, ChildLocalProfile.CurrentChildId, PlayerPrefs.GetString("UserGender", ""));
                 ProceedToNextState();
             }
             else
@@ -61,7 +55,7 @@ public class PasswordCheck : MonoBehaviour
 
     IEnumerator VerifyCodeFromAPI(string code)
     {
-        string json = "{\"Code\":\"" + code + "\"}";
+        string json = JsonUtility.ToJson(new LoginCodeRequest { Code = code });
 
         UnityWebRequest req = new UnityWebRequest(apiURL, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
@@ -79,7 +73,8 @@ public class PasswordCheck : MonoBehaviour
             {
                 PlayerPrefs.SetString("SavedLoginCode", code);
                 PlayerPrefs.SetString("CurrentChildID", response.ChildId);
-                PlayerPrefs.SetString("UserGender", response.Gender.Trim());
+                PlayerPrefs.SetString("UserGender", (response.Gender ?? "").Trim());
+                ChildLocalProfile.RememberLogin(code, response.ChildId, (response.Gender ?? "").Trim());
                 PlayerPrefs.Save();
 
                 ProceedToNextState();
@@ -105,7 +100,7 @@ public class PasswordCheck : MonoBehaviour
             {
                 GameFlowManager.Instance.GoToState(GameFlowState.Story);
             }
-            else if (PlayerPrefs.GetInt("CharacterSelected", 0) == 0)
+            else if (!ChildLocalProfile.HasCharacter)
             {
                 GameFlowManager.Instance.GoToState(GameFlowState.CharacterSelection);
             }
@@ -125,3 +120,5 @@ public class LoginResponse
     public string Gender;
     public string Message;
 }
+[System.Serializable]
+public class LoginCodeRequest { public string Code; }

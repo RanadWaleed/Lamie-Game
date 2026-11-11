@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 2da633f84a8a45bcae0cbcaab72b6828
+TextureImporter:
+  serializedVersion: 13
+  mipmaps:
+    enableMipMap: 0
+  textureSettings:
+    filterMode: 1
+    wrapU: 1
+    wrapV: 1
+  spriteMode: 1
+  spritePixelsToUnits: 128
+  spritePivot: {x: 0.5, y: 0.5}
+  alphaIsTransparency: 1
+  textureType: 8
+  maxTextureSize: 2048
+  textureCompression: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: d5138e1cd1144d62880ef7f79c132690
+    internalID: 0

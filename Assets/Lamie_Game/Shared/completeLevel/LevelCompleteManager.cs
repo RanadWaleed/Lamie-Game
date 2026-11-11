@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
@@ -168,6 +168,12 @@ public class LevelCompleteManager : MonoBehaviour
 
     public void LoadNextLevelScene()
     {
+        if (System.Array.IndexOf(PsychometricReportManager.AssessmentScenes,
+            SceneManager.GetActiveScene().name) >= 0)
+        {
+            GameCompleteHandler.TryReturnToMap();
+            return;
+        }
         if (!string.IsNullOrEmpty(nextSceneName))
         {
             SceneManager.LoadScene(nextSceneName);

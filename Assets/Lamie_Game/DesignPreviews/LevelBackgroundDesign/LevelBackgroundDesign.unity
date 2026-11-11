@@ -1,0 +1,2389 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1000
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1001}
+  - component: {fileID: 1002}
+  m_Layer: 0
+  m_Name: Design Camera
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1001
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!20 &1002
+Camera:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1000}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.19, g: 0.1, b: 0.26, a: 1}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 100
+  field of view: 60
+  orthographic: 1
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_OcclusionCulling: 0
+
+--- !u!1 &1010
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1011}
+  - component: {fileID: 1012}
+  m_Layer: 0
+  m_Name: 01 - Painted Courtyard Ground and Three Platforms
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1011
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1010}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0626992561105206, y: 1.0626992561105206, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1012
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1010}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -2336315359739716202, guid: d7c607c76600b944081e9441e3dc57c4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1020
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1021}
+  m_Layer: 0
+  m_Name: 02 - Cloud 1
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1021
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1020}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.3, y: 3.35, z: 0}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1031}
+  - {fileID: 1041}
+  - {fileID: 1051}
+  - {fileID: 1061}
+  - {fileID: 1071}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!1 &1030
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1031}
+  - component: {fileID: 1032}
+  m_Layer: 0
+  m_Name: Cloud 1 Puff 1
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1031
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1030}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.84, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1021}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1032
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1030}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1040
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1041}
+  - component: {fileID: 1042}
+  m_Layer: 0
+  m_Name: Cloud 1 Puff 2
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1041
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1040}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.42, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1021}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1042
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1040}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1050
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1051}
+  - component: {fileID: 1052}
+  m_Layer: 0
+  m_Name: Cloud 1 Puff 3
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1051
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1050}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0, y: 0.14, z: 0}
+  m_LocalScale: {x: 1.15, y: 0.55, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1021}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1052
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1050}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1060
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1061}
+  - component: {fileID: 1062}
+  m_Layer: 0
+  m_Name: Cloud 1 Puff 4
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1061
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1060}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.42, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1021}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1062
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1060}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1070
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1071}
+  - component: {fileID: 1072}
+  m_Layer: 0
+  m_Name: Cloud 1 Puff 5
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1071
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1070}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.84, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1021}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1072
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1070}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1080
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1081}
+  m_Layer: 0
+  m_Name: 02 - Cloud 2
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1081
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1080}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2, y: 4, z: 0}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1091}
+  - {fileID: 1101}
+  - {fileID: 1111}
+  - {fileID: 1121}
+  - {fileID: 1131}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!1 &1090
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1091}
+  - component: {fileID: 1092}
+  m_Layer: 0
+  m_Name: Cloud 2 Puff 1
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1091
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1090}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.84, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1081}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1092
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1090}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1100
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1101}
+  - component: {fileID: 1102}
+  m_Layer: 0
+  m_Name: Cloud 2 Puff 2
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1101
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1100}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.42, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1081}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1102
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1100}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1110
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1111}
+  - component: {fileID: 1112}
+  m_Layer: 0
+  m_Name: Cloud 2 Puff 3
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1111
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1110}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0, y: 0.14, z: 0}
+  m_LocalScale: {x: 1.15, y: 0.55, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1081}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1112
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1110}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1120
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1121}
+  - component: {fileID: 1122}
+  m_Layer: 0
+  m_Name: Cloud 2 Puff 4
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1121
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1120}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.42, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1081}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1122
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1120}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1130
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1131}
+  - component: {fileID: 1132}
+  m_Layer: 0
+  m_Name: Cloud 2 Puff 5
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1131
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1130}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.84, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1081}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1132
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1130}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1140
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1141}
+  m_Layer: 0
+  m_Name: 02 - Cloud 3
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1141
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1140}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.4, y: 3.05, z: 0}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1151}
+  - {fileID: 1161}
+  - {fileID: 1171}
+  - {fileID: 1181}
+  - {fileID: 1191}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!1 &1150
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1151}
+  - component: {fileID: 1152}
+  m_Layer: 0
+  m_Name: Cloud 3 Puff 1
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1151
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1150}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.84, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1141}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1152
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1150}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1160
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1161}
+  - component: {fileID: 1162}
+  m_Layer: 0
+  m_Name: Cloud 3 Puff 2
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1161
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.42, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1141}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1162
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1160}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1170
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1171}
+  - component: {fileID: 1172}
+  m_Layer: 0
+  m_Name: Cloud 3 Puff 3
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1171
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1170}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0, y: 0.14, z: 0}
+  m_LocalScale: {x: 1.15, y: 0.55, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1141}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1172
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1170}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1180
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1181}
+  - component: {fileID: 1182}
+  m_Layer: 0
+  m_Name: Cloud 3 Puff 4
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1181
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1180}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.42, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1141}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1182
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1180}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1190
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1191}
+  - component: {fileID: 1192}
+  m_Layer: 0
+  m_Name: Cloud 3 Puff 5
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1191
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1190}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.84, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.35, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1141}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1192
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1190}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: eba3138947a440baade8763dd5ce8e6e, type: 3}
+  m_Color: {r: 1, g: 0.79, b: 0.88, a: 0.68}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1200
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1201}
+  - component: {fileID: 1202}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 1
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1201
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1200}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.6178040325927725, y: 0.4281880106322715, z: 0}
+  m_LocalScale: {x: 0.06093988879915532, y: 0.06093988879915532, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1202
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1200}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1210
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1211}
+  - component: {fileID: 1212}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 2
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1211
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1210}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.650199940001501, y: -0.1029702800642327, z: 0}
+  m_LocalScale: {x: 0.04285612436352641, y: 0.04285612436352641, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1212
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1210}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1220
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1221}
+  - component: {fileID: 1222}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 3
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1221
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1220}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6591286447348175, y: -0.1405367075532169, z: 0}
+  m_LocalScale: {x: 0.048322666064772826, y: 0.048322666064772826, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1222
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1220}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1230
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231}
+  - component: {fileID: 1232}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 4
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1231
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1230}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.3258588322832185, y: -1.4353220158415487, z: 0}
+  m_LocalScale: {x: 0.04233339078659976, y: 0.04233339078659976, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1232
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1230}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1240
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1241}
+  - component: {fileID: 1242}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 5
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1241
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1240}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.4315607718254775, y: -1.108005945258284, z: 0}
+  m_LocalScale: {x: 0.037853488543551694, y: 0.037853488543551694, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1242
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1240}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1250
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1251}
+  - component: {fileID: 1252}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 6
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1251
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1250}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.401532743333055, y: -0.30073977655450346, z: 0}
+  m_LocalScale: {x: 0.0381492849024522, y: 0.0381492849024522, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1252
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1250}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1260
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1261}
+  - component: {fileID: 1262}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 7
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1261
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1260}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.0478666328882476, y: 0.5708209142002727, z: 0}
+  m_LocalScale: {x: 0.06460677148482565, y: 0.06460677148482565, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1262
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1260}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1270
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1271}
+  - component: {fileID: 1272}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 8
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1271
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1270}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.167603378063177, y: -0.829007664963282, z: 0}
+  m_LocalScale: {x: 0.035484141661231976, y: 0.035484141661231976, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1272
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1270}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1280
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1281}
+  - component: {fileID: 1282}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 9
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1281
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.461771780421528, y: -2.04867083400424, z: 0}
+  m_LocalScale: {x: 0.04511755828187716, y: 0.04511755828187716, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1282
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1280}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1290
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1291}
+  - component: {fileID: 1292}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 10
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1291
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1290}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.655211922442298, y: -1.303065379233023, z: 0}
+  m_LocalScale: {x: 0.061012571521839934, y: 0.061012571521839934, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1292
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1290}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1300
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1301}
+  - component: {fileID: 1302}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 11
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1301
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1300}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.404768431370746, y: -2.1918562021437857, z: 0}
+  m_LocalScale: {x: 0.03894953428975128, y: 0.03894953428975128, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1302
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1300}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1310
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1311}
+  - component: {fileID: 1312}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 12
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1311
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1310}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.6059488541519205, y: -0.29738688827053883, z: 0}
+  m_LocalScale: {x: 0.06497644328946638, y: 0.06497644328946638, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1312
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1310}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1320
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1321}
+  - component: {fileID: 1322}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 13
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1321
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1320}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.287630796622952, y: -0.5698428049201847, z: 0}
+  m_LocalScale: {x: 0.05621936264184591, y: 0.05621936264184591, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1322
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1320}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1330
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331}
+  - component: {fileID: 1332}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 14
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1331
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1330}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.464850594565483, y: -2.708362693325107, z: 0}
+  m_LocalScale: {x: 0.04560229704984539, y: 0.04560229704984539, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1332
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1330}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1340
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1341}
+  - component: {fileID: 1342}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 15
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1341
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1340}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.304363884948879, y: -0.2811563506359418, z: 0}
+  m_LocalScale: {x: 0.07372952897855958, y: 0.07372952897855958, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1342
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1340}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1350
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1351}
+  - component: {fileID: 1352}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 16
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1351
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1350}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.9629904364840591, y: -1.736752144545794, z: 0}
+  m_LocalScale: {x: 0.04885429736664069, y: 0.04885429736664069, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1352
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1350}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1360
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1361}
+  - component: {fileID: 1362}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 17
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1361
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8100946520149357, y: -0.13679657376957266, z: 0}
+  m_LocalScale: {x: 0.04731664538282697, y: 0.04731664538282697, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1362
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1360}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1370
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1371}
+  - component: {fileID: 1372}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 18
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1371
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1370}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.8078685846870126, y: -0.2742611627160425, z: 0}
+  m_LocalScale: {x: 0.0491082492508548, y: 0.0491082492508548, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1372
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1370}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1380
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1381}
+  - component: {fileID: 1382}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 19
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1381
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.8538462115519545, y: -1.3341752212798483, z: 0}
+  m_LocalScale: {x: 0.0421083386191751, y: 0.0421083386191751, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1382
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1380}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1390
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1391}
+  - component: {fileID: 1392}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 20
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1391
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1390}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.290577033881737, y: -0.34227866127760853, z: 0}
+  m_LocalScale: {x: 0.05569408304966826, y: 0.05569408304966826, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1392
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1390}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1400
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1401}
+  - component: {fileID: 1402}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 21
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1401
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1400}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.311179434138156, y: -2.046530963071, z: 0}
+  m_LocalScale: {x: 0.05456543760171981, y: 0.05456543760171981, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1402
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1400}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1410
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1411}
+  - component: {fileID: 1412}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 22
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1411
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1410}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.031386798117505, y: -2.9427534788260896, z: 0}
+  m_LocalScale: {x: 0.037287971196496544, y: 0.037287971196496544, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1412
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1410}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1420
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1421}
+  - component: {fileID: 1422}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 23
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1421
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1420}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7267383265452843, y: -0.6418368434190405, z: 0}
+  m_LocalScale: {x: 0.0451740630854092, y: 0.0451740630854092, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1422
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1420}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1430
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1431}
+  - component: {fileID: 1432}
+  m_Layer: 0
+  m_Name: 03 - Warm Firefly 24
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1431
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1430}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.47509738279915226, y: -1.3471237326457217, z: 0}
+  m_LocalScale: {x: 0.046992776529961644, y: 0.046992776529961644, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1432
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1430}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.85, b: 0.43, a: 0.45}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1440
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1441}
+  - component: {fileID: 1442}
+  m_Layer: 0
+  m_Name: 04 - Lantern Glow 1
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1441
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1440}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.25, y: 0.65, z: 0}
+  m_LocalScale: {x: 1.15, y: 1.15, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1442
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1440}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.66, b: 0.17, a: 0.12}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1450
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1451}
+  - component: {fileID: 1452}
+  m_Layer: 0
+  m_Name: 04 - Lantern Glow 2
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1451
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1450}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.85, y: 0.85, z: 0}
+  m_LocalScale: {x: 1.15, y: 1.15, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!212 &1452
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1450}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 2da633f84a8a45bcae0cbcaab72b6828, type: 3}
+  m_Color: {r: 1, g: 0.66, b: 0.17, a: 0.12}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+
+--- !u!1 &1460
+GameObject:
+  m_ObjectHideFlags: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1461}
+  - component: {fileID: 1462}
+  m_Layer: 0
+  m_Name: 05 - Atmosphere Animation Controller
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1461
+Transform:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1460}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!114 &1462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_GameObject: {fileID: 1460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9ff6c64b0ee6143b3e45e07487a4f0, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  clouds:
+  - {fileID: 1021}
+  - {fileID: 1081}
+  - {fileID: 1141}
+  sparkles:
+  - {fileID: 1202}
+  - {fileID: 1212}
+  - {fileID: 1222}
+  - {fileID: 1232}
+  - {fileID: 1242}
+  - {fileID: 1252}
+  - {fileID: 1262}
+  - {fileID: 1272}
+  - {fileID: 1282}
+  - {fileID: 1292}
+  - {fileID: 1302}
+  - {fileID: 1312}
+  - {fileID: 1322}
+  - {fileID: 1332}
+  - {fileID: 1342}
+  - {fileID: 1352}
+  - {fileID: 1362}
+  - {fileID: 1372}
+  - {fileID: 1382}
+  - {fileID: 1392}
+  - {fileID: 1402}
+  - {fileID: 1412}
+  - {fileID: 1422}
+  - {fileID: 1432}
+  lanternGlows:
+  - {fileID: 1442}
+  - {fileID: 1452}
+
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 1001}
+  - {fileID: 1011}
+  - {fileID: 1021}
+  - {fileID: 1081}
+  - {fileID: 1141}
+  - {fileID: 1201}
+  - {fileID: 1211}
+  - {fileID: 1221}
+  - {fileID: 1231}
+  - {fileID: 1241}
+  - {fileID: 1251}
+  - {fileID: 1261}
+  - {fileID: 1271}
+  - {fileID: 1281}
+  - {fileID: 1291}
+  - {fileID: 1301}
+  - {fileID: 1311}
+  - {fileID: 1321}
+  - {fileID: 1331}
+  - {fileID: 1341}
+  - {fileID: 1351}
+  - {fileID: 1361}
+  - {fileID: 1371}
+  - {fileID: 1381}
+  - {fileID: 1391}
+  - {fileID: 1401}
+  - {fileID: 1411}
+  - {fileID: 1421}
+  - {fileID: 1431}
+  - {fileID: 1441}
+  - {fileID: 1451}
+  - {fileID: 1461}

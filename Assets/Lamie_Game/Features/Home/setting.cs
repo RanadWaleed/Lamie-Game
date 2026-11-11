@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class setting : MonoBehaviour
@@ -51,15 +51,15 @@ public class setting : MonoBehaviour
             return;
         }
 
-        string gender = PlayerPrefs.GetString("UserGender", "أنثى").Trim();
-        int savedIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0);
+        string gender = ChildLocalProfile.GetString("UserGender", PlayerPrefs.GetString("UserGender", "أنثى")).Trim();
+        int savedIndex = ChildLocalProfile.GetInt("SelectedCharacterIndex", 0);
 
 
-        Sprite[] activeArray = (gender == "ذكر" || gender == "ركذ") ? boySprites : girlSprites;
+        Sprite[] activeArray = ChildLocalProfile.IsBoy(gender) ? boySprites : girlSprites;
 
         if (activeArray != null && activeArray.Length > 0)
         {
-            if (savedIndex >= activeArray.Length) savedIndex = 0;
+            if (savedIndex < 0 || savedIndex >= activeArray.Length) savedIndex = 0;
 
             characterPreview.sprite = activeArray[savedIndex];
             Debug.Log("Home Scene Image Updated to: " + activeArray[savedIndex].name);

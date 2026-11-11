@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -36,7 +36,7 @@ public class GameFlowManager : MonoBehaviour
                 "STROYSECNE" => GameFlowState.Story,
                 "CharacterSelectionScene" => GameFlowState.CharacterSelection,
                 "HomeScene" => GameFlowState.Home,
-                "GameLevelScene" => GameFlowState.GameLevel,
+                "interactive_Game_Level" => GameFlowState.GameLevel,
                 "Game01Scene" => GameFlowState.Game01,
                 "Game02Scene" => GameFlowState.Game02,
                 "Game_03" => GameFlowState.Game03,
@@ -100,7 +100,7 @@ public class GameFlowManager : MonoBehaviour
         GameFlowState.Story => "STROYSECNE",
         GameFlowState.CharacterSelection => "CharacterSelectionScene",
         GameFlowState.Home => "HomeScene",
-        GameFlowState.GameLevel => "GameLevelScene",
+        GameFlowState.GameLevel => "interactive_Game_Level",
         GameFlowState.Game01 => "Game01Scene",
         GameFlowState.Game02 => "Game02Scene",
         GameFlowState.Game03 => "Game_03",

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -236,19 +236,8 @@ public class Task3_Manager : MonoBehaviour
 
         if (isLastLevel)
         {
-            float item6_acc = item6_totalPieces > 0 ? Mathf.Clamp01((float)item6_firstTrySuccess / item6_totalPieces) : 0f;
-            float item6_err = item6_totalAttempts > 0 ? Mathf.Clamp01((float)item6_firstTrySuccess / item6_totalAttempts) : 0f;
-            float item6_spd = item6_actualTime > 0 ? Mathf.Clamp01(item6_standardTime / item6_actualTime) : 0f;
-            float item6_finalScore = ((item6_acc * 0.6f) + (item6_spd * 0.2f) + (item6_err * 0.2f)) * 100f;
-
-            Debug.Log($"<color=magenta><b>[ SECRET ITEM 6 METRICS ]</b></color>\n" +
-                      $"Total Attempts: {item6_totalAttempts} | Time: {item6_actualTime:F2}s | Score: {item6_finalScore:F1}%");
-
-            if (PsychometricReportManager.Instance != null)
-            {
-                PsychometricReportManager.Instance.SaveItemData(6, item6_firstTrySuccess, item6_totalPieces, item6_totalAttempts, item6_actualTime, item6_standardTime, Game3_MasterManager.ItemNames["تمثيل الرموز البصرية المألوفة"][5]);
-                PsychometricReportManager.Instance.FinishCurrentIndicator();
-            }
+            // Item six is derived once by the report manager as C/A from task one.
+            PsychometricReportManager.Instance?.FinishCurrentIndicator();
 
             if (dustParticles != null)
             {

@@ -1,0 +1,422 @@
+fileFormatVersion: 2
+guid: 62cee1f6241f2bc4eb994eb9729fcd22
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -629412819513286811
+    second: shapes round 3_0
+  - first:
+      213: -49696089082375086
+    second: shapes round 3_1
+  - first:
+      213: -3139360693203870116
+    second: shapes round 3_2
+  - first:
+      213: 8897022515298254936
+    second: shapes round 3_3
+  - first:
+      213: 3819540040600328474
+    second: shapes round 3_4
+  - first:
+      213: -3194030155732530772
+    second: shapes round 3_5
+  - first:
+      213: -7418586415135602263
+    second: shapes round 3_6
+  - first:
+      213: 2636807751571181363
+    second: shapes round 3_7
+  - first:
+      213: -709105772391564935
+    second: shapes round 3_8
+  - first:
+      213: -5307634059324740866
+    second: shapes round 3_9
+  - first:
+      213: 4474962849028037681
+    second: shapes round 3_10
+  - first:
+      213: 9146139460663580256
+    second: shapes round 3_11
+  - first:
+      213: -67536833411596606
+    second: shapes round 3_12
+  - first:
+      213: -4808108586391681145
+    second: shapes round 3_13
+  - first:
+      213: -7290223735016131788
+    second: shapes round 3_14
+  - first:
+      213: 5889179054843177451
+    second: shapes round 3_15
+  - first:
+      213: 6625130186882035949
+    second: shapes round 3_16
+  - first:
+      213: -6365828958902207241
+    second: shapes round 3_17
+  - first:
+      213: 3525446159514646910
+    second: shapes round 3_18
+  - first:
+      213: -9191031919563033160
+    second: shapes round 3_19
+  - first:
+      213: -4312946256560048819
+    second: shapes round 3_20
+  - first:
+      213: 3371408213706982165
+    second: shapes round 3_21
+  - first:
+      213: 7803248489727291242
+    second: shapes round 3_22
+  - first:
+      213: -4730071528639942273
+    second: shapes round 3_23
+  - first:
+      213: -5531928269860891239
+    second: shapes round 3_24
+  - first:
+      213: -7557226689569005200
+    second: shapes round 3_25
+  - first:
+      213: 7652165199915656325
+    second: shapes round 3_26
+  - first:
+      213: 5906002025272351251
+    second: shapes round 3_27
+  - first:
+      213: -3183942738674340743
+    second: shapes round 3_28
+  - first:
+      213: -6514779237950636395
+    second: shapes round 3_29
+  - first:
+      213: -5935057355607086867
+    second: shapes round 3_30
+  - first:
+      213: 4162219127075973470
+    second: shapes round 3_31
+  - first:
+      213: -5010305001050934535
+    second: shapes round 3_32
+  - first:
+      213: 2271371810610131359
+    second: shapes round 3_33
+  - first:
+      213: 3720186534789589978
+    second: shapes round 3_34
+  - first:
+      213: -7658437985799538258
+    second: shapes round 3_35
+  - first:
+      213: 241194423850756488
+    second: shapes round 3_36
+  - first:
+      213: 3098260849121012806
+    second: shapes round 3_37
+  - first:
+      213: 2172223780921657071
+    second: shapes round 3_38
+  - first:
+      213: 6060595305999043668
+    second: shapes round 3_39
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shapes round 3_0
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 497
+        width: 303
+        height: 503
+      alignment: 9
+      pivot: {x: 0.49526584, y: 0.6038633}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56f55db1060e347f0800000000000000
+      internalID: -629412819513286811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shapes round 3_1
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 0
+        width: 305
+        height: 485
+      alignment: 9
+      pivot: {x: 0.5171637, y: 0.6791722}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 254d4879ba17f4ff0800000000000000
+      internalID: -49696089082375086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shapes round 3_2
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 479
+        width: 427
+        height: 545
+      alignment: 9
+      pivot: {x: 0.53700817, y: 0.6660642}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5e52c32510ce64d0800000000000000
+      internalID: -3139360693203870116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shapes round 3_3
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 16
+        width: 317
+        height: 444
+      alignment: 9
+      pivot: {x: 0.4592137, y: 0.6876623}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8504107d6d2987b70800000000000000
+      internalID: 8897022515298254936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shapes round 3_8
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 469
+        width: 409
+        height: 534
+      alignment: 9
+      pivot: {x: 0.51405, y: 0.6667948}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 979fb689e00c826f0800000000000000
+      internalID: -709105772391564935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shapes round 3_39
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 15
+        width: 286
+        height: 425
+      alignment: 9
+      pivot: {x: 0.54597014, y: 0.7230936}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45c0975025f8b1450800000000000000
+      internalID: 6060595305999043668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e2c25cef47d13f341bb6f29be11dbea2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      shapes round 3_0: -629412819513286811
+      shapes round 3_1: -49696089082375086
+      shapes round 3_10: 4474962849028037681
+      shapes round 3_11: 9146139460663580256
+      shapes round 3_12: -67536833411596606
+      shapes round 3_13: -4808108586391681145
+      shapes round 3_14: -7290223735016131788
+      shapes round 3_15: 5889179054843177451
+      shapes round 3_16: 6625130186882035949
+      shapes round 3_17: -6365828958902207241
+      shapes round 3_18: 3525446159514646910
+      shapes round 3_19: -9191031919563033160
+      shapes round 3_2: -3139360693203870116
+      shapes round 3_20: -4312946256560048819
+      shapes round 3_21: 3371408213706982165
+      shapes round 3_22: 7803248489727291242
+      shapes round 3_23: -4730071528639942273
+      shapes round 3_24: -5531928269860891239
+      shapes round 3_25: -7557226689569005200
+      shapes round 3_26: 7652165199915656325
+      shapes round 3_27: 5906002025272351251
+      shapes round 3_28: -3183942738674340743
+      shapes round 3_29: -6514779237950636395
+      shapes round 3_3: 8897022515298254936
+      shapes round 3_30: -5935057355607086867
+      shapes round 3_31: 4162219127075973470
+      shapes round 3_32: -5010305001050934535
+      shapes round 3_33: 2271371810610131359
+      shapes round 3_34: 3720186534789589978
+      shapes round 3_35: -7658437985799538258
+      shapes round 3_36: 241194423850756488
+      shapes round 3_37: 3098260849121012806
+      shapes round 3_38: 2172223780921657071
+      shapes round 3_39: 6060595305999043668
+      shapes round 3_4: 3819540040600328474
+      shapes round 3_5: -3194030155732530772
+      shapes round 3_6: -7418586415135602263
+      shapes round 3_7: 2636807751571181363
+      shapes round 3_8: -709105772391564935
+      shapes round 3_9: -5307634059324740866
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
